@@ -1,0 +1,173 @@
+\documentclass[11pt,titlepage]{article}
+
+\usepackage[french,american]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage[a4paper]{geometry}           % See geometry.pdf to learn the layout
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{color}
+\usepackage[tt]{titlepic}
+\usepackage{fancyhdr}
+\usepackage{secdot}
+\usepackage{booktabs}
+\usepackage{rotating}
+
+\topmargin=-0.45in      %
+%\evensidemargin=0in     %
+\oddsidemargin=-0.1in      %
+\textwidth=6.8in        %
+\textheight=9.0in       %
+%\headsep=0.25in         %
+
+%======================= Titlepage =========================================================
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\titlepic{\includegraphics[width=17cm]{figures/research_plan_pic.pdf}}
+
+\title{\textbf{Annual progress report \textcolor{blue}{2014}}} %Change Year
+
+\author{\large{\textbf{Damar Wicaksono} }\\\\ 
+\large{\textbf{Prof. Andreas Pautz}} \\\
+\large{\textbf{Omar Zerkak}} \\\\\\\
+\Large{\textbf{Bayesian Uncertainty Quantification}} \\\\
+\Large\textbf{of Physical Models} \\\\
+\Large\textbf{in Thermal-Hydraulics System Code}}
+
+\date{30.11.2014}				%activate to remove date
+%========================================================================================
+
+
+
+\begin{document}
+%========================  Top header ======================================================
+\pagestyle{fancy} \pagenumbering{arabic} \setcounter{page}{1}
+\addtolength{\headheight}{\baselineskip}
+\newcommand{\ffont}{\fontsize{8}{8}\selectfont}
+\lhead{ECOLE DOCTORALE\\ \textit{DOCTORAL SCHOOL}}
+\chead{PROGRAMME DOCTORAL EN PHYSIQUE\\ \textit{DOCTORAL PROGRAM IN PHYSICS}}
+\rhead{\bfseries\ffont  \includegraphics[width=55pt]{figures/EPFL_LOG.pdf}}
+\renewcommand{\headrulewidth}{0.4pt}
+\maketitle
+%=========================================================================================
+\textcolor{white}.
+\section{Objectives of research}
+
+The objective of the present research is to quantify the uncertainty of 
+physical model parameters implemented in a thermal-hydraulics system code.
+The physical models concerned are parameterized either by a physical or tuning 
+parameters.
+Conforming with the practice of statistical uncertainty propagation widely 
+adopted in the field of nuclear engineering, probability theory is used to 
+quantify the uncertainties related to these parameters with a final form of 
+density function and/or its approximation. 
+The derivation of this density will follow a bayesian approach utilizing 
+probabilistic modeling complemented with the available relevant experimental 
+data.
+
+\section{Work achieved in the past year (state of research)}
+
+\section{Current state of work}
+
+The current state of research along with the achievements during the year are 
+summarized in the table below.
+
+\begin{table}[!h]
+    \begin{center}
+        \begin{tabular}{  l  p{5cm}  c  p{5cm}}
+        \toprule
+        \bf{Phase} & \bf{Task Description} & \bf{Planned Outcome} & \bf{Current State} \\\toprule
+% Phase 1         
+                     Phase 1
+                   & Comprehensive reviews of post-CHF flow regimes models in TRACE
+                     and externalization               
+                   &   1 Technical Report (PSI)                
+                   & $\bullet$ Relevant parameters externalized 
+                     $\bullet$ PSI contribution to OECD/NEA PREMIUM benchmark finalized \\\midrule
+% Phase 2                     
+                     Phase 2
+                   & Global sensitivity analysis of (perceived) important
+                     parameters               
+                   &   1 Technical Report (PSI)                
+                   & $\bullet$ Relevant parameters externalized 
+                     $\bullet$ PSI contribution to OECD/NEA PREMIUM benchmark finalized \\\midrule
+% Phase 3         
+                     Phase 3
+                   & Calibration of TRACE reflood model based on FEBA test 
+                     facility               
+                   &   1 Technical Report (PSI)                
+                   & $\bullet$ Relevant parameters externalized 
+                     $\bullet$ PSI contribution to OECD/NEA PREMIUM benchmark finalized \\\midrule
+% Phase 4
+                     Phase 4
+                   & Calibration of TRACE reflood model based on another test
+                     facility (To be Decided)               
+                   & 1 Conference Paper                
+                   & $\bullet$ Relevant parameters externalized 
+                     $\bullet$ PSI contribution to OECD/NEA PREMIUM benchmark finalized \\\midrule
+% Phase 4
+                     Phase 5
+                   & Consolidation of the calibration results based on 
+                     2 facilities and validation based on
+                     another reflood test facility              
+                   & 1 Journal Article            
+                   & $\bullet$ Relevant parameters externalized 
+                     $\bullet$ PSI contribution to OECD/NEA PREMIUM benchmark finalized \\\midrule 
+% Phase 6
+                     Phase 6
+                   & Thesis write-up               
+                   & Thesis                
+                   & $-$\\
+                     \bottomrule    
+    \end{tabular}
+\end{center}
+\end{table}
+
+
+\section{Calendar of upcoming work}
+
+
+\end{document}
+
+\section{Scientific publications \& conference contributions}
+
+\section{Other activities (teaching duties, …) and remarks}
+
+\newpage
+\textcolor{white}.\\\\
+\noindent \textbf{Comments by the thesis advisor(s)}\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+
+
+\section*{\underline{Signatures}\\}
+\noindent \textbf{Thesis advisor}\hspace{6.25cm}..............................................................................\vspace{0.5cm}\\
+
+\noindent \textbf{Thesis co-advisor}\hspace{5.7cm}..............................................................................\\
+\noindent  (if officially nominated)\\\\
+
+\noindent \textbf{With his/her signature, the candidate confirms that he/she took note of the above comments.}\\\\
+\textbf{Candidate}\hspace{7cm}..............................................................................\vspace{0.5cm}\\
+
+\noindent \textbf{Date}\hspace{8.05cm}..............................................................................\\
+
+\vspace{0.8cm}
+\begin{center}
+\textbf{Up to 5 pages in total}
+\end{center}
+\begin{center}
+\textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 / 1015 Lausanne / Suisse}
+\end{center}
+\end{document}  
