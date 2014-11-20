@@ -18,6 +18,8 @@
 \usepackage{secdot}
 \usepackage{booktabs}
 \usepackage{rotating}
+\usepackage{multirow}
+\usepackage[style=ieee, backend=bibtex]{biblatex}
 
 \topmargin=-0.45in      %
 %\evensidemargin=0in     %
@@ -42,7 +44,7 @@
 \date{30.11.2014}				%activate to remove date
 %========================================================================================
 
-
+\bibliography{report_2014.bib}
 
 \begin{document}
 %========================  Top header ======================================================
@@ -58,17 +60,25 @@
 \textcolor{white}.
 \section{Objectives of research}
 
-The objective of the present research is to quantify the uncertainty of 
+The objective of the research is to quantify the uncertainty of 
 physical model parameters implemented in a thermal-hydraulics system code.
-The physical models concerned are parameterized either by a physical or tuning 
+The physical models concerned are the ones describing 
+the phasic interaction (heat and momentum exchange) in a complex 
+multiphase flow during reactor transient especially for the
+\textit{reflood} phase after a loss-of-coolant-accident. 
+These models parameterized either by a physical or tuning 
 parameters.
+
 Conforming with the practice of statistical uncertainty propagation widely 
 adopted in the field of nuclear engineering, probability theory is used to 
-quantify the uncertainties related to these parameters with a final form of 
-density function and/or its approximation. 
-The derivation of this density will follow a bayesian approach utilizing 
-probabilistic modeling complemented with the available relevant experimental 
-data.
+quantify the uncertainties related to these parameters with the results in 
+a form of density function and/or its approximation. 
+The derivation of this density is posed as an inverse statistical problem 
+following a bayesian approach as the parameters themselves are not directly 
+observable.
+To this end, a methodology will be developed based on probabilistic 
+modeling combined with the available relevant experimental data taken 
+from various separate effect test facilities.
 
 \section{Work achieved in the past year (state of research)}
 
@@ -76,48 +86,54 @@ data.
 
 The current state of research along with the achievements during the year are 
 summarized in the table below.
-
+                   analysis and
+                               novel data analysis methodology (NUTHOS-14)
+                          1 abstract for the NURETH-16 submitted 
+                                             
+                     
 \begin{table}[!h]
     \begin{center}
-        \begin{tabular}{  l  p{5cm}  c  p{5cm}}
+        \begin{tabular}{  c  p{4cm}  p{2.5cm} p{8cm}}
         \toprule
-        \bf{Phase} & \bf{Task Description} & \bf{Planned Outcome} & \bf{Current State} \\\toprule
+        \bf{Phase} & \bf{Task Description} & \multicolumn{2}{c}{\bf{Outcome}}  \\
+                   &                       & \multicolumn{1}{c}{\bf{Planned}} & \multicolumn{1}{c}{\bf{Current}}       \\\toprule
 % Phase 1         
-                     Phase 1
-                   & Comprehensive reviews of post-CHF flow regimes models in TRACE
-                     and externalization               
-                   &   1 Technical Report (PSI)                
-                   & $\bullet$ Relevant parameters externalized 
-                     $\bullet$ PSI contribution to OECD/NEA PREMIUM benchmark finalized \\\midrule
+                     \multirow{5}{*}{1}
+                       & Comprehensive reviews of post-CHF flow  & 
+                         \multirow{3}{*}{$\bullet$ 1 Tech. Rep.} 
+                          & $\bullet$ Relevant parameters externalized \\ 
+                       & closure laws in TRACE and externalization & 
+                           & $\bullet$ PSI contribution to PREMIUM benchmark  \\
+                       & of important model parameters & & \\              
+                   \midrule     
+
 % Phase 2                     
-                     Phase 2
-                   & Global sensitivity analysis of (perceived) important
-                     parameters               
-                   &   1 Technical Report (PSI)                
-                   & $\bullet$ Relevant parameters externalized 
-                     $\bullet$ PSI contribution to OECD/NEA PREMIUM benchmark finalized \\\midrule
+                     2
+                   & Global sensitivity analysis of important & & \\
+                   & reflood model parameters & & \\               
+                   &  &  $\bullet$ 1 Technical Report & \\
+                   &  &  $\bullet$ 1 Conference Paper & \\
+                     \\\midrule
 % Phase 3         
-                     Phase 3
-                   & Calibration of TRACE reflood model based on FEBA test 
-                     facility               
-                   &   1 Technical Report (PSI)                
-                   & $\bullet$ Relevant parameters externalized 
-                     $\bullet$ PSI contribution to OECD/NEA PREMIUM benchmark finalized \\\midrule
+                     3
+                   & Calibration of TRACE reflood model & & \\
+                   & based on FEBA test facility & & \\               
+                   & & $\bullet$ 1 Technical Report  & \\
+                   & & $\bullet$ 1 Journal Article   & \\               \\\midrule
 % Phase 4
-                     Phase 4
-                   & Calibration of TRACE reflood model based on another test
+                     4
+                   & Calibration of TRACE reflood model & & \\
+                   & based on another test
                      facility (To be Decided)               
-                   & 1 Conference Paper                
-                   & $\bullet$ Relevant parameters externalized 
-                     $\bullet$ PSI contribution to OECD/NEA PREMIUM benchmark finalized \\\midrule
-% Phase 4
-                     Phase 5
-                   & Consolidation of the calibration results based on 
-                     2 facilities and validation based on
-                     another reflood test facility              
+                   & 1 Conference Paper                            
+                    \\\midrule
+% Phase 5
+                     5
+                   & Consolidation of the calibration results & & \\
+                   & based on 2 facilities and validation & & \\
+                   & based on another reflood test facility & & \\         
                    & 1 Journal Article            
-                   & $\bullet$ Relevant parameters externalized 
-                     $\bullet$ PSI contribution to OECD/NEA PREMIUM benchmark finalized \\\midrule 
+                    \\\midrule 
 % Phase 6
                      Phase 6
                    & Thesis write-up               
@@ -132,12 +148,33 @@ summarized in the table below.
 \section{Calendar of upcoming work}
 
 
+\pagebreak
+
+\section{Scientific publications, conference contributions, and presentations}
+
+\nocite{Wicaksono2014a}
+\nocite{Wicaksono2014b}
+\nocite{Wicaksono2014c}
+\nocite{Wicaksono2014d}
+\nocite{Wicaksono2014e}
+\printbibliography[heading=none]
+
+\section{Other activities and remarks}
+
+\subsection{Nuclear Computation Lab (ETH-531)}
+
+A teaching activity during the year 2014 was carried out for Nuclear Computation Lab 
+course given at PSI.
+The course was part of the block courses offered to the EPFL/ETHZ Nuclear 
+Engineering Master Program
+Single (full) day was dedicated for lecture session followed by computer 
+simulation session for the t
+12 students participated in the course with 
+
+Prior to the course, the available lecture slides was fully revised for a better structure and with some examples.
+ 
+
 \end{document}
-
-\section{Scientific publications \& conference contributions}
-
-\section{Other activities (teaching duties, …) and remarks}
-
 \newpage
 \textcolor{white}.\\\\
 \noindent \textbf{Comments by the thesis advisor(s)}\\\\
