@@ -21,8 +21,10 @@
 \usepackage{multirow}
 \usepackage{tabularx}
 \usepackage{ragged2e}  % for '\RaggedRight' macro (allows hyphenation)
-\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X} 
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
 \usepackage[style=ieee, backend=bibtex]{biblatex}
+\usepackage{courier}
+
 
 \topmargin=-0.45in      %
 %\evensidemargin=0in     %
@@ -37,7 +39,7 @@
 
 \title{\textbf{Annual progress report \textcolor{blue}{2014}}} %Change Year
 
-\author{\large{\textbf{Damar Wicaksono} }\\\\ 
+\author{\large{\textbf{Damar Wicaksono} }\\\\
 \large{\textbf{Prof. Andreas Pautz}} \\\
 \large{\textbf{Omar Zerkak}} \\\\\\\
 \Large{\textbf{Bayesian Uncertainty Quantification}} \\\\
@@ -60,107 +62,322 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \maketitle
 %=========================================================================================
-\textcolor{white}.
+%\textcolor{white}.
 \section{Objectives of research}
 
-The objective of the research is to quantify the uncertainty of 
+The objective of the research is to quantify the uncertainty of
 physical model parameters implemented in a thermal-hydraulics system code.
-The physical models concerned are the ones describing 
-the phasic interaction (heat and momentum exchange) in a complex 
+The physical models concerned are the ones describing
+the phasic interaction (heat and momentum exchange) in a complex
 multiphase flow during reactor transient especially for the
-\textit{reflood} phase after a loss-of-coolant-accident. 
-These models parameterized either by a physical or tuning 
+\textit{reflood} phase after a loss-of-coolant-accident.
+These models parameterized either by a physical or tuning
 parameters.
 
-Conforming with the practice of statistical uncertainty propagation widely 
-adopted in the field of nuclear engineering, probability theory is used to 
-quantify the uncertainties related to these parameters with the results in 
-a form of density function and/or its approximation. 
-The derivation of this density is posed as an inverse statistical problem 
-following a bayesian approach as the parameters themselves are not directly 
+Conforming with the practice of statistical uncertainty propagation widely
+adopted in the field of nuclear engineering, probability theory is used to
+quantify the uncertainties related to these parameters with the results in
+a form of density function and/or its approximation.
+The derivation of this density is posed as an inverse statistical problem
+following a bayesian approach as the parameters themselves are not directly
 observable.
-To this end, a methodology of model uncertainty quantification will be 
-developed combining on probabilistic modeling and the available relevant 
+To this end, a methodology to quantify model uncertainty will be
+developed combining on probabilistic modeling and the available relevant
 experimental data taken from various separate effect test facilities.
 
 \section{Work achieved in the past year (state of research)}
 
-\subsection{Assessment of TRACE on the basis of FEBA and PERICLES Test Facilities}
 
-\subsection{PSI Contribution to OECD/NEA PREMIUM Benchmark}
+The PREMIUM benchmark was an activity coordinated by OECD/NEA starting in 2012 
+with an aim to compare and advance the methods for quantifying the physical 
+model parameters uncertainties in thermal-hydraulics system codes.
+PREMIUM put an emphasis on the derivation of the uncertainties (Phase III) and 
+its assessment by blind-predictions with experimental data (Phase IV).
+The scope of the benchmark was limited to the physical models relevant in the 
+simulation of reflood.
+The derivation of uncertainties was based on the experimental data taken from 
+FEBA test facility and the assessment was based on the PERICLES test facility.
+The LRS at PSI is a participant in the benchmark using the TRACE code and 
+works related to this participation was part of the PhD research activity.
 
-\subsection{Application of Morris Screening Method}
+During the last year, following the relative success in modeling FEBA and 
+PERICLES using TRACE code, the work on PSI contribution for PREMIUM began 
+and concluded.
+First, the derivation of uncertainties on the parameters was based on expert 
+judgment and review on literature that is available at PSI.
+Final listing of important uncertain parameters summed up to 26 for FEBA and 
+34 for PERICLES ranging from initial condition, material properties, to 
+specific reflood model parameters.
+Second, these uncertainties were propagated by Monte Carlo sampling to obtain
+the bounding uncertainty band on the cladding temperature prediction.
+The results of both FEBA and PERICLES were the submitted to CEA as the 
+organizer of Phase IV. 
+This submission concluded PSI contribution to the Phase IV of the benchmark.
 
-\subsection{Application of Functional Data Analysis}
+Following the submission, the results from other participants were disclosed by
+the organizer.
+The organizer of the benchmark presented a table summarizing the general results
+from all the participant and it is reproduced here in Table~\ref{tab:premium}.
+It was noted that PSI results was in relatively good position compared to the
+other participants in terms of the width of the uncertainty band as well as the
+number of considered model parameters.
+
+\begin{table}[!h]
+\caption{Summary of the simulation uncertainty propagation results
+         in PREMIUM Phase IV
+         }
+\centering
+\scalebox{0.9}{
+\label{tab:premium}
+\begin{tabularx}{\textwidth}{c c c c} % use 'Y' for first column
+% Header ----------------------------------------------------------------------
+   \toprule
+   
+ & \textbf{Participant}
+ & \textbf{Width of}
+ & \textbf{No. of Parameters} \\  
+   \textbf{General Results}
+ & \textbf{(Code)}
+ & \textbf{Uncertainty}
+ & \textbf{(FEBA)} \\
+    
+ &
+ & \textbf{Band}
+ & \textbf{(PERICLES)} \\\midrule
+% Table Elements --------------------------------------------------------------
+  \multirow{10}{*}{FEBA \& PERICLES \textbf{well bounded}}
+% 1 IRSN ----------------------------------------------------------------------
+ & IRSN, FR
+ & \multirow{2}{*}{Very wide}
+ & 3 \\
+ & (CATHARE)
+ &
+ & 3\\
+ \addlinespace
+% 2 VTT ------------------------------------------------------------------------
+ & VTT, FI
+ & \multirow{2}{*}{Wide}
+ & 6\\
+ & (APROS)
+ &
+ & 6\\
+ \addlinespace
+% 3 UNIPI ----------------------------------------------------------------------
+ & UNIPI, IT
+ & \multirow{2}{*}{Rather wide}
+ & 5\\
+ & (RELAP5)
+ &
+ & 5\\
+ \addlinespace
+% 4 SJTU -----------------------------------------------------------------------
+ & SJTU, CN
+ & \multirow{2}{*}{Wide}
+ & 4 \\
+ & (RELAP5)
+ &
+ & 4 \\
+ \addlinespace
+% 5 PSI ------------------------------------------------------------------------
+ & \textbf{PSI, CH}
+ & \multirow{2}{*}{W\textbf{ide}}
+ & \textbf{26}\\
+ & \textbf{(TRACE)}
+ &
+ & \textbf{34}\\\midrule
+%
+ \multirow{6}{*}{FEBA \textbf{roughly} bounded}
+% 6 TRACTEBEL ------------------------------------------------------------------
+ & TRACTEBEL, FR
+ & Wide
+ & 8 \\
+ & (RELAP5)
+ & to Rather Wide
+ & 8\\
+ \addlinespace
+% 7 CVRez ------------------------------------------------------------------------
+ & CVRez, CZ
+ & \multirow{2}{*}{Average}
+ & 2\\
+ & (RELAP5)
+ &
+ & 2\\
+ \addlinespace
+% 8 OKBM ----------------------------------------------------------------------
+ & OKBM, RU
+ & Rather Narrow
+ & 2\\
+ & (KORSAR)
+ & to Average
+ & 2\\\midrule
+ \multirow{5}{*}{FEBA \textbf{roughly} bounded}
+% 10 OKBM ----------------------------------------------------------------------
+ & OKBM, RU
+ & Very Narrow
+ & 3 \\
+ & (RELAP5)
+ &
+ & 3 \\
+ \addlinespace
+% 11 CEA -----------------------------------------------------------------------
+ & CEA, FR
+ & Rather Narrow
+ & 3\\
+ & (CATHARE)
+ & to Average
+ & 3\\
+ \addlinespace
+ \multirow{5}{*}{PERICLES \textbf{not always}}
+% 12 GRS -----------------------------------------------------------------------
+ & GRS, DE
+ & \multirow{2}{*}{Wide}
+ & 6\\
+ & (ATHLET)
+ &
+ & 8\\
+ \addlinespace
+% 13 Bel V ---------------------------------------------------------------------
+ & Bel V, BE
+ & Very Narrow
+ & 3\\
+ & (CATHARE)
+ & to Average
+ & 3\\\midrule
+ \multirow{4}{*}{FEBA and PERICLES \textbf{not bounded}}
+% 14 KAERI ---------------------------------------------------------------------
+ & KAERI, KR
+ & Very Narrow
+ & 4\\
+ & (COBRA)
+ & to Narrow
+ & 4\\
+ \addlinespace
+% 15 KINS ----------------------------------------------------------------------
+ & KINS, KR
+ & \multirow{2}{*}{Very Narrow}
+ & 2\\
+ & (MARS-KS)
+ &
+ & 2\\
+ \bottomrule
+\end{tabularx}}
+\end{table}
+
+Two other research activities were also carried out in the context of 
+global sensitivity analysis as was planned. 
+The first is related to the application of Morris Screening method for 
+sensitivity analysis.
+The Morris method can be seen as the first step toward applying true global
+sensitivity analysis method on the reflood model of TRACE.
+In that particular work, sensitivity analysis was carried out for the 
+TRACE model of FEBA facility considering 26 important parameters. 
+A simple \texttt{python}-based script was developed implementing the Morris
+method.
+The screening results in approximately 5 most important model parameters with
+varying degree of indication in non-linearity and interaction.
+To further elaborate these results a work on applying Sobol's method for 
+variance decomposition is currently in progress.
+
+The second was related to novel data analysis methodology applied to a 
+typical reflood simulation results.
+The so-called \textit{functional data analysis} deals with the 
+analysis of data that is a function defined by certain degree of inherent 
+smoothness. 
+The basic aim of the analysis is similar to the standard data analysis, 
+\textit{i.e.,} summarizing data both in terms of central tendency and 
+variability 
+This perspective of looking at data fits rather well to reflood simulation 
+results (which is basically a time series depicting cladding temperature 
+evolution).
+As a proof-of-principle the method was applied to 100 random realization 
+of FEBA simulation.
+The method was able to expose the variability of the functional dataset 
+in terms of 5 scalars describing the principal modes of variations.
+These scalars can be used as quantities of interest for sensitivity 
+analysis.
+
+The results of these 2 activities were summarized in two separate conference 
+papers submitted to the 10\textsuperscript{th} International Topical Meeting on 
+Nuclear Thermal-Hydraulics, Operation, and Safety (NUTHOS-10). 
+Both papers were accepted and to be presented in the middle of December 2014 
+(\cite{Wicaksono2014d,Wicaksono2014e}).
 
 \section{Current state of work}
 
-The current state of research along with the achievements during the year are 
-summarized in the table below.
-                   analysis and
-                               novel data analysis methodology (NUTHOS-14)
-                          1 abstract for the NURETH-16 submitted 
-                                             
+The work in application of metrics derived from functional data analysis for global 
+sensitivity analysis is currently in-progress.
+Extending the global sensitivity method beyond Morris screening method itself is 
+part of present work, especially implementing Sobol's method for variance 
+decomposition.
+Combining the two developments, further insight into the reflood model in 
+TRACE can be gained especially in relation to non-linearity and parameter 
+interaction.
+These aspects of model behavior are important part on the parameter estimation 
+problem to avoid ill-posedness.
+
+The current state of research along with the achievements during the year are
+summarized in the Table~\ref{tab:currentstate} shown below.
+
 \begin{table}[!h]
-\caption{Current state of research in relation to the previously submitted 
+\caption{Current state of research in relation to the previously submitted
          (1\textsuperscript{st} year) work plan
-         } 
+         }
+\label{tab:currentstate}
 \begin{tabularx}{\textwidth}{@{} c Y Y Y @{}} % use 'Y' for first column
 % Header ----------------------------------------------------------------------
     \toprule
-    \textbf{Phase} 
- & \textbf{Task Description} 
- & \textbf{Planned Outcome} 
+    \textbf{Phase}
+ & \textbf{Task Description}
+ & \textbf{Planned Outcome}
  & \textbf{Current State of Work} \\ \midrule
 % Table Elements --------------------------------------------------------------
    \multirow{5}{*}{\textbf{1}}                                %Phase
  & Comprehensive reviews of post-CHF flow closure             %Task Description
-   laws in TRACE and externalization of important 
-   model parameters  
+   laws in TRACE and externalization of important
+   model parameters
  & 1 Technical Report (PSI)                                   %Planned Outcome
  & 1. Important reflood model parameters externalized         %Current State
    2. PSI contribution to OECD/NEA PREMIUM Benchmark finalized  \\ \midrule
 %
    \multirow{8}{*}{\textbf{2}}                                %Phase
  & Global sensitivity analysis of important                   %Task Description
-   based on FEBA test facility 
+   based on FEBA test facility
  & 1 Technical Report (PSI) \& 1 Journal Article              %Planned Outcome
  & 1. A paper on Morris screening method for NUTHOS-14        %Current State
-   2. Another paper on an application of functional data 
+   2. Another paper on an application of functional data
       analysis for NUTHOS-14
-   3. One abstract on global sensitivity analysis 
+   3. One abstract on global sensitivity analysis
       method submitted for NURETH-16      \\ \midrule
 %
    \multirow{5}{*}{\textbf{3}}                                %Phase
- & Calibration of TRACE reflood model based of FEBA test      %Task Description 
-   facility; Definition of error and specification of 
+ & Calibration of TRACE reflood model based of FEBA test      %Task Description
+   facility; Definition of error and specification of
    probabilistic error model;
  & 1 Technical Report (PSI) \& 1 Journal Article              %Planned Outcome
  & $-$ \\ \midrule                                            %Current State
 %
    \multirow{6}{*}{\textbf{4}}                                %Phase
  & Calibration of TRACE reflood model based on another        %Task Description
-   reflood test facility 
+   reflood test facility
  & 1 Conference Paper                                         %Planned Outcome
  & Possible candidates of reflood facility with adequate      %Current State
-   specification and 
-   experimental data are made available (\textit{e.g.,} 
+   specification and
+   experimental data are made available (\textit{e.g.,}
    SEFLEX, NEPTUN, ACHILLES) \\ \midrule
 %
    \multirow{4}{*}{\textbf{5}}                                %Phase
  & Consolidation of the calibration results based on 2        %Task Description
-   facilities and validation based on another reflood 
-   test facility 
+   facilities and validation based on another reflood
+   test facility
  & 1 Journal Article                                          %Planned Outcome
  & $-$  \\                                                    %Current State
 %
-   \textbf{6}                                                 %Phase 
+   \textbf{6}                                                 %Phase
  & Thesis write-up                                            %Task Description
  & Thesis                                                     %Planned Outcome
  & $-$ \\                                                     %Current State
-\bottomrule
+ \bottomrule
 \end{tabularx}
-\label{table:nonlin}
 \end{table}
 
 
@@ -184,37 +401,37 @@ summarized in the table below.
 
 \subsection{Nuclear Computation Lab (ETH-531)}
 
-A teaching activity during the year 2014 was carried out for Nuclear Computation Lab 
+A teaching activity during the year 2014 was carried out for Nuclear Computation Lab
 course given at PSI.
-The course was part of the block courses offered to the EPFL/ETHZ Nuclear 
+The course was part of the block courses offered to the EPFL/ETHZ Nuclear
 Engineering Master Program
-Single (full) day was dedicated for lecture session followed by computer 
+Single (full) day was dedicated for lecture session followed by computer
 simulation session for the t
-12 students participated in the course with 
+12 students participated in the course with
 
-In preparation for the course, the available lecture slides was fully revised 
+In preparation for the course, the available lecture slides was fully revised
 for a better structure and with additional examples.
-The simulation session was also slightly extended with more freedom given to 
+The simulation session was also slightly extended with more freedom given to
 the students.
 
-Overall impression of the students
+The overall impression of the students were positive with a positive trend on
+students' ability for a routine data analysis.
+This could be observed from faster completion of the simulation session although
+not necessarily results in a better analysis of results.
+Further improvement on this particular part of the course can be made taking
+into account this trend; extending further simulation session, giving students
+more
 
-
- 
-
-\end{document}
+% Signature Page
 \newpage
-\textcolor{white}.\\\\
-\noindent \textbf{Comments by the thesis advisor(s)}\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
+%\textcolor{white}.\\\\
+\noindent\textbf{Comments by the thesis advisor(s)}\\\\
+............................................................................
+............................................................................\\\
+...............................................\\\
+............................................................................\\\
+............................................................................\\\
+............................................................................\\\
 
 
 \section*{\underline{Signatures}\\}
@@ -223,7 +440,7 @@ Overall impression of the students
 \noindent \textbf{Thesis co-advisor}\hspace{5.7cm}..............................................................................\\
 \noindent  (if officially nominated)\\\\
 
-\noindent \textbf{With his/her signature, the candidate confirms that he/she took note of the above comments.}\\\\
+\noindent \textbf{With his signature, the candidate confirms that he took note of the above comments.}\\\\
 \textbf{Candidate}\hspace{7cm}..............................................................................\vspace{0.5cm}\\
 
 \noindent \textbf{Date}\hspace{8.05cm}..............................................................................\\
@@ -235,4 +452,5 @@ Overall impression of the students
 \begin{center}
 \textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 / 1015 Lausanne / Suisse}
 \end{center}
-\end{document}  
+
+\end{document}
