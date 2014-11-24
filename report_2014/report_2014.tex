@@ -109,11 +109,14 @@ judgment and review on literature that is available at PSI.
 Final listing of important uncertain parameters summed up to 26 for FEBA and 
 34 for PERICLES ranging from initial condition, material properties, to 
 specific reflood model parameters.
+This list also serves as a prior estimates to be further analyzed 
+in the phase of the project.
 Second, these uncertainties were propagated by Monte Carlo sampling to obtain
 the bounding uncertainty band on the cladding temperature prediction.
 The results of both FEBA and PERICLES were the submitted to CEA as the 
-organizer of Phase IV. 
-This submission concluded PSI contribution to the Phase IV of the benchmark.
+organizer. 
+This submission concluded PSI contribution to the Phase IV of the benchmark 
+(\cite{Wicaksono2014a, Wicaksono2014c}).
 
 Following the submission, the results from other participants were disclosed by
 the organizer.
@@ -128,7 +131,7 @@ number of considered model parameters.
          in PREMIUM Phase IV
          }
 \centering
-\scalebox{0.85}{
+\scalebox{0.75}{
 \label{tab:premium}
 \begin{tabularx}{\textwidth}{c c c c} % use 'Y' for first column
 % Header ----------------------------------------------------------------------
@@ -279,7 +282,7 @@ varying degree of indication in non-linearity and interaction.
 To further elaborate these results a work on applying Sobol's method for 
 variance decomposition is currently in progress.
 
-The second was related to novel data analysis methodology applied to a 
+The second was related to a novel data analysis methodology applied to a 
 typical reflood simulation results.
 The so-called \textit{functional data analysis} deals with the 
 analysis of data that is a function defined by certain degree of inherent 
@@ -298,16 +301,17 @@ in terms of 5 scalars describing the principal modes of variations.
 These scalars can be used as quantities of interest for sensitivity 
 analysis characterizing in a parsimonious way variability within a 
 set of functional data (\textit{i.e.,} a set of reflood curves)
-The first 3 scalars are given in Table~\ref{tab:results_fda} along 
-with their loose interpretations. 
-These interpretations came from the effect of perturbing the mean function 
+The first 3 aforementioned scalars are given in Table~\ref{tab:results_fda} 
+along with their loose interpretations. 
+These interpretations came from the effects of perturbing the mean function 
 by the principal modes as shown in Fig.~\ref{fig:fpc_regfd}.
     
 \begin{table}[t]
     \begin{minipage}[b]{.45\textwidth }%
-        \caption{\strut Principal modes in a set of reflood curves and their interpretation}
+        \caption{\strut Principal modes and their interpretation}
         \label{tab:results_fda}
         \footnotesize\centering
+        \scalebox{0.90}{
         \begin{tabular}{c c l} % use 'Y' for first column
 % Header ----------------------------------------------------------------------
    \toprule
@@ -343,24 +347,21 @@ by the principal modes as shown in Fig.~\ref{fig:fpc_regfd}.
 % Table element ---------------------------------------------------------------
       
     \end{tabular}
+}
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
 
-\bigskip
-\bigskip
-\bigskip
-\bigskip
+    \end{minipage}%
+    \begin{minipage}[b]{.50\textwidth}
+    \centering
+        \includegraphics[width=1.1\textwidth]{figures/fpc_regfd.pdf}
 
-\end{minipage}%
-\begin{minipage}[b]{.50\textwidth}
-\centering
-\includegraphics[width=\textwidth]{figures/fpc_regfd.pdf}
-
-\captionof{figure}{Principal modes and their effects on the mean function}
-\label{fig:fpc_regfd}
-
-
+        \captionof{figure}{\strut Principal modes and their effects}
+    \label{fig:fpc_regfd}
 \end{minipage}
 \end{table}
-
 
 The results of these 2 activities were summarized in two separate conference 
 papers submitted to the 10\textsuperscript{th} International Topical Meeting on 
@@ -370,25 +371,16 @@ Both papers were accepted and to be presented in the middle of December 2014
 
 \section{Current state of work}
 
-The work in application of metrics derived from functional data analysis for global 
-sensitivity analysis is currently in-progress.
-Extending the global sensitivity method beyond Morris screening method itself is 
-part of present work, especially implementing Sobol's method for variance 
-decomposition.
-Combining the two developments, further insight into the reflood model in 
-TRACE can be gained especially in relation to non-linearity and parameter 
-interaction.
-These aspects of model behavior are important part on the parameter estimation 
-problem to avoid ill-posedness.
-
-The current state of research along with the achievements during the year are
-summarized in the Table~\ref{tab:currentstate} shown below.
+The current state of research during the year are summarized in 
+Table~\ref{tab:currentstate} shown below.
 
 \begin{table}[!h]
 \caption{Current state of research in relation to the previously submitted
          (1\textsuperscript{st} year) work plan
          }
+\centering
 \label{tab:currentstate}
+\scalebox{0.76}{
 \begin{tabularx}{\textwidth}{@{} c Y Y Y @{}} % use 'Y' for first column
 % Header ----------------------------------------------------------------------
     \toprule
@@ -436,7 +428,7 @@ summarized in the Table~\ref{tab:currentstate} shown below.
    facilities and validation based on another reflood
    test facility
  & 1 Journal Article                                          %Planned Outcome
- & $-$  \\                                                    %Current State
+ & $-$  \\\midrule                                            %Current State
 %
    \textbf{6}                                                 %Phase
  & Thesis write-up                                            %Task Description
@@ -444,13 +436,117 @@ summarized in the Table~\ref{tab:currentstate} shown below.
  & $-$ \\                                                     %Current State
  \bottomrule
 \end{tabularx}
+}
 \end{table}
 
+The work in the application of global sensitivity analysis using
+FDA-derived metrics as the quantities of interest is currently in-progress.
+The Sobol's method for variance decomposition is a step forward in extending 
+the global sensitivity analysis where parameter importance are ranked by the 
+nature of their interactions.
+Combining these developments, further insight into the behavior and performance 
+of reflood model in TRACE can be gained especially in terms parameters 
+interaction.
+The interpretation of these aspects of the model are important to avoid 
+ill-posedness typical in parameter estimation problem.
+
+Following a better understanding of model behavior and model parameter 
+interactions through global SA, the work will continue on defining a 
+probabilistic error model as well as the likelihood function of 
+a reflood simulation. 
+This model and the function should be derived on the basis of 
+probability theory and, at the same time, should also be consistent with 
+the underlying model describing the reflood phenomena.
 
 \section{Calendar of upcoming work}
 
 
-\pagebreak
+\begin{table}[!h]
+\caption{Calendar of upcoming work (year 2015)}
+\centering
+\label{tab:calendar}
+\scalebox{0.90}{
+\begin{tabularx}{\textwidth}{@{} c Y Y @{}} % use 'Y' for first column
+% Header ----------------------------------------------------------------------
+   \toprule
+   \textbf{Time Frame}
+ & \textbf{Task Description}
+ & \textbf{Publication Outcome}\\ \midrule
+% Table Elements --------------------------------------------------------------
+   \multirow{2}{*}{Mid. Jan. - March}                         %Phase
+ & Application of Sobol Method for reflood simulation on 
+   FEBA SETF
+ & NURETH-16 Conference contribution\\\midrule                %Planned 
+ % Table Elements --------------------------------------------------------------
+   \multirow{3}{*}{Feb. - Apr.}                          %Phase
+ & Comprehensive review on TRACE reflood closure laws 
+   including the functions call stack structure. 
+ & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
+% Table Elements --------------------------------------------------------------
+   \multirow{4}{*}{Apr. - Mid. Jun.}
+ & Consolidated studies of the model review,                  %Phase
+   global sensitivity analysis results (Morris and Sobol) 
+   using FDA-derived quantities of interest.
+   Preparation of master thesis proposal on FDA-based 
+   Global Sensitivity Analysis for SEFLEX reflood facility. 
+ & 1 Journal publication (an extension of the contribution    %Planned Outcome
+   to NURETH-16) \& a Master Thesis Proposal \\\midrule
+% Table Elements --------------------------------------------------------------
+   \multirow{3}{*}{Jul. - Mid. Aug}                           %Phase
+ & TRACE assessment on the basis of FEBA 
+   complemented with development of error model for 
+   functional (transient) output. 
+ & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
+% Table Elements --------------------------------------------------------------
+   \multirow{3}{*}{Mid. Aug. - Sep.}                          %Phase
+ & NEPTUN TRACE modeling and assessment, 
+   participate in NURETH-16 conference \& preparation
+   for the master student's semester work 
+   (\textit{if applicable})  
+ & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
+% Table Elements --------------------------------------------------------------
+   \multirow{4}{*}{Oct. - Dec.}                               %Phase
+ & Development of probabilistic error model and simple 
+   proof-of-principle on the application of Bayesian 
+   updating for reflood model in TRACE \& supervision of 
+   student's semester work (\textit{if applicable})
+ & 1 Technical report (PSI) \& 1 Conference publication\\     %Planned Outcome
+ \bottomrule
+\end{tabularx}
+}
+\end{table}
+
+
+\section{Other activities and remarks}
+
+\subsection{NES PhD Student Day}
+
+A poster was prepared and presented at the annual PhD Student Day of the 
+Nuclear Energy Safety (NES) Department, Paul Scherrer Institut and co-sponsored 
+by the \textit{Nuklearforum Schweiz}.
+The poster \cite{Wicaksono2014b} was presented among 11 other PhD students 
+within NES Department.
+The presentation was rather well-received and was selected as the best 
+poster by the Jury.
+
+
+\subsection{Nuclear Computation Lab (ETH-531)}
+
+A teaching activity during the year 2014 was carried out for a part of  
+the Nuclear Computation Lab. course given at PSI (one chapter out of six).
+The course was part of the block courses offered to the EPFL/ETHZ Nuclear
+Engineering Master Program.
+A single day was dedicated for lecture session followed by a hands-on 
+computer simulation sessions.
+12 students participated in the course this semester.
+
+In preparation for the course, the available lecture slides was fully revised
+for a better structure and added with more clarifying examples.
+Part of the lab. manual has also been updated for this period.
+Finally, the simulation session was slightly extended with more freedom given to
+the students.
+Helped by students' enthusiasm and interactions, the overall experience was 
+positive.
 
 \section{Scientific publications, conference contributions, and presentations}
 
@@ -461,44 +557,47 @@ summarized in the Table~\ref{tab:currentstate} shown below.
 \nocite{Wicaksono2014e}
 \printbibliography[heading=none]
 
-\section{Other activities and remarks}
-
-\subsection{NES PhD Student Day}
-
-\subsection{Nuclear Computation Lab (ETH-531)}
-
-A teaching activity during the year 2014 was carried out for Nuclear Computation Lab
-course given at PSI.
-The course was part of the block courses offered to the EPFL/ETHZ Nuclear
-Engineering Master Program
-Single (full) day was dedicated for lecture session followed by computer
-simulation session for the t
-12 students participated in the course with
-
-In preparation for the course, the available lecture slides was fully revised
-for a better structure and with additional examples.
-The simulation session was also slightly extended with more freedom given to
-the students.
-
-The overall impression of the students were positive with a positive trend on
-students' ability for a routine data analysis.
-This could be observed from faster completion of the simulation session although
-not necessarily results in a better analysis of results.
-Further improvement on this particular part of the course can be made taking
-into account this trend; extending further simulation session, giving students
-more
-
 % Signature Page
 \newpage
 %\textcolor{white}.\\\\
 \noindent\textbf{Comments by the thesis advisor(s)}\\\\
+\noindent\textbf{Prof. A Pautz}\\\\
 ............................................................................
 ............................................................................\\\
-...............................................\\\
+............................................................................
 ............................................................................\\\
+............................................................................
 ............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
 ............................................................................\\\
 
+\noindent\textbf{O. Zerkak}\\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
 
 \section*{\underline{Signatures}\\}
 \noindent \textbf{Thesis advisor}\hspace{6.25cm}..............................................................................\vspace{0.5cm}\\
@@ -507,14 +606,15 @@ more
 \noindent  (if officially nominated)\\\\
 
 \noindent \textbf{With his signature, the candidate confirms that he took note of the above comments.}\\\\
-\textbf{Candidate}\hspace{7cm}..............................................................................\vspace{0.5cm}\\
+
+\noindent \textbf{Candidate}\hspace{7cm}..............................................................................\vspace{0.5cm}\\
 
 \noindent \textbf{Date}\hspace{8.05cm}..............................................................................\\
 
 \vspace{0.8cm}
-\begin{center}
-\textbf{Up to 5 pages in total}
-\end{center}
+%\begin{center}
+%\textbf{Up to 5 pages in total}
+%\end{center}
 \begin{center}
 \textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 / 1015 Lausanne / Suisse}
 \end{center}
