@@ -24,6 +24,7 @@
 \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
 \usepackage[style=ieee, backend=bibtex]{biblatex}
 \usepackage{courier}
+\usepackage{caption}
 
 
 \topmargin=-0.45in      %
@@ -127,7 +128,7 @@ number of considered model parameters.
          in PREMIUM Phase IV
          }
 \centering
-\scalebox{0.9}{
+\scalebox{0.85}{
 \label{tab:premium}
 \begin{tabularx}{\textwidth}{c c c c} % use 'Y' for first column
 % Header ----------------------------------------------------------------------
@@ -291,10 +292,75 @@ results (which is basically a time series depicting cladding temperature
 evolution).
 As a proof-of-principle the method was applied to 100 random realization 
 of FEBA simulation.
+
 The method was able to expose the variability of the functional dataset 
 in terms of 5 scalars describing the principal modes of variations.
 These scalars can be used as quantities of interest for sensitivity 
-analysis.
+analysis characterizing in a parsimonious way variability within a 
+set of functional data (\textit{i.e.,} a set of reflood curves)
+The first 3 scalars are given in Table~\ref{tab:results_fda} along 
+with their loose interpretations. 
+These interpretations came from the effect of perturbing the mean function 
+by the principal modes as shown in Fig.~\ref{fig:fpc_regfd}.
+    
+\begin{table}[t]
+    \begin{minipage}[b]{.45\textwidth }%
+        \caption{\strut Principal modes in a set of reflood curves and their interpretation}
+        \label{tab:results_fda}
+        \footnotesize\centering
+        \begin{tabular}{c c l} % use 'Y' for first column
+% Header ----------------------------------------------------------------------
+   \toprule
+   \textbf{Modes}
+ & \textbf{Explained}
+ & \multicolumn{1}{c}{\textbf{Interpretation}} \\  
+ & \textbf{Variability}
+ & \\\midrule
+% Table element ---------------------------------------------------------------
+      
+    &    
+    & Vertical shift in \\
+      1\textsuperscript{st}
+    & $50.05\%$
+    & the temperature transient\\
+    
+    &
+    & prior to quenching\\\midrule
+% Table element ---------------------------------------------------------------
+      \multirow{2}{*}{2\textsuperscript{nd}}
+    & \multirow{2}{*}{$34.38\%$}
+    & Convexity of  \\
+      
+    &  
+    & the temperature descent\\\midrule
+    
+% Table element ---------------------------------------------------------------
+      \multirow{2}{*}{3\textsuperscript{rd}}
+    & \multirow{2}{*}{$4.68\%$}   
+    & Vertical shift of \\
+    & 
+    & the quenching temperature\\\bottomrule
+% Table element ---------------------------------------------------------------
+      
+    \end{tabular}
+
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+\end{minipage}%
+\begin{minipage}[b]{.50\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/fpc_regfd.pdf}
+
+\captionof{figure}{Principal modes and their effects on the mean function}
+\label{fig:fpc_regfd}
+
+
+\end{minipage}
+\end{table}
+
 
 The results of these 2 activities were summarized in two separate conference 
 papers submitted to the 10\textsuperscript{th} International Topical Meeting on 
