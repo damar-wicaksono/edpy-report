@@ -78,8 +78,8 @@ The physical models concerned are the ones describing
 the phasic interaction (heat and momentum exchange) in a complex
 multiphase flow during reactor transient especially for the
 \textit{reflood} phase after a loss-of-coolant-accident.
-These models parameterized either by a physical or tuning
-parameters.
+These models are parameterized either by  physical or tuning parameters which 
+values are uncertain.
 
 Conforming with the practice of statistical uncertainty propagation widely
 adopted in the field of nuclear engineering, probability theory is used to
@@ -111,12 +111,11 @@ During the last year, following the relative success in modeling FEBA and
 PERICLES using TRACE code, the work on PSI contribution for PREMIUM began 
 and concluded.
 First, the derivation of uncertainties on the parameters was based on expert 
-judgment and review on literature that is available at PSI.
+judgment and literature review from sources available at PSI.
 Final listing of important uncertain parameters summed up to 26 for FEBA and 
 34 for PERICLES ranging from initial condition, material properties, to 
 specific reflood model parameters.
-This list also serves as a prior estimates to be further analyzed 
-in the phase of the project.
+This list also serves as a prior estimates for the next phase of the project.
 Second, these uncertainties were propagated by Monte Carlo sampling to obtain
 the bounding uncertainty band on the cladding temperature prediction.
 The results of both FEBA and PERICLES were the submitted to CEA as the 
@@ -127,10 +126,11 @@ This submission concluded PSI contribution to the Phase IV of the benchmark
 Following the submission, the results from other participants were disclosed by
 the organizer.
 The organizer of the benchmark presented a table summarizing the general 
-results from all the participant and it is reproduced here in 
+results from all the participants and it is reproduced here in 
 Table~\ref{tab:premium}.
 It was noted that PSI results was in relatively good position compared to the
-other participants in terms of the width of the uncertainty band.
+other participants in terms of the width of the uncertainty band for all the 
+tests.
 
 \begin{table}[!h]
 \caption{Summary of the simulation uncertainty propagation results
@@ -285,25 +285,24 @@ A simple \texttt{python}-based script was developed implementing the Morris
 method.
 The screening results in approximately 5 most important model parameters with
 varying degree of indication in non-linearity and interaction.
-To further elaborate these results a work on applying Sobol's method for 
+To further elaborate these results a work on applying the Sobol's method for 
 variance decomposition is currently in progress.
 
 The second was related to a novel data analysis methodology applied to a 
 typical reflood simulation results.
 The so-called \textit{functional data analysis} (FDA) deals with the 
-analysis of data that is a function defined by certain degree of inherent 
-smoothness. 
+analysis of data that is a \textit{function} (defined by certain degree of 
+inherent smoothness). 
 The basic aim of the analysis is similar to the standard data analysis, 
-\textit{i.e.,} summarizing data both in terms of central tendency and 
-variability 
+\textit{i.e.,} first and foremost summarizing data both in terms of 
+central tendency and variability. 
 This perspective of looking at data fits rather well to reflood simulation 
-results (which is basically a time series depicting cladding temperature 
-evolution).
+results (which is a time series depicting cladding temperature evolution).
 As a proof-of-principle the method was applied to 100 random realizations
 of FEBA simulation.
 
 The method was able to expose the variability of the functional dataset 
-in terms of 5 scalars describing the principal modes of variations.
+through 5 scalars describing the principal modes of variations.
 These scalars can be used as quantities of interest for sensitivity 
 analysis characterizing in a parsimonious way variability within a 
 set of functional data (\textit{i.e.,} a set of reflood curves)
@@ -459,11 +458,11 @@ ill-posedness typical in parameter estimation problem.
 
 Following a better understanding of model behavior and model parameter 
 interactions through global SA, the work will continue on defining a 
-probabilistic error model as well as the likelihood function of 
-a reflood simulation. 
+probabilistic error model as well as the likelihood function for
+a reflood model.
 This model and the function should be derived on the basis of 
 probability theory and, at the same time, should also be consistent with 
-the underlying model describing the reflood phenomena.
+the underlying models describing the reflood phenomena.
 
 \section{Calendar of upcoming work}
 
@@ -531,10 +530,10 @@ the underlying model describing the reflood phenomena.
 A poster was prepared and presented at the annual PhD Student Day of the 
 Nuclear Energy Safety (NES) Department, Paul Scherrer Institut and co-sponsored 
 by the \textit{Nuklearforum Schweiz}.
-The poster \cite{Wicaksono2014b} was presented among 11 other PhD students 
-within NES Department.
+The poster \cite{Wicaksono2014b} was presented along with 11 other PhD students 
+within NES Department to general audience.
 The presentation was rather well-received and was selected as the best 
-poster by the Jury.
+poster by a panel of jury.
 
 
 \subsection{Nuclear Computation Lab (ETH-531)}
