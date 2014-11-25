@@ -7,8 +7,10 @@
 \usepackage{amsmath,amsfonts,amssymb}
 \usepackage{graphicx}
 \usepackage[a4paper]{geometry}           % See geometry.pdf to learn the layout
-%\geometry{landscape}                % Activate for for rotated page geometry
-%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+%\geometry{landscape}                    % Activate for for rotated page 
+                                         % geometry
+%\usepackage[parfill]{parskip}           % Activate to begin paragraphs with an
+                                         % empty line rather than an indent
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{epstopdf}
@@ -18,27 +20,32 @@
 \usepackage{secdot}
 \usepackage{booktabs}
 \usepackage{rotating}
+
+% WD41, LRS/EPFL/PSI ----------------------------------------------------------
 \usepackage{multirow}
 \usepackage{tabularx}
-\usepackage{ragged2e}  % for '\RaggedRight' macro (allows hyphenation)
+\usepackage{ragged2e}                      % for '\RaggedRight' macro 
+                                           % (allows hyphenation)
 \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
 \usepackage[style=ieee, backend=bibtex]{biblatex}
 \usepackage{courier}
 \usepackage{caption}
+\bibliography{report_2014.bib}
+% -----------------------------------------------------------------------------
 
 
-\topmargin=-0.45in      %
-%\evensidemargin=0in     %
-\oddsidemargin=-0.1in      %
-\textwidth=6.8in        %
-\textheight=9.0in       %
-%\headsep=0.25in         %
+\topmargin=-0.45in      
+%\evensidemargin=0in     
+\oddsidemargin=-0.1in      
+\textwidth=6.8in        
+\textheight=9.0in     
+%\headsep=0.25in         
 
-%======================= Titlepage =========================================================
+% Titlepage -------------------------------------------------------------------
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 \titlepic{\includegraphics[width=17cm]{figures/research_plan_pic.pdf}}
 
-\title{\textbf{Annual progress report \textcolor{blue}{2014}}} %Change Year
+\title{\textbf{Annual progress report \textcolor{blue}{2014}}}     %Change Year
 
 \author{\large{\textbf{Damar Wicaksono} }\\\\
 \large{\textbf{Prof. Andreas Pautz}} \\\
@@ -47,13 +54,11 @@
 \Large\textbf{of Physical Models} \\\\
 \Large\textbf{in Thermal-Hydraulics System Code}}
 
-\date{30.11.2014}				%activate to remove date
-%========================================================================================
-
-\bibliography{report_2014.bib}
+\date{30.11.2014}				       %activate to remove date
+% -----------------------------------------------------------------------------
 
 \begin{document}
-%========================  Top header ======================================================
+% Top Header ------------------------------------------------------------------
 \pagestyle{fancy} \pagenumbering{arabic} \setcounter{page}{1}
 \addtolength{\headheight}{\baselineskip}
 \newcommand{\ffont}{\fontsize{8}{8}\selectfont}
@@ -62,8 +67,9 @@
 \rhead{\bfseries\ffont  \includegraphics[width=55pt]{figures/EPFL_LOG.pdf}}
 \renewcommand{\headrulewidth}{0.4pt}
 \maketitle
-%=========================================================================================
+% -----------------------------------------------------------------------------
 %\textcolor{white}.
+
 \section{Objectives of research}
 
 The objective of the research is to quantify the uncertainty of
@@ -114,17 +120,17 @@ in the phase of the project.
 Second, these uncertainties were propagated by Monte Carlo sampling to obtain
 the bounding uncertainty band on the cladding temperature prediction.
 The results of both FEBA and PERICLES were the submitted to CEA as the 
-organizer. 
+organizer for the Phase IV of the benchmark. 
 This submission concluded PSI contribution to the Phase IV of the benchmark 
 (\cite{Wicaksono2014a, Wicaksono2014c}).
 
 Following the submission, the results from other participants were disclosed by
 the organizer.
-The organizer of the benchmark presented a table summarizing the general results
-from all the participant and it is reproduced here in Table~\ref{tab:premium}.
+The organizer of the benchmark presented a table summarizing the general 
+results from all the participant and it is reproduced here in 
+Table~\ref{tab:premium}.
 It was noted that PSI results was in relatively good position compared to the
-other participants in terms of the width of the uncertainty band as well as the
-number of considered model parameters.
+other participants in terms of the width of the uncertainty band.
 
 \begin{table}[!h]
 \caption{Summary of the simulation uncertainty propagation results
@@ -158,7 +164,7 @@ number of considered model parameters.
  &
  & 3\\
  \addlinespace
-% 2 VTT ------------------------------------------------------------------------
+% 2 VTT -----------------------------------------------------------------------
  & VTT, FI
  & \multirow{2}{*}{Wide}
  & 6\\
@@ -166,7 +172,7 @@ number of considered model parameters.
  &
  & 6\\
  \addlinespace
-% 3 UNIPI ----------------------------------------------------------------------
+% 3 UNIPI ---------------------------------------------------------------------
  & UNIPI, IT
  & \multirow{2}{*}{Rather wide}
  & 5\\
@@ -174,7 +180,7 @@ number of considered model parameters.
  &
  & 5\\
  \addlinespace
-% 4 SJTU -----------------------------------------------------------------------
+% 4 SJTU ----------------------------------------------------------------------
  & SJTU, CN
  & \multirow{2}{*}{Wide}
  & 4 \\
@@ -182,16 +188,16 @@ number of considered model parameters.
  &
  & 4 \\
  \addlinespace
-% 5 PSI ------------------------------------------------------------------------
- & \textbf{PSI, CH}
- & \multirow{2}{*}{W\textbf{ide}}
- & \textbf{26}\\
- & \textbf{(TRACE)}
+% 5 PSI -----------------------------------------------------------------------
+ & \textcolor{blue}{PSI, CH}
+ & \multirow{2}{*}{\textcolor{blue}{Wide}}
+ & \textcolor{blue}{26}\\
+ & \textcolor{blue}{(TRACE)}
  &
- & \textbf{34}\\\midrule
+ & \textcolor{blue}{34}\\\midrule
 %
  \multirow{6}{*}{FEBA \textbf{roughly} bounded}
-% 6 TRACTEBEL ------------------------------------------------------------------
+% 6 TRACTEBEL -----------------------------------------------------------------
  & TRACTEBEL, FR
  & Wide
  & 8 \\
@@ -199,7 +205,7 @@ number of considered model parameters.
  & to Rather Wide
  & 8\\
  \addlinespace
-% 7 CVRez ------------------------------------------------------------------------
+% 7 CVRez ---------------------------------------------------------------------
  & CVRez, CZ
  & \multirow{2}{*}{Average}
  & 2\\
@@ -215,7 +221,7 @@ number of considered model parameters.
  & to Average
  & 2\\\midrule
  \multirow{5}{*}{FEBA \textbf{roughly} bounded}
-% 10 OKBM ----------------------------------------------------------------------
+% 10 OKBM ---------------------------------------------------------------------
  & OKBM, RU
  & Very Narrow
  & 3 \\
@@ -223,7 +229,7 @@ number of considered model parameters.
  &
  & 3 \\
  \addlinespace
-% 11 CEA -----------------------------------------------------------------------
+% 11 CEA ----------------------------------------------------------------------
  & CEA, FR
  & Rather Narrow
  & 3\\
@@ -232,7 +238,7 @@ number of considered model parameters.
  & 3\\
  \addlinespace
  \multirow{5}{*}{PERICLES \textbf{not always}}
-% 12 GRS -----------------------------------------------------------------------
+% 12 GRS ----------------------------------------------------------------------
  & GRS, DE
  & \multirow{2}{*}{Wide}
  & 6\\
@@ -240,7 +246,7 @@ number of considered model parameters.
  &
  & 8\\
  \addlinespace
-% 13 Bel V ---------------------------------------------------------------------
+% 13 Bel V --------------------------------------------------------------------
  & Bel V, BE
  & Very Narrow
  & 3\\
@@ -248,7 +254,7 @@ number of considered model parameters.
  & to Average
  & 3\\\midrule
  \multirow{4}{*}{FEBA and PERICLES \textbf{not bounded}}
-% 14 KAERI ---------------------------------------------------------------------
+% 14 KAERI --------------------------------------------------------------------
  & KAERI, KR
  & Very Narrow
  & 4\\
@@ -256,7 +262,7 @@ number of considered model parameters.
  & to Narrow
  & 4\\
  \addlinespace
-% 15 KINS ----------------------------------------------------------------------
+% 15 KINS ---------------------------------------------------------------------
  & KINS, KR
  & \multirow{2}{*}{Very Narrow}
  & 2\\
@@ -284,7 +290,7 @@ variance decomposition is currently in progress.
 
 The second was related to a novel data analysis methodology applied to a 
 typical reflood simulation results.
-The so-called \textit{functional data analysis} deals with the 
+The so-called \textit{functional data analysis} (FDA) deals with the 
 analysis of data that is a function defined by certain degree of inherent 
 smoothness. 
 The basic aim of the analysis is similar to the standard data analysis, 
@@ -293,7 +299,7 @@ variability
 This perspective of looking at data fits rather well to reflood simulation 
 results (which is basically a time series depicting cladding temperature 
 evolution).
-As a proof-of-principle the method was applied to 100 random realization 
+As a proof-of-principle the method was applied to 100 random realizations
 of FEBA simulation.
 
 The method was able to expose the variability of the functional dataset 
@@ -358,7 +364,8 @@ by the principal modes as shown in Fig.~\ref{fig:fpc_regfd}.
     \centering
         \includegraphics[width=1.1\textwidth]{figures/fpc_regfd.pdf}
 
-        \captionof{figure}{\strut Principal modes and their effects}
+        \captionof{figure}{\strut Principal modes and their effects on the
+                           mean function}
     \label{fig:fpc_regfd}
 \end{minipage}
 \end{table}
@@ -380,7 +387,7 @@ Table~\ref{tab:currentstate} shown below.
          }
 \centering
 \label{tab:currentstate}
-\scalebox{0.76}{
+\scalebox{0.73}{
 \begin{tabularx}{\textwidth}{@{} c Y Y Y @{}} % use 'Y' for first column
 % Header ----------------------------------------------------------------------
     \toprule
@@ -401,9 +408,9 @@ Table~\ref{tab:currentstate} shown below.
  & Global sensitivity analysis of important                   %Task Description
    based on FEBA test facility
  & 1 Technical Report (PSI) \& 1 Journal Article              %Planned Outcome
- & 1. A paper on Morris screening method for NUTHOS-14        %Current State
+ & 1. A paper on Morris screening method for NUTHOS-10        %Current State
    2. Another paper on an application of functional data
-      analysis for NUTHOS-14
+      analysis for NUTHOS-10
    3. One abstract on global sensitivity analysis
       method submitted for NURETH-16      \\ \midrule
 %
@@ -477,8 +484,8 @@ the underlying model describing the reflood phenomena.
  & Application of Sobol Method for reflood simulation on 
    FEBA SETF
  & NURETH-16 Conference contribution\\\midrule                %Planned 
- % Table Elements --------------------------------------------------------------
-   \multirow{3}{*}{Feb. - Apr.}                          %Phase
+ % Table Elements -------------------------------------------------------------
+   \multirow{3}{*}{Feb. - Apr.}                               %Phase
  & Comprehensive review on TRACE reflood closure laws 
    including the functions call stack structure. 
  & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
@@ -488,7 +495,8 @@ the underlying model describing the reflood phenomena.
    global sensitivity analysis results (Morris and Sobol) 
    using FDA-derived quantities of interest.
    Preparation of master thesis proposal on FDA-based 
-   Global Sensitivity Analysis for SEFLEX reflood facility. 
+   Global Sensitivity Analysis and Uncertainty Quantification 
+   for Achilles reflood facility. 
  & 1 Journal publication (an extension of the contribution    %Planned Outcome
    to NURETH-16) \& a Master Thesis Proposal \\\midrule
 % Table Elements --------------------------------------------------------------
@@ -516,7 +524,6 @@ the underlying model describing the reflood phenomena.
 }
 \end{table}
 
-
 \section{Other activities and remarks}
 
 \subsection{NES PhD Student Day}
@@ -543,8 +550,8 @@ computer simulation sessions.
 In preparation for the course, the available lecture slides was fully revised
 for a better structure and added with more clarifying examples.
 Part of the lab. manual has also been updated for this period.
-Finally, the simulation session was slightly extended with more freedom given to
-the students.
+Finally, the simulation session was slightly extended with more freedom 
+given to the students to set up their own model.
 Helped by students' enthusiasm and interactions, the overall experience was 
 positive.
 
@@ -600,23 +607,25 @@ positive.
 ............................................................................\\\
 
 \section*{\underline{Signatures}\\}
-\noindent \textbf{Thesis advisor}\hspace{6.25cm}..............................................................................\vspace{0.5cm}\\
+\noindent \textbf{Thesis advisor}\hspace{6.25cm}\dotfill\vspace{0.5cm}\\
 
-\noindent \textbf{Thesis co-advisor}\hspace{5.7cm}..............................................................................\\
+\noindent \textbf{Thesis co-advisor}\hspace{5.7cm}\dotfill\\
 \noindent  (if officially nominated)\\\\
 
-\noindent \textbf{With his signature, the candidate confirms that he took note of the above comments.}\\\\
+\noindent \textbf{With his signature, the candidate confirms that he took note 
+                  of the above comments.}\\\\
 
-\noindent \textbf{Candidate}\hspace{7cm}..............................................................................\vspace{0.5cm}\\
+\noindent \textbf{Candidate}\hspace{7cm}\dotfill\vspace{0.5cm}\\
 
-\noindent \textbf{Date}\hspace{8.05cm}..............................................................................\\
+\noindent \textbf{Date}\hspace{8.05cm}\dotfill\\
 
 \vspace{0.8cm}
 %\begin{center}
 %\textbf{Up to 5 pages in total}
 %\end{center}
 \begin{center}
-\textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 / 1015 Lausanne / Suisse}
+\textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 
+                                              / 1015 Lausanne / Suisse}
 \end{center}
 
 \end{document}
