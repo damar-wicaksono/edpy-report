@@ -84,48 +84,50 @@ physical model parameters implemented in a thermal-hydraulics system code.
 The physical models concerned are the ones describing
 the phasic interaction (heat and momentum exchange) in a complex
 multiphase flow during reactor transient especially for the
-\textit{reflood} phase after a loss-of-coolant-accident.
-These models are parameterized either by  physical or tuning parameters which 
-values are uncertain.
+\textit{reflood} phase following a loss-of-coolant-accident.
+These models are parameterized either by  physical or empirical tuning 
+parameters which values are uncertain.
 
 Conforming with the practice of statistical uncertainty propagation widely
 adopted in the field of nuclear engineering, probability theory is used to
-quantify the uncertainties related to these parameters with the results in
-a form of density function and/or its approximation.
+quantify the uncertainties related to each one of these parameters in a form 
+of density function and/or its approximation.
 The derivation of this density is posed as an inverse statistical problem
 following a bayesian approach as the parameters themselves are not directly
 observable.
 To this end, a methodology to quantify model uncertainty will be
-developed combining on probabilistic modeling and the available relevant
+developed combining probabilistic modeling with available relevant
 experimental data taken from various separate effect test facilities.
 
 \section{Work achieved in the past year (state of research)}
 
 
 The PREMIUM benchmark was an activity coordinated by OECD/NEA starting in 2012 
-with an aim to compare and advance the methods for quantifying the physical 
+with the to compare and advance the methods for quantifying the physical 
 model parameters uncertainties in thermal-hydraulics system codes.
 PREMIUM put an emphasis on the derivation of the uncertainties (Phase III) and 
 its assessment by blind-predictions with experimental data (Phase IV).
-The scope of the benchmark was limited to the physical models relevant in the 
+The scope of the benchmark was limited to the physical models relevant to the 
 simulation of reflood.
 The derivation of uncertainties was based on the experimental data taken from 
-FEBA test facility and the assessment was based on the PERICLES test facility.
+the FEBA test facility and the assessment was based on the PERICLES test 
+facility.
 The LRS at PSI is a participant in the benchmark using the TRACE code and 
 works related to this participation was part of the PhD research activity.
 
-During the last year, following the relative success in modeling FEBA and 
-PERICLES using TRACE code, the work on PSI contribution for PREMIUM began 
-and concluded.
+During the last year, following the development and validation of the FEBA 
+and PERICLES models in TRACE code, the work on PSI contribution for 
+PREMIUM was conducted successfully until the last phase of the benchmark 
+(Phase IV).
 First, the derivation of uncertainties on the parameters was based on expert 
 judgment and literature review from sources available at PSI.
 Final listing of important uncertain parameters summed up to 26 for FEBA and 
 34 for PERICLES ranging from initial condition, material properties, to 
 specific reflood model parameters.
-This list also serves as a prior estimates for the next phase of the project.
+This list may also serve as prior estimates for the next phase of the project.
 Second, these uncertainties were propagated by Monte Carlo sampling to obtain
 the bounding uncertainty band on the cladding temperature prediction.
-The results of both FEBA and PERICLES were the submitted to CEA as the 
+The results of both FEBA and PERICLES were then submitted to CEA as the 
 organizer for the Phase IV of the benchmark. 
 This submission concluded PSI contribution to the Phase IV of the benchmark 
 (\cite{Wicaksono2014a, Wicaksono2014c}).
@@ -212,7 +214,7 @@ tests.
  & to Rather Wide
  & 8\\
  \addlinespace
-% 7 CVRez ---------------------------------------------------------------------
+% 7 CVRez ----------------------------------------`-----------------------------
  & CVRez, CZ
  & \multirow{2}{*}{Average}
  & 2\\
@@ -288,23 +290,23 @@ The Morris method can be seen as the first step toward applying true global
 sensitivity analysis method on the reflood model of TRACE.
 In that particular work, sensitivity analysis was carried out for the 
 TRACE model of FEBA facility considering 26 important parameters. 
-A simple \texttt{python}-based script was developed implementing the Morris
+A set of \texttt{python}-based scripts were developed to implement the Morris
 method.
 The screening results in approximately 5 most important model parameters with
 varying degree of indication in non-linearity and interaction.
-To further elaborate these results a work on applying the Sobol's method for 
+To further elaborate these results a work on applying the Sobol method for 
 variance decomposition is currently in progress.
 
 The second was related to a novel data analysis methodology applied to a 
 typical reflood simulation results.
-The so-called \textit{functional data analysis} (FDA) deals with the 
-analysis of data that is a \textit{function} (defined by certain degree of 
-inherent smoothness). 
+The so-called \textit{functional data analysis} (FDA) is a branch of statistics 
+which analyzes data that is in a form of \textit{functions} 
+(defined by certain degree of inherent smoothness). 
 The basic aim of the analysis is similar to the standard data analysis, 
 \textit{i.e.,} first and foremost summarizing data both in terms of 
 central tendency and variability. 
 This perspective of looking at data fits rather well to reflood simulation 
-results (which is a time series depicting cladding temperature evolution).
+results (which consist of time series depicting cladding temperature evolution).
 As a proof-of-principle the method was applied to 100 random realizations
 of FEBA simulation.
 
@@ -335,17 +337,17 @@ by the principal modes as shown in Fig.~\ref{fig:fpc_regfd}.
 % Table element ---------------------------------------------------------------
       
     &    
-    & Vertical shift in \\
+    & Vertical shift in the amplitude\\
       1\textsuperscript{st}
     & $50.05\%$
-    & the temperature transient\\
+    & of temperature transient\\
     
     &
     & prior to quenching\\\midrule
 % Table element ---------------------------------------------------------------
       \multirow{2}{*}{2\textsuperscript{nd}}
     & \multirow{2}{*}{$34.38\%$}
-    & Convexity of  \\
+    & Convexity/concavity of  \\
       
     &  
     & the temperature descent\\\midrule
@@ -379,7 +381,7 @@ by the principal modes as shown in Fig.~\ref{fig:fpc_regfd}.
 The results of these 2 activities were summarized in two separate conference 
 papers submitted to the 10\textsuperscript{th} International Topical Meeting on 
 Nuclear Thermal-Hydraulics, Operation, and Safety (NUTHOS-10). 
-Both papers were accepted and to be presented in the middle of December 2014 
+Both papers were accepted and will be presented in the middle of December 2014 
 (\cite{Wicaksono2014d,Wicaksono2014e}).
 
 \section{Current state of work}
@@ -393,7 +395,7 @@ Table~\ref{tab:currentstate} shown below.
          }
 \centering
 \label{tab:currentstate}
-\scalebox{0.73}{
+\scalebox{0.67}{
 \begin{tabularx}{\textwidth}{@{} c Y Y Y @{}} % use 'Y' for first column
 % Header ----------------------------------------------------------------------
     \toprule
@@ -418,12 +420,14 @@ Table~\ref{tab:currentstate} shown below.
    2. Another paper on an application of functional data
       analysis for NUTHOS-10
    3. One abstract on global sensitivity analysis
-      method submitted for NURETH-16      \\ \midrule
+      method submitted to NURETH-16      \\ \midrule
 %
    \multirow{5}{*}{\textbf{3}}                                %Phase
- & Calibration of TRACE reflood model based of FEBA test      %Task Description
-   facility; Definition of error and specification of
-   probabilistic error model;
+ & Definition of error and specification of                   %Task Description
+   probabilistic error model; Calibration of TRACE 
+   reflood model based on the FEBA facility;
+   Approximation of the posterior distribution by 
+   Markov-Chain Monte Carlo; 
  & 1 Technical Report (PSI) \& 1 Journal Article              %Planned Outcome
  & $-$ \\ \midrule                                            %Current State
 %
@@ -433,7 +437,7 @@ Table~\ref{tab:currentstate} shown below.
  & 1 Conference Paper                                         %Planned Outcome
  & Possible candidates of reflood facility with adequate      %Current State
    specification and
-   experimental data are made available (\textit{e.g.,}
+   experimental data are available (\textit{e.g.,}
    SEFLEX, NEPTUN, ACHILLES) \\ \midrule
 %
    \multirow{4}{*}{\textbf{5}}                                %Phase
@@ -454,18 +458,18 @@ Table~\ref{tab:currentstate} shown below.
 
 The work in the application of global sensitivity analysis using
 FDA-derived metrics as the quantities of interest is currently in-progress.
-The Sobol's method for variance decomposition is a step forward in extending 
+The Sobol method for variance decomposition is a step forward in extending 
 the global sensitivity analysis where parameter importance are ranked by the 
 nature of their interactions.
 Combining these developments, further insight into the behavior and performance 
-of reflood model in TRACE can be gained especially in terms parameters 
+of the reflood model in TRACE can be gained especially in terms parameters 
 interaction.
 The interpretation of these aspects of the model are important to avoid 
-ill-posedness typical in parameter estimation problem.
+ill-posedness in a parameter estimation problem.
 
 Following a better understanding of model behavior and model parameter 
-interactions through global SA, the work will continue on defining a 
-probabilistic error model as well as the likelihood function for
+interactions through global SA, the work will continue on defining an
+appropriate probabilistic error model as well as the likelihood function for
 a reflood model.
 This model and the function should be derived on the basis of 
 probability theory and, at the same time, should also be consistent with 
@@ -478,7 +482,7 @@ the underlying models describing the reflood phenomena.
 \caption{Calendar of upcoming work (year 2015)}
 \centering
 \label{tab:calendar}
-\scalebox{0.90}{
+\scalebox{0.79}{
 \begin{tabularx}{\textwidth}{@{} c Y Y @{}} % use 'Y' for first column
 % Header ----------------------------------------------------------------------
    \toprule
@@ -486,43 +490,46 @@ the underlying models describing the reflood phenomena.
  & \textbf{Task Description}
  & \textbf{Publication Outcome}\\ \midrule
 % Table Elements --------------------------------------------------------------
-   \multirow{2}{*}{Mid. Jan. - March}                         %Phase
+   \multirow{5}{*}{Mid. Jan. - Mid. March}                    %Phase
  & Application of Sobol Method for reflood simulation on 
-   FEBA SETF
+   FEBA SETF; Development of nodalization tool to fastened
+   model development; Coursework
  & NURETH-16 Conference contribution\\\midrule                %Planned 
  % Table Elements -------------------------------------------------------------
-   \multirow{3}{*}{Feb. - Apr.}                               %Phase
+   \multirow{6}{*}{Feb. - Apr.}                               %Phase
  & Comprehensive review on TRACE reflood closure laws 
-   including the functions call stack structure. 
+   including the functions call stack structure from 
+   inside the source code; Development of nodalization 
+   tool to fastened model development; Coursework
  & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
 % Table Elements --------------------------------------------------------------
-   \multirow{4}{*}{Apr. - Mid. Jun.}
+   \multirow{8}{*}{Apr. - Mid. Jun.}
  & Consolidated studies of the model review,                  %Phase
    global sensitivity analysis results (Morris and Sobol) 
-   using FDA-derived quantities of interest.
-   Preparation of master thesis proposal on FDA-based 
-   Global Sensitivity Analysis and Uncertainty Quantification 
-   for Achilles reflood facility. 
+   using FDA-derived quantities of interest;
+   Preparation of a master thesis proposal on FDA-based 
+   GSA and UQ 
+   for the Achilles reflood facility; Coursework
  & 1 Journal publication (an extension of the contribution    %Planned Outcome
    to NURETH-16) \& a Master Thesis Proposal \\\midrule
 % Table Elements --------------------------------------------------------------
-   \multirow{3}{*}{Jul. - Mid. Aug}                           %Phase
+   \multirow{5}{*}{Jul. - Mid. Aug}                           %Phase
  & TRACE assessment on the basis of FEBA 
-   complemented with development of error model for 
-   functional (transient) output. 
+   complemented with development of an appropriate error 
+   model for functional (transient) output; Coursework
  & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
 % Table Elements --------------------------------------------------------------
-   \multirow{3}{*}{Mid. Aug. - Sep.}                          %Phase
- & NEPTUN TRACE modeling and assessment, 
-   participate in NURETH-16 conference \& preparation
+   \multirow{5}{*}{Mid. Aug. - Sep.}                          %Phase
+ & ACHILLES TRACE modeling and assessment; 
+   Participate in NURETH-16 conference; Preparation
    for the master student's semester work 
    (\textit{if applicable})  
  & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
 % Table Elements --------------------------------------------------------------
-   \multirow{4}{*}{Oct. - Dec.}                               %Phase
+   \multirow{6}{*}{Oct. - Dec.}                               %Phase
  & Development of probabilistic error model and simple 
    proof-of-principle on the application of Bayesian 
-   updating for reflood model in TRACE \& supervision of 
+   updating for reflood model in TRACE; Supervision of 
    student's semester work (\textit{if applicable})
  & 1 Technical report (PSI) \& 1 Conference publication\\     %Planned Outcome
  \bottomrule
@@ -539,7 +546,7 @@ Nuclear Energy Safety (NES) Department, Paul Scherrer Institut and co-sponsored
 by the \textit{Nuklearforum Schweiz}.
 The poster \cite{Wicaksono2014b} was presented along with 11 other PhD students 
 within NES Department to general audience.
-The presentation was rather well-received and was selected as the best 
+The presentation was well-received and was selected as the best 
 poster by a panel of jury.
 
 
@@ -595,22 +602,17 @@ positive.
 ............................................................................\\\
 
 \noindent\textbf{O. Zerkak}\\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
+\noindent Damar can be credited with a prolific and promising first phase of his research 
+project. 
+Despite unavoidable initial difficulties, Damar could assimilate the 
+topic and rapidly become independent.
+He proposed a solution approach of his own, that he will need to implement and 
+test for the reflood problem next year.
+His approach of combining FDA with a solution method for Bayesian inference 
+problem (such as Markov Chain Monte Carlo sampling) is very original in 
+the nuclear engineering field.
+I should also add that Damar has proved very reliable in executing PSI 
+contribution to the OECD/NEA PREMIUM project.
 
 \section*{\underline{Signatures}\\}
 \noindent \textbf{Thesis advisor}\hspace{6.25cm}\dotfill\vspace{0.5cm}\\
