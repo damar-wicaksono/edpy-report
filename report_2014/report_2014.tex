@@ -30,6 +30,7 @@
 \usepackage[style=ieee, backend=bibtex]{biblatex}
 \usepackage{courier}
 \usepackage{caption}
+\usepackage{pdfpages}
 \bibliography{report_2014.bib}
 % -----------------------------------------------------------------------------
 
@@ -207,7 +208,7 @@ tests.
 %
  \multirow{6}{*}{FEBA \textbf{roughly} bounded}
 % 6 TRACTEBEL -----------------------------------------------------------------
- & TRACTEBEL, FR
+ & TRACTEBEL, BE
  & Wide
  & 8 \\
  & (RELAP5)
@@ -482,7 +483,7 @@ the underlying models describing the reflood phenomena.
 \caption{Calendar of upcoming work (year 2015)}
 \centering
 \label{tab:calendar}
-\scalebox{0.79}{
+\scalebox{0.7}{
 \begin{tabularx}{\textwidth}{@{} c Y Y @{}} % use 'Y' for first column
 % Header ----------------------------------------------------------------------
    \toprule
@@ -523,14 +524,16 @@ the underlying models describing the reflood phenomena.
  & ACHILLES TRACE modeling and assessment; 
    Participate in NURETH-16 conference; Preparation
    for the master student's semester work 
-   (\textit{if applicable})  
+   (\textit{if applicable}); Preparation
+   for the Nuclear Computational Lab.     
  & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
 % Table Elements --------------------------------------------------------------
    \multirow{6}{*}{Oct. - Dec.}                               %Phase
  & Development of probabilistic error model and simple 
    proof-of-principle on the application of Bayesian 
    updating for reflood model in TRACE; Supervision of 
-   student's semester work (\textit{if applicable})
+   student's semester work (\textit{if applicable});
+   Preparation for the Nuclear Computational Lab.
  & 1 Technical report (PSI) \& 1 Conference publication\\     %Planned Outcome
  \bottomrule
 \end{tabularx}
@@ -577,63 +580,65 @@ positive.
 \nocite{Wicaksono2014e}
 \printbibliography[heading=none]
 
-% Signature Page
-\newpage
-%\textcolor{white}.\\\\
-\noindent\textbf{Comments by the thesis advisor(s)}\\\\
-\noindent\textbf{Prof. A Pautz}\\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-
-\noindent\textbf{O. Zerkak}\\\\
-\noindent Damar can be credited with a prolific and promising first phase of his research 
-project. 
-Despite unavoidable initial difficulties, Damar could assimilate the 
-topic and rapidly become independent.
-He proposed a solution approach of his own, that he will need to implement and 
-test for the reflood problem next year.
-His approach of combining FDA with a solution method for Bayesian inference 
-problem (such as Markov Chain Monte Carlo sampling) is very original in 
-the nuclear engineering field.
-I should also add that Damar has proved very reliable in executing PSI 
-contribution to the OECD/NEA PREMIUM project.
-
-\section*{\underline{Signatures}\\}
-\noindent \textbf{Thesis advisor}\hspace{6.25cm}\dotfill\vspace{0.5cm}\\
-
-\noindent \textbf{Thesis co-advisor}\hspace{5.7cm}\dotfill\\
-\noindent  (if officially nominated)\\\\
-
-\noindent \textbf{With his signature, the candidate confirms that he took note 
-                  of the above comments.}\\\\
-
-\noindent \textbf{Candidate}\hspace{7cm}\dotfill\vspace{0.5cm}\\
-
-\noindent \textbf{Date}\hspace{8.05cm}\dotfill\\
-
-\vspace{0.8cm}
+%% Signature Page
+%\newpage
+%%\textcolor{white}.\\\\
+%\noindent\textbf{Comments by the thesis advisor(s)}\\\\
+%\noindent\textbf{Prof. A Pautz}\\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%
+%\noindent\textbf{O. Zerkak}\\\\
+%\noindent Damar can be credited with a prolific and promising first phase of his research 
+%project. 
+%Despite unavoidable initial difficulties, Damar could assimilate the 
+%topic and rapidly become independent.
+%He proposed a solution approach of his own, that he will need to implement and 
+%test for the reflood problem next year.
+%His approach of combining FDA with a solution method for Bayesian inference 
+%problem (such as Markov Chain Monte Carlo sampling) is very original in 
+%the nuclear engineering field.
+%I should also add that Damar has proved very reliable in executing PSI 
+%contribution to the OECD/NEA PREMIUM project.
+%
+%\section*{\underline{Signatures}\\}
+%\noindent \textbf{Thesis advisor}\hspace{6.25cm}\dotfill\vspace{0.5cm}\\
+%
+%\noindent \textbf{Thesis co-advisor}\hspace{5.7cm}\dotfill\\
+%\noindent  (if officially nominated)\\\\
+%
+%\noindent \textbf{With his signature, the candidate confirms that he took note 
+%                  of the above comments.}\\\\
+%
+%\noindent \textbf{Candidate}\hspace{7cm}\dotfill\vspace{0.5cm}\\
+%
+%\noindent \textbf{Date}\hspace{8.05cm}\dotfill\\
+%
+%\vspace{0.8cm}
+%%\begin{center}
+%%\textbf{Up to 5 pages in total}
+%%\end{center}
 %\begin{center}
-%\textbf{Up to 5 pages in total}
+%\textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 
+%                                              / 1015 Lausanne / Suisse}
 %\end{center}
-\begin{center}
-\textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 
-                                              / 1015 Lausanne / Suisse}
-\end{center}
+
+\includepdf[pages={1}]{figures/Planned-Signed-ZO41.pdf}
 
 \end{document}
