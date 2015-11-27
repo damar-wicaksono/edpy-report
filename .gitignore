@@ -1,5 +1,7 @@
 .DS_Store
-Progress_report.pdf
+report_2015.pdf
+*.bib
+*.xml
 *.aux
 *.glo
 *.idx
