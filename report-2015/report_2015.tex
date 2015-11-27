@@ -1,3 +1,4 @@
+% !TeX spellcheck = <none>
 \documentclass[11pt,titlepage]{article}
 
 \usepackage[french,american]{babel}
@@ -31,7 +32,7 @@
 \usepackage{courier}
 \usepackage{caption}
 \usepackage{pdfpages}
-\bibliography{report_2014.bib}
+\bibliography{report_2015.bib}
 % -----------------------------------------------------------------------------
 
 
@@ -46,7 +47,7 @@
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 \titlepic{\includegraphics[width=17cm]{figures/research_plan_pic.pdf}}
 
-\title{\textbf{Annual progress report \textcolor{blue}{2014}}}     %Change Year
+\title{\textbf{Annual progress report \textcolor{blue}{2015}}}     %Change Year
 
 \author{\large{\textbf{Damar Wicaksono} }\\\\
 \large{\textbf{Prof. Andreas Pautz}} \\\
@@ -102,6 +103,18 @@ experimental data taken from various separate effect test facilities.
 
 \section{Work achieved in the past year (state of research)}
 
+\subsection{Global Sensitivity Analysis Methodology for TRACE Reflood Modeling}
+
+Following the LRS at PSI successfull participation in the OECD/NEA PREMIUM Phase IV Benchmark, where the uncertainty of reflood model parameters in TRACE code were propagated in a blind exercise, the question was posed on how the uncertain parameters are actually affecting the clad temperature prediction during a reflood transient.
+This question stimulated the development of a sensitivity analysis methodology for TRACE at the LRS.
+The goal of the analysis was to understand the reflood model behavior better through the exploration of the parameter space.
+Specifically, it was to quantify \emph{how} and \emph{to what extent} the model output is affected by \emph{simultaneous inputs variations across their range of uncertainties}.
+This specific goal emphasized the use of a \emph{global} method instead of a \emph{local} one.
+
+The aforementioned goals can be met by computing and interpreting a set of \emph{global sensitivity} measures, known as the Sobol' indices.
+These indices decompose model output variance according to the contributions of the inputs variances.
+
+\subsection{Generation of Reflood Facility Model in TRACE from CAD Processing Tool} 
 
 \section{Current state of work}
 
@@ -175,92 +188,9 @@ Table~\ref{tab:currentstate} shown below.
 }
 \end{table}
 
-The work in the application of global sensitivity analysis using
-FDA-derived metrics as the quantities of interest is currently in-progress.
-The Sobol method for variance decomposition is a step forward in extending 
-the global sensitivity analysis where parameter importance are ranked by the 
-nature of their interactions.
-Combining these developments, further insight into the behavior and performance 
-of the reflood model in TRACE can be gained especially in terms parameters 
-interaction.
-The interpretation of these aspects of the model are important to avoid 
-ill-posedness in a parameter estimation problem.
-
-Following a better understanding of model behavior and model parameter 
-interactions through global SA, the work will continue on defining an
-appropriate probabilistic error model as well as the likelihood function for
-a reflood model.
-This model and the function should be derived on the basis of 
-probability theory and, at the same time, should also be consistent with 
-the underlying models describing the reflood phenomena.
-
 \section{Calendar of upcoming work}
 
-
-\begin{table}[!h]
-\caption{Calendar of upcoming work (year 2015)}
-\centering
-\label{tab:calendar}
-\scalebox{0.7}{
-\begin{tabularx}{\textwidth}{@{} c Y Y @{}} % use 'Y' for first column
-% Header ----------------------------------------------------------------------
-   \toprule
-   \textbf{Time Frame}
- & \textbf{Task Description}
- & \textbf{Publication Outcome}\\ \midrule
-% Table Elements --------------------------------------------------------------
-   \multirow{5}{*}{Mid. Jan. - Mid. March}                    %Phase
- & Application of Sobol Method for reflood simulation on 
-   FEBA SETF; Development of nodalization tool to fastened
-   model development; Coursework
- & NURETH-16 Conference contribution\\\midrule                %Planned 
- % Table Elements -------------------------------------------------------------
-   \multirow{6}{*}{Feb. - Apr.}                               %Phase
- & Comprehensive review on TRACE reflood closure laws 
-   including the functions call stack structure from 
-   inside the source code; Development of nodalization 
-   tool to fastened model development; Coursework
- & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
-% Table Elements --------------------------------------------------------------
-   \multirow{8}{*}{Apr. - Mid. Jun.}
- & Consolidated studies of the model review,                  %Phase
-   global sensitivity analysis results (Morris and Sobol) 
-   using FDA-derived quantities of interest;
-   Preparation of a master thesis proposal on FDA-based 
-   GSA and UQ 
-   for the Achilles reflood facility; Coursework
- & 1 Journal publication (an extension of the contribution    %Planned Outcome
-   to NURETH-16) \& a Master Thesis Proposal \\\midrule
-% Table Elements --------------------------------------------------------------
-   \multirow{5}{*}{Jul. - Mid. Aug}                           %Phase
- & TRACE assessment on the basis of FEBA 
-   complemented with development of an appropriate error 
-   model for functional (transient) output; Coursework
- & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
-% Table Elements --------------------------------------------------------------
-   \multirow{5}{*}{Mid. Aug. - Sep.}                          %Phase
- & ACHILLES TRACE modeling and assessment; 
-   Participate in NURETH-16 conference; Preparation
-   for the master student's semester work 
-   (\textit{if applicable}); Preparation
-   for the Nuclear Computational Lab.     
- & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
-% Table Elements --------------------------------------------------------------
-   \multirow{6}{*}{Oct. - Dec.}                               %Phase
- & Development of probabilistic error model and simple 
-   proof-of-principle on the application of Bayesian 
-   updating for reflood model in TRACE; Supervision of 
-   student's semester work (\textit{if applicable});
-   Preparation for the Nuclear Computational Lab.
- & 1 Technical report (PSI) \& 1 Conference publication\\     %Planned Outcome
- \bottomrule
-\end{tabularx}
-}
-\end{table}
-
 \section{Other activities and remarks}
-
-\subsection{NES PhD Student Day}
 
 \subsection{Nuclear Computation Lab (ETH-531)}
 
@@ -268,9 +198,10 @@ the underlying models describing the reflood phenomena.
 
 \nocite{Wicaksono2014a}
 \nocite{Wicaksono2014b}
-\nocite{Wicaksono2014c}
-\nocite{Wicaksono2014d}
-\nocite{Wicaksono2014e}
+\nocite{Wicaksono2015a}
+\nocite{Wicaksono2015b}
+\nocite{Wicaksono2015c}
+
 \printbibliography[heading=none]
 
 %% Signature Page
