@@ -152,9 +152,54 @@ The paper was subsequently awarded one of the best student paper award.
 	\label{fig:influential}
 \end{figure}
 
-A result on variance decomposition on the reduced parameter space is shown below 
+A result on variance decomposition on the reduced parameter space is shown in Fig.~\ref{fig:1stpc}.
+The TRACE Reflood model was found to relatively additive and non-interacting.
+Also, the output variation can be attributed only to a small set of parameters related to the spacer grid and DFFB models. 
+The finding were not contrary to the currently held expert judgment on these parameteres importance.
+Yet, the analysis was able to \emph{make precise} this judgment quantitatively, demonstrating the value of the method.
+The result was presented at the NURETH-16 conference \cite{Wicaksono2015a} and selected as one of the best student papers.
 
-\subsection{Generation of Reflood Facility Model in TRACE from CAD Processing Tool} 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.65]{figures/1stPrincipalComponent.png}
+	\caption{The decomposition of $1^\textnormal{st}$-principal component describing the variation in temperature ramping; the sum of main-effect indices of $92\%$ indicates a non-interacting model}
+	\label{fig:1stpc}
+\end{figure}
+
+Nevertheless, when considering the $2^\textnormal{nd}$-principal component, only $32\%$ of the variation is due to the main effect, indicating that parameters interactions are responsible for the variation in the temperature descent phase.
+This might become an issue when the parameters have to be calibrated against experimental data around this region because multiple combination of parameters value would yield the same fit.
+The structure of this interaction, however, remains unclear.
+Therefore, the logical next step is to reveal this structure and a method to estimate $2^\textnormal{nd}$-order sensitivity indices is being implemented to that end.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.65]{figures/2ndPrincipalComponent.png}
+	\caption{The decomposition of $2^\textnormal{nd}$-principal component describing the variation in temperature ramping; the sum of main-effect indices of $32\%$ and large difference between the main- and total-effect indices, indicate a highly interacting model}
+	\label{fig:2ndpc}
+\end{figure}
+
+\subsection{Generation of Reflood Facility TRACE Model from CAD Processing Tool} 
+
+The sensitivity of the solution to the nodalization scheme used is a longstanding issue in system thermal-hydraulics modelling.
+By developing a nodalization, a complex geometry of a thermal-hydraulic system is practically simplified into a set of interconnected \emph{nodes}, a discretized element defined by its volume and the inlet and outlet flow areas at its faces. 
+As the analysists are usually given a great flexibility in developing their own nodalization scheme, a situation where multiple nodalization scheme of a same system gives very different prediction might arise.
+Though best-practice suggestions exist, the solution verification can only be empirically established by comparing several nodalization scheme to check how sensitive the prediction is and to exclude (or at least minimized) the user-effect in the model qualification process.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.65]{figures/nodalization.png}
+	\caption{Representation of a nuclear power plant as a network of interconnected and simplified \emph{nodes}}
+	\label{fig:nodalization}
+\end{figure}
+
+The adopted approach to develop nodalization in this project so far was using spreadsheet. 
+Though easy to set up initially, it becomes cumbersome and error prone, especially if several nodalization schemes are to be prepared.
+An additional activity was thus carried out to develop a pre-processing tool to generate a TRACE model (input deck) directly from a solid model constructed in SolidWorks software.
+This project is part of the outstanding research activity in LRS at PSI whose long-term goal is to be able to generate a TRACE input model of a complex plant in 3-Dimension directly out of CAD model.
+This CAD (solid) model is usually constructed with higher fidelity from the available drawing.
+The currently available, but disconnected scripting tools written in VBA (Visual Basic for Application, VBA) from previous activities are consolidated and written using fully-featured programming language of Visual Basic .NET.
+The tool is also implemented as an object-oriented program to ease further development to extend its capabilities.
+At the present stage however, the aim is simply to have a working version for the development of a simple reflood facility model, a 1-dimensional (axial).
 
 \section{Current state of work}
 
