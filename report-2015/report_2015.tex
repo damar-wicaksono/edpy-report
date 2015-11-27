@@ -109,16 +109,50 @@ Following the LRS at PSI successfull participation in the OECD/NEA PREMIUM Phase
 This question stimulated the development of a sensitivity analysis methodology for TRACE at the LRS.
 The goal of the analysis was to understand the reflood model behavior better through the exploration of the parameter space.
 Specifically, it was to quantify \emph{how} and \emph{to what extent} the model output is affected by \emph{simultaneous inputs variations across their range of uncertainties}.
-This specific goal emphasized the use of a \emph{global} method instead of a \emph{local} one.
+The emphasis on simultaneous variations accross range of uncertainties set a \emph{global} method, that is being adopted in the current development, apart from a \emph{local} one.
 
-The aforementioned goals can be met by computing and interpreting a set of \emph{global sensitivity} measures, known as the Sobol' indices.
-These indices decompose model output variance according to the contributions of the inputs variances.
+The aforementioned goals can be met by decomposing the output variance and computing a set of \emph{global sensitivity} measures. 
+These indices, quantify the contribution of the inputs variances to the output variance.
+The work achieved during the year focused on the main-effect and total-effect indices.
+They quantify the effect of a single parameter variation alone and its total interaction with the other parameters, respectively.
+An interacting model is considered to be more complex as it complicates the task of parameter calibration or uncertainty reduction.
+
+This paradigm of \textit{variance-based global sensitivity measure} particulary fits well with the current practice of uncertainty propagation in the field of nuclear engineering thermal-hydraulics.
+According to the practice, for a given simulation case, sets of uncertain input parameters values are simulatenously perturbed and randomly generated, and then propagated through the code.
+The dispersion (i.e., variance) of the prediction is summarized and reported to establish a notion of reliability in the prediction.
+
+The choice of model output of interest is an important initial step in a sensitivity analysis. Its choice is guided by the selected goal.
+In the spirit of model exploration, a more descriptive metric had to be derived to quantify the overall reflood curves variations.
+Such description is not straightforward as the curves variations often showed complitaed change in shape stemming from concurrent variation in phase as well as in amplitude (See Fig.~\ref{fig:output}(a) for an illustration).
+To tackle such problem, a method based on Functional Data Analysis (FDA) framework was applied.
+By applying a \emph{time-warping} transformation, the convoluted phase-amplitude variations were first separated. Then by applying the Karhunen - Lo\`eve (KL) transformation, a few modes of variation were extracted (See Fig.~\ref{fig:output}(b)).
+A set of scalar model outputs of interest was then finally derived whic parsimoniously described the overall functional variation of a reflood curves dataset, defined over the time domain.
+Preliminary work on the application of FDA for the analysis of reflood simulation was presented at the NUTHOS-10 conference on last December and subsequently included in the proceeding \cite{Wicaksono2014a}.
 
 \begin{figure}[h!]
 	\centering
 		\includegraphics[width=\textwidth]{figures/modelOutputsOfInterest.png}
 	\caption{\textbf{(a)}A typical reflood simulation outputs from uncertainty propagations; \textbf{(b)} Three modes of variations extracted from the reflood curves by using FDA framework}
+	\label{fig:output}
 \end{figure}
+
+The computation of Sobol' indices involved integrations in high-dimensional input parameter space.
+These integrals are estimated by Monte Carlo sampling, equipped with an efficient estimator and a space-filling experimental design.
+It is required that TRACE code to be evaluated at various input values.
+As the number of code runs (thus computing time) is proportional to number of input parameters, screening analysis using the cheaper Morris method was conducted to screen out non-influential input parameters. It was found that only 10 out of 26 initial inputs were considered to be influential for the temperature transient (shown left). 
+These parameters were mainly related to the Dispersed Film Flow Boiling (DFFB) and the spacer grid heat transfer models.
+Fig.~\ref{fig:influential} gives an illustration regarding the notion of \emph{influential} parameters.
+This implementation and application of the Morris method was also presented at the NUTHOS-10 conference last December\cite{Wicaksono2014b}.
+The paper was subsequently awarded one of the best student paper award.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.75]{figures/influentialRuns.png}
+	\caption{Output variations from uncertainty propagation calculation due to 10 influential parameters (green) vs. 16 non-influential ones (gray)}
+	\label{fig:influential}
+\end{figure}
+
+A result on variance decomposition on the reduced parameter space is shown below 
 
 \subsection{Generation of Reflood Facility Model in TRACE from CAD Processing Tool} 
 
