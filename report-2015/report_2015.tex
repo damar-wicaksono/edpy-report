@@ -1,0 +1,338 @@
+\documentclass[11pt,titlepage]{article}
+
+\usepackage[french,american]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage[a4paper]{geometry}           % See geometry.pdf to learn the layout
+%\geometry{landscape}                    % Activate for for rotated page 
+                                         % geometry
+%\usepackage[parfill]{parskip}           % Activate to begin paragraphs with an
+                                         % empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{color}
+\usepackage[tt]{titlepic}
+\usepackage{fancyhdr}
+\usepackage{secdot}
+\usepackage{booktabs}
+\usepackage{rotating}
+
+% WD41, LRS/EPFL/PSI ----------------------------------------------------------
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{ragged2e}                      % for '\RaggedRight' macro 
+                                           % (allows hyphenation)
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\usepackage[style=ieee, backend=bibtex]{biblatex}
+\usepackage{courier}
+\usepackage{caption}
+\usepackage{pdfpages}
+\bibliography{report_2014.bib}
+% -----------------------------------------------------------------------------
+
+
+\topmargin=-0.45in      
+%\evensidemargin=0in     
+\oddsidemargin=-0.1in      
+\textwidth=6.8in        
+\textheight=9.0in     
+%\headsep=0.25in         
+
+% Titlepage -------------------------------------------------------------------
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\titlepic{\includegraphics[width=17cm]{figures/research_plan_pic.pdf}}
+
+\title{\textbf{Annual progress report \textcolor{blue}{2014}}}     %Change Year
+
+\author{\large{\textbf{Damar Wicaksono} }\\\\
+\large{\textbf{Prof. Andreas Pautz}} \\\
+\large{\textbf{Omar Zerkak}} \\\\\\\
+\Large{\textbf{Bayesian Uncertainty Quantification}} \\\\
+\Large\textbf{of Physical Models} \\\\
+\Large\textbf{in Thermal-Hydraulics System Code}}
+
+\date{03.12.2015}				       %activate to remove date
+% -----------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+% 2nd Page, Epmty Page --------------------------------------------------------
+\pagestyle{empty}
+\clearpage\mbox{}\clearpage
+% -----------------------------------------------------------------------------
+
+% Top Header ------------------------------------------------------------------
+\pagestyle{fancy} \pagenumbering{arabic} \setcounter{page}{1}
+\addtolength{\headheight}{\baselineskip}
+\newcommand{\ffont}{\fontsize{8}{8}\selectfont}
+\lhead{ECOLE DOCTORALE\\ \textit{DOCTORAL SCHOOL}}
+\chead{PROGRAMME DOCTORAL EN PHYSIQUE\\ \textit{DOCTORAL PROGRAM IN PHYSICS}}
+\rhead{\bfseries\ffont  \includegraphics[width=55pt]{figures/EPFL_LOG.pdf}}
+\renewcommand{\headrulewidth}{0.4pt}
+% -----------------------------------------------------------------------------
+%\textcolor{white}.
+
+\section{Objectives of research}
+
+The objective of the research is to quantify the uncertainty of
+physical model parameters implemented in a thermal-hydraulics system code.
+The physical models concerned are the ones describing
+the phasic interaction (heat and momentum exchange) in a complex
+multiphase flow during reactor transient especially for the
+\textit{reflood} phase following a loss-of-coolant-accident.
+These models are parameterized either by  physical or empirical tuning 
+parameters which values are uncertain.
+
+Conforming with the practice of statistical uncertainty propagation widely
+adopted in the field of nuclear engineering, probability theory is used to
+quantify the uncertainties related to each one of these parameters in a form 
+of density function and/or its approximation.
+The derivation of this density is posed as an inverse statistical problem
+following a bayesian approach as the parameters themselves are not directly
+observable.
+To this end, a methodology to quantify model uncertainty will be
+developed combining probabilistic modeling with available relevant
+experimental data taken from various separate effect test facilities.
+
+\section{Work achieved in the past year (state of research)}
+
+
+\section{Current state of work}
+
+The current state of research during the year are summarized in 
+Table~\ref{tab:currentstate} shown below.
+
+\begin{table}[!h]
+\caption{Current state of research in relation to the previously submitted
+         (1\textsuperscript{st} year) work plan
+         }
+\centering
+\label{tab:currentstate}
+\scalebox{0.67}{
+\begin{tabularx}{\textwidth}{@{} c Y Y Y @{}} % use 'Y' for first column
+% Header ----------------------------------------------------------------------
+    \toprule
+    \textbf{Phase}
+ & \textbf{Task Description}
+ & \textbf{Planned Outcome}
+ & \textbf{Current State of Work} \\ \midrule
+% Table Elements --------------------------------------------------------------
+   \multirow{5}{*}{\textbf{1}}                                %Phase
+ & Comprehensive reviews of post-CHF flow closure             %Task Description
+   laws in TRACE and externalization of important
+   model parameters
+ & 1 Technical Report (PSI)                                   %Planned Outcome
+ & 1. Important reflood model parameters externalized         %Current State
+   2. PSI contribution to OECD/NEA PREMIUM Benchmark finalized  \\ \midrule
+%
+   \multirow{8}{*}{\textbf{2}}                                %Phase
+ & Global sensitivity analysis of important                   %Task Description
+   based on FEBA test facility
+ & 1 Technical Report (PSI) \& 1 Journal Article              %Planned Outcome
+ & 1. A paper on Morris screening method for NUTHOS-10        %Current State
+   2. Another paper on an application of functional data
+      analysis for NUTHOS-10
+   3. One abstract on global sensitivity analysis
+      method submitted to NURETH-16      \\ \midrule
+%
+   \multirow{5}{*}{\textbf{3}}                                %Phase
+ & Definition of error and specification of                   %Task Description
+   probabilistic error model; Calibration of TRACE 
+   reflood model based on the FEBA facility;
+   Approximation of the posterior distribution by 
+   Markov-Chain Monte Carlo; 
+ & 1 Technical Report (PSI) \& 1 Journal Article              %Planned Outcome
+ & $-$ \\ \midrule                                            %Current State
+%
+   \multirow{6}{*}{\textbf{4}}                                %Phase
+ & Calibration of TRACE reflood model based on another        %Task Description
+   reflood test facility
+ & 1 Conference Paper                                         %Planned Outcome
+ & Possible candidates of reflood facility with adequate      %Current State
+   specification and
+   experimental data are available (\textit{e.g.,}
+   SEFLEX, NEPTUN, ACHILLES) \\ \midrule
+%
+   \multirow{4}{*}{\textbf{5}}                                %Phase
+ & Consolidation of the calibration results based on 2        %Task Description
+   facilities and validation based on another reflood
+   test facility
+ & 1 Journal Article                                          %Planned Outcome
+ & $-$  \\\midrule                                            %Current State
+%
+   \textbf{6}                                                 %Phase
+ & Thesis write-up                                            %Task Description
+ & Thesis                                                     %Planned Outcome
+ & $-$ \\                                                     %Current State
+ \bottomrule
+\end{tabularx}
+}
+\end{table}
+
+The work in the application of global sensitivity analysis using
+FDA-derived metrics as the quantities of interest is currently in-progress.
+The Sobol method for variance decomposition is a step forward in extending 
+the global sensitivity analysis where parameter importance are ranked by the 
+nature of their interactions.
+Combining these developments, further insight into the behavior and performance 
+of the reflood model in TRACE can be gained especially in terms parameters 
+interaction.
+The interpretation of these aspects of the model are important to avoid 
+ill-posedness in a parameter estimation problem.
+
+Following a better understanding of model behavior and model parameter 
+interactions through global SA, the work will continue on defining an
+appropriate probabilistic error model as well as the likelihood function for
+a reflood model.
+This model and the function should be derived on the basis of 
+probability theory and, at the same time, should also be consistent with 
+the underlying models describing the reflood phenomena.
+
+\section{Calendar of upcoming work}
+
+
+\begin{table}[!h]
+\caption{Calendar of upcoming work (year 2015)}
+\centering
+\label{tab:calendar}
+\scalebox{0.7}{
+\begin{tabularx}{\textwidth}{@{} c Y Y @{}} % use 'Y' for first column
+% Header ----------------------------------------------------------------------
+   \toprule
+   \textbf{Time Frame}
+ & \textbf{Task Description}
+ & \textbf{Publication Outcome}\\ \midrule
+% Table Elements --------------------------------------------------------------
+   \multirow{5}{*}{Mid. Jan. - Mid. March}                    %Phase
+ & Application of Sobol Method for reflood simulation on 
+   FEBA SETF; Development of nodalization tool to fastened
+   model development; Coursework
+ & NURETH-16 Conference contribution\\\midrule                %Planned 
+ % Table Elements -------------------------------------------------------------
+   \multirow{6}{*}{Feb. - Apr.}                               %Phase
+ & Comprehensive review on TRACE reflood closure laws 
+   including the functions call stack structure from 
+   inside the source code; Development of nodalization 
+   tool to fastened model development; Coursework
+ & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
+% Table Elements --------------------------------------------------------------
+   \multirow{8}{*}{Apr. - Mid. Jun.}
+ & Consolidated studies of the model review,                  %Phase
+   global sensitivity analysis results (Morris and Sobol) 
+   using FDA-derived quantities of interest;
+   Preparation of a master thesis proposal on FDA-based 
+   GSA and UQ 
+   for the Achilles reflood facility; Coursework
+ & 1 Journal publication (an extension of the contribution    %Planned Outcome
+   to NURETH-16) \& a Master Thesis Proposal \\\midrule
+% Table Elements --------------------------------------------------------------
+   \multirow{5}{*}{Jul. - Mid. Aug}                           %Phase
+ & TRACE assessment on the basis of FEBA 
+   complemented with development of an appropriate error 
+   model for functional (transient) output; Coursework
+ & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
+% Table Elements --------------------------------------------------------------
+   \multirow{5}{*}{Mid. Aug. - Sep.}                          %Phase
+ & ACHILLES TRACE modeling and assessment; 
+   Participate in NURETH-16 conference; Preparation
+   for the master student's semester work 
+   (\textit{if applicable}); Preparation
+   for the Nuclear Computational Lab.     
+ & 1 Technical report (PSI)\\\midrule                         %Planned Outcome
+% Table Elements --------------------------------------------------------------
+   \multirow{6}{*}{Oct. - Dec.}                               %Phase
+ & Development of probabilistic error model and simple 
+   proof-of-principle on the application of Bayesian 
+   updating for reflood model in TRACE; Supervision of 
+   student's semester work (\textit{if applicable});
+   Preparation for the Nuclear Computational Lab.
+ & 1 Technical report (PSI) \& 1 Conference publication\\     %Planned Outcome
+ \bottomrule
+\end{tabularx}
+}
+\end{table}
+
+\section{Other activities and remarks}
+
+\subsection{NES PhD Student Day}
+
+\subsection{Nuclear Computation Lab (ETH-531)}
+
+\section{Scientific publications, conference contributions, and presentations}
+
+\nocite{Wicaksono2014a}
+\nocite{Wicaksono2014b}
+\nocite{Wicaksono2014c}
+\nocite{Wicaksono2014d}
+\nocite{Wicaksono2014e}
+\printbibliography[heading=none]
+
+%% Signature Page
+%\newpage
+%%\textcolor{white}.\\\\
+%\noindent\textbf{Comments by the thesis advisor(s)}\\\\
+%\noindent\textbf{Prof. A Pautz}\\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%
+%\noindent\textbf{O. Zerkak}\\\\
+%\noindent Damar can be credited with a prolific and promising first phase of his research 
+%project. 
+%Despite unavoidable initial difficulties, Damar could assimilate the 
+%topic and rapidly become independent.
+%He proposed a solution approach of his own, that he will need to implement and 
+%test for the reflood problem next year.
+%His approach of combining FDA with a solution method for Bayesian inference 
+%problem (such as Markov Chain Monte Carlo sampling) is very original in 
+%the nuclear engineering field.
+%I should also add that Damar has proved very reliable in executing PSI 
+%contribution to the OECD/NEA PREMIUM project.
+%
+%\section*{\underline{Signatures}\\}
+%\noindent \textbf{Thesis advisor}\hspace{6.25cm}\dotfill\vspace{0.5cm}\\
+%
+%\noindent \textbf{Thesis co-advisor}\hspace{5.7cm}\dotfill\\
+%\noindent  (if officially nominated)\\\\
+%
+%\noindent \textbf{With his signature, the candidate confirms that he took note 
+%                  of the above comments.}\\\\
+%
+%\noindent \textbf{Candidate}\hspace{7cm}\dotfill\vspace{0.5cm}\\
+%
+%\noindent \textbf{Date}\hspace{8.05cm}\dotfill\\
+%
+%\vspace{0.8cm}
+%%\begin{center}
+%%\textbf{Up to 5 pages in total}
+%%\end{center}
+%\begin{center}
+%\textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 
+%                                              / 1015 Lausanne / Suisse}
+%\end{center}
+
+% Directly attached signed form
+%\includepdf[pages={1}]{figures/Planned-Signed-ZO41.pdf}
+
+\end{document}
