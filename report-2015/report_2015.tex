@@ -124,9 +124,12 @@ The work achieved during the year focused on the main-effect and total-effect in
 They quantify the effect of a single parameter variation alone and its total interaction with the other parameters, respectively.
 An interacting model is considered to be more complex as it complicates the task of parameter calibration or uncertainty reduction.
 
-This paradigm of \textit{variance-based global sensitivity measure} particulary fits well with the current practice of uncertainty propagation in the field of nuclear engineering thermal-hydraulics.
-According to the practice, for a given simulation case, sets of uncertain input parameters values are simulatenously perturbed and randomly generated, and then propagated through the code.
+This paradigm of \textit{variance-based global sensitivity measure} particulary fits well with the current practice of uncertainty propagation in nuclear engineering thermal-hydraulics simulation.
+Following the practice, for a given simulation case, sets of uncertain input parameters values are randomly generated and simultaneously perturbed, and the code is then evaluated multiple times using
+these randomly generated points in parameter space.
 The dispersion (i.e., variance) of the prediction is summarized and reported to establish a notion of reliability in the prediction.
+The global method of sensitivity complements this uncertainty analysis by quantifying the 
+aforementioned questions of \emph{how} and \emph{to what extent} input variations affect the output.
 
 The choice of model output of interest is an important initial step in a sensitivity analysis. Its choice is guided by the selected goal.
 In the spirit of model exploration, a more descriptive metric had to be derived to quantify the overall reflood curves variations.
@@ -138,7 +141,7 @@ Preliminary work on the application of FDA for the analysis of reflood simulatio
 
 \begin{figure}[h!]
 	\centering
-		\includegraphics[width=\textwidth]{figures/modelOutputsOfInterest.png}
+		\includegraphics[scale=0.65]{figures/modelOutputsOfInterest.png}
 	\caption{\textbf{(a)} A typical reflood simulation outputs from uncertainty propagations; \textbf{(b)} Three modes of variations extracted from the reflood curves by using FDA framework}
 	\label{fig:output}
 \end{figure}
@@ -154,7 +157,7 @@ The paper was subsequently awarded one of the best student paper award.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.75]{figures/influentialRuns.png}
+	\includegraphics[scale=0.65]{figures/influentialRuns.png}
 	\caption{Output variations from uncertainty propagation calculation due to 10 influential parameters (green) vs. 16 non-influential ones (gray)}
 	\label{fig:influential}
 \end{figure}
@@ -187,9 +190,12 @@ Therefore, the logical next step is to reveal this structure and a method to est
 
 \subsection{Generation of Reflood Facility TRACE Model from CAD Processing Tool} 
 
-The sensitivity of the solution to the nodalization scheme used is a longstanding issue in system thermal-hydraulics modelling.
-By developing a nodalization, a complex geometry of a thermal-hydraulic system is practically simplified into a set of interconnected \emph{nodes}, a discretized element defined by its fluid volume and the inlet and outlet flow areas at its faces. 
-As the analysists are usually given a great flexibility in developing their own nodalization scheme, a situation where multiple nodalization scheme of a same system due to \textit{ad hoc} choices give very different prediction of system behavior might arise (the so-called user effect).
+The sensitivity of the solution to the adopted nodalization scheme is a longstanding issue in system thermal-hydraulics modelling.
+Through nodalization, a complex geometry of a thermal-hydraulic system is practically simplified into a set of interconnected \emph{nodes}. 
+A node is a discretized element defined by its length and free volume. 
+At its faces, a node is also defined by flow areas and hydraulic diameter (see Fig.~\ref{fig:nodalization}).
+
+As the analysists are usually given a great flexibility in developing their own nodalization scheme, a situation where multiple nodalization schemes of the same system due to \textit{ad hoc} choices give very different prediction of system behavior might arise (the so-called user effect).
 Though best-practice suggestions exist, the solution verification can only be empirically established by comparing several nodalization scheme to check how sensitive the prediction is and to exclude (or at least minimized) the user-effect in the model qualification process.
 
 \begin{figure}[h!]
@@ -199,14 +205,26 @@ Though best-practice suggestions exist, the solution verification can only be em
 	\label{fig:nodalization}
 \end{figure}
 
-The adopted approach to develop nodalization in this project so far was using spreadsheet. 
+The adopted approach to develop nodalization in this PhD project so far was using spreadsheet. 
 Though easy to set up initially, it becomes cumbersome and error prone, especially if several nodalization schemes are to be prepared.
 An additional activity was thus carried out to develop a pre-processing tool to generate a TRACE model (input deck) directly from a solid model constructed in SolidWorks software.
 This project is part of the outstanding research activity in LRS at PSI whose long-term goal is to be able to generate a TRACE input model of a complex plant in 3-Dimension directly out of CAD model.
 This CAD (solid) model is usually constructed with higher fidelity from the available drawing.
 The currently available, but disconnected scripting tools written in VBA (Visual Basic for Application, VBA) from previous activities are consolidated and written using fully-featured programming language of Visual Basic .NET.
 The tool is also implemented as an object-oriented program to ease further development to extend its capabilities.
-At the present stage however, the aim is simply to have a working version for the development of a simple reflood facility model, a 1-dimensional (axial).
+
+For the purpose of the present PhD project, however, the aim is simply to have a working 
+version for the development of a simple reflood facility model, 
+a 1-dimensional (axial).
+Based on a simple boolean algebra operation on the solid model 
+(also known as Constructive Solid Geometry, CSG), the tool is able to 
+extract relevant fluid information from the solid to construct the set of nodes.
+As an extension from the previous development, relevant information related to
+a heat structure (for a rod and slab geometry) can also be generated directly 
+from the solid model. 
+All the extracted relevant information serve as a basis to generate a TRACE input deck. 
+
+\pagebreak
 
 \section{Current state of work}
 
@@ -287,8 +305,9 @@ Table~\ref{tab:currentstate} shown below.
 				& \parbox[c]{0.3\textwidth}{%
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
 						\item \textbf{Task redefined}: calibration will only based on FEBA, validation will be done against ACHILLES test facility
+						\item Scripting based on VB.NET has been developed to assist in input deck 		
+							  generation
 						\item ACHILLES test facility model in TRACE is currently being developed as part of M.Sc. student's work
-						\item Scripting based on VB.NET has been developed to assist in input deck generation
 					\end{itemize}}\\ \hline
 % 5th Element -----------------------------------------------------------------
 				\textbf{5} 
@@ -303,12 +322,87 @@ Table~\ref{tab:currentstate} shown below.
 	\end{center}
 \end{table}
 				
-				
+The work on global sensitivity analysis (GSA) for reflood model in TRACE took the most 
+of the available time during the year 2015. 
+A paper contribution on the variance decomposition coupled with functional data analysis method was
+presented at the NURETH-16 conference.
+The results presented in the paper, for the first time in the analysis of reflood model,:
+\begin{enumerate}
+	\item \emph{Confirmed} expert judgment on parameters relative 
+	importance (namely, the parameters related to Dispersed Film Flow Boiling model)
+	\item \emph{Made precise} the importance in quantitative manner (namely, in terms of variance decomposition of functional components)
+	\item \emph{Revealed} additional model behavior that was overlooked (namely, strong parameter interactions during the temperature descent of reflood transient)
+\end{enumerate}
+All the work related to the global sensitivity analysis methodology done so far 
+is being finalized and will be concluded with a submission to NSE journal publication 
+for review (submission is due 01.2016).
+
+The invitation to be considered in NSE publication from the NURETH-16 paper was not foreseen.
+As such, this particular submission will be a minor revision to the conference paper complemented with
+additional literature study, derivation of formula, elaboration of methodology, and additional
+explanations; no additional results are planned to be added.
+Following such scheme, a second paper on global sensitivity analysis of FEBA model with additional results, such as second-order sensitivity indices estimation and full set of FEBA experiments can be foreseen.
+
+Consolidation of all the scripting works to carry out simulation experiment campaign is 
+on-going.
+The tools are implemented as Python packages, and currently being separated 
+into two packages: \texttt{trace\_simexp} to manage TRACE runs in large Monte Carlo 
+simulation campaign and  \texttt{gsa\_module} a more generic package to generate design 
+matrix, compute quantities of interest, and compute sensitivity measures 
+(based on Morris and Sobol').
+The tools are designed to enforce reproducibility with explicit parameterization for options and
+built based on open-source libraries of \texttt{Python} and \texttt{R}.
+
+Additional work on the development of a pre-processing tool 
+for direct generation of TRACE model from a CAD model was also done during the same period.
+The tool can be used to assist in developing a nodalization scheme of a 1D 
+reflood facility model.
+The tool is currently being tested both for FEBA and ACHILLES test facilities, of which 
+the latter is carried out as part of an M.Sc. student's work.
+A technical report on nodalization studies of FEBA model is currently being prepared.
+
 \section{Calendar of upcoming work}
+
+With the conclusion of GSA methodology development, a better understanding of the reflood model
+as well as the elaboration of the parameters importance on the transient have been achieved.
+The work will continue with the calibration of this model using the available experimental data.
+First, error model will be defined probabilistically. Secondly, the prior distribution of the important model parameters will be updated and the posterior distribution will be approximated by using 
+a Markov Chain Monte Carlo algorithm. 
+Finally, validation will be done by propagating the updated parameters uncertainties on the
+ACHILLES test facility model \emph{blindly}.
+To initiate this part of the work, a review of various available error model and its probabilistic 
+representations applicable for statistical calibration is being done as part of NUTHOS-11 conference
+contribution. The upcoming works is planned following Fig.~\ref{fig:calendar}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.60]{figures/calendar.png}
+	\caption{Calendar of upcoming works}
+	\label{fig:calendar}
+\end{figure}
 
 \section{Other activities and remarks}
 
 \subsection{Nuclear Computation Lab (ETH-531)}
+
+A teaching activity was carried out for a part of the Nuclear Computation Lab 
+course organized at PSI (one chapter, entitled ``Basic Thermal-hydraulics'', out of 
+6 chapters in total). 
+The course is part of the EPFL/ETHZ Nuclear Engineering Master Program and has 
+now become an obligatory course for students.
+A single day was dedicated for a lecture session followed by a hands-on computer
+simulation session using the TRACE code.
+Seventeen students participated in the course this semester (5 additional students 
+compared to the previous year)
+
+The simulation session this year was extended to add an additional exercise.
+The resulting 3 short simulations are now built around a central theme of 
+the basic \emph{limiting phenomena} in nuclear power plant transient: 
+critical flow, counter-current limitation, and critical heat flux (CHF).
+A time was allocated to prepare the course documentation and hands-on notes 
+\cite{Wicaksono2015c}, as well as testing the simulation environment.
+The students managed to do a good work and have a better average 
+scores overall compared to the previous batches of students. 
 
 \section{Scientific publications, conference contributions, and presentations}
 
