@@ -32,6 +32,13 @@
 \usepackage{courier}
 \usepackage{caption}
 \usepackage{pdfpages}
+% Itemize under table
+% from: http://tex.stackexchange.com/questions/150492/how-to-use-itemize-in-table-environment
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{rotating}
 \bibliography{report_2015.bib}
 % -----------------------------------------------------------------------------
 
@@ -206,73 +213,97 @@ At the present stage however, the aim is simply to have a working version for th
 The current state of research during the year are summarized in 
 Table~\ref{tab:currentstate} shown below.
 
-\begin{table}[!h]
-\caption{Current state of research in relation to the previously submitted
-         (1\textsuperscript{st} year) work plan
-         }
-\centering
-\label{tab:currentstate}
-\scalebox{0.67}{
-\begin{tabularx}{\textwidth}{@{} c Y Y Y @{}} % use 'Y' for first column
+\begin{table}[h!]
+	\caption{Current state of research in relation to the original
+		(1\textsuperscript{st} year) work plan
+	}
+	\label{tab:currentstate}
+	\begin{center}
+		\footnotesize
+		\begin{tabular}{c l l l}
 % Header ----------------------------------------------------------------------
-    \toprule
-    \textbf{Phase}
- & \textbf{Task Description}
- & \textbf{Planned Outcome}
- & \textbf{Current State of Work} \\ \midrule
-% Table Elements --------------------------------------------------------------
-   \multirow{5}{*}{\textbf{1}}                                %Phase
- & Comprehensive reviews of post-CHF flow closure             %Task Description
-   laws in TRACE and externalization of important
-   model parameters
- & 1 Technical Report (PSI)                                   %Planned Outcome
- & 1. Important reflood model parameters externalized         %Current State
-   2. PSI contribution to OECD/NEA PREMIUM Benchmark finalized  \\ \midrule
-%
-   \multirow{8}{*}{\textbf{2}}                                %Phase
- & Global sensitivity analysis of important                   %Task Description
-   based on FEBA test facility
- & 1 Technical Report (PSI) \& 1 Journal Article              %Planned Outcome
- & 1. A paper on Morris screening method for NUTHOS-10        %Current State
-   2. Another paper on an application of functional data
-      analysis for NUTHOS-10
-   3. One abstract on global sensitivity analysis
-      method submitted to NURETH-16      \\ \midrule
-%
-   \multirow{5}{*}{\textbf{3}}                                %Phase
- & Definition of error and specification of                   %Task Description
-   probabilistic error model; Calibration of TRACE 
-   reflood model based on the FEBA facility;
-   Approximation of the posterior distribution by 
-   Markov-Chain Monte Carlo; 
- & 1 Technical Report (PSI) \& 1 Journal Article              %Planned Outcome
- & $-$ \\ \midrule                                            %Current State
-%
-   \multirow{6}{*}{\textbf{4}}                                %Phase
- & Calibration of TRACE reflood model based on another        %Task Description
-   reflood test facility
- & 1 Conference Paper                                         %Planned Outcome
- & Possible candidates of reflood facility with adequate      %Current State
-   specification and
-   experimental data are available (\textit{e.g.,}
-   SEFLEX, NEPTUN, ACHILLES) \\ \midrule
-%
-   \multirow{4}{*}{\textbf{5}}                                %Phase
- & Consolidation of the calibration results based on 2        %Task Description
-   facilities and validation based on another reflood
-   test facility
- & 1 Journal Article                                          %Planned Outcome
- & $-$  \\\midrule                                            %Current State
-%
-   \textbf{6}                                                 %Phase
- & Thesis write-up                                            %Task Description
- & Thesis                                                     %Planned Outcome
- & $-$ \\                                                     %Current State
- \bottomrule
-\end{tabularx}
-}
+			\toprule[1.5pt]
+			Phase 
+			& Task Description 
+			& Planned Outcome 
+			& Current State of Work \\ \hline
+% 1st Element -----------------------------------------------------------------
+			\textbf{1} 
+			& \parbox[c]{0.3\textwidth}{%
+				Comprehensive reviews of post-CHF flow closure             %Task Description
+				laws in TRACE and externalization of important
+				model parameters} 
+			& \parbox[c]{0.2\textwidth}{
+				1 Technical Report} 
+			& \parbox[c]{0.3\textwidth}{%
+				\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+					\item Important reflood model parameters externalized
+					\item PSI contribution to OECD/NEA PREMIUM Benchmark finalized
+				\end{itemize}} \\ \hline
+% 2nd Element -----------------------------------------------------------------
+				\textbf{2} 
+				& \parbox[c]{0.3\textwidth}{%
+					Global sensitivity analysis (GSA) based on FEBA test facility}  
+				& \parbox[c]{0.2\textwidth}{%
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item 1 Technical report
+						\item 1 Journal article
+					\end{itemize}}
+				& \parbox[c]{0.3\textwidth}{%
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item A paper on Morris method presented at NUTHOS-10
+						\item A paper on FDA application presented at NUTHOS-10
+						\item A paper on GSA methodology presented at NURETH-16
+						\item A manuscript on GSA for submission to NSE (\textit{under preparation})
+						\item A technical report on nodalization studies (\textit{under preparation})
+					\end{itemize}} \\ \hline
+% 3rd Element -----------------------------------------------------------------
+				\textbf{3} 
+				& \parbox[c]{0.3\textwidth}{
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item Definition of error and probabilistic error model
+						\item Calibration of TRACE reflood model based on the FEBA facility
+						\item Approximation of the posterior distribution by Markov-Chain Monte Carlo
+					\end{itemize}}
+				& \parbox[c]{0.2\textwidth}{%
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item 1 Technical report
+						\item 1 Journal article
+						\item 1 Conference article
+					\end{itemize}}
+				& \parbox[c]{0.3\textwidth}{
+					Abstract to be submitted to NUTHOS-11 (\textit{under preparation})} \\	\hline
+% 4th Element -----------------------------------------------------------------
+				\textbf{4} 
+				& \parbox[c]{0.3\textwidth}{
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item Calibration of TRACE reflood model based on other reflood test facility
+						\item Consolidation of the calibration results based on 2 facilities and validation based on another reflood test facility
+					\end{itemize}}
+				& \parbox[c]{0.2\textwidth}{%
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item 1 journal article
+					\end{itemize}} 
+				& \parbox[c]{0.3\textwidth}{%
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item \textbf{Task redefined}: calibration will only based on FEBA, validation will be done against ACHILLES test facility
+						\item ACHILLES test facility model in TRACE is currently being developed as part of M.Sc. student's work
+						\item Scripting based on VB.NET has been developed to assist in input deck generation
+					\end{itemize}}\\ \hline
+% 5th Element -----------------------------------------------------------------
+				\textbf{5} 
+				& \parbox[c]{0.2\textwidth}{
+					Thesis-Write Up}
+				& \parbox[c]{0.2\textwidth}{%
+					Thesis} 
+				& \multicolumn{1}{c}{$-$}\\ 
+% End --------------------------------------------------------------------------
+			\bottomrule[1.5pt]
+		\end{tabular}
+	\end{center}
 \end{table}
-
+				
+				
 \section{Calendar of upcoming work}
 
 \section{Other activities and remarks}
