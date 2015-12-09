@@ -63,7 +63,7 @@
 \Large\textbf{of Physical Models} \\\\
 \Large\textbf{in Thermal-Hydraulics System Code}}
 
-\date{03.12.2015}				       %activate to remove date
+\date{09.12.2015}				       %activate to remove date
 % -----------------------------------------------------------------------------
 
 \begin{document}
@@ -89,13 +89,13 @@
 \section{Objectives of research}
 
 The objective of the research is to quantify the uncertainty of
-physical model parameters implemented in a thermal-hydraulics system code.
-The physical models concerned are the ones describing
-the phasic interaction (heat and momentum exchange) in a complex
-multiphase flow during reactor transient especially for the
-\textit{reflood} phase following a loss-of-coolant-accident.
+physical model parameters implemented in a best-estimate thermal-hydraulics system code.
+The physical models consist of closure laws describing
+the phasic interaction (heat, mass, and momentum exchange) in a complex
+multiphase flow during reactor transient.
 These models are parameterized either by  physical or empirical tuning 
-parameters which values are uncertain.
+parameters which values are uncertain, in particular the closure models for 
+the reflood and quench phenomena following a loss-of-coolant accident.
 
 Conforming with the practice of statistical uncertainty propagation widely
 adopted in the field of nuclear engineering, probability theory is used to
@@ -105,18 +105,17 @@ The derivation of this density is posed as an inverse statistical problem
 following a bayesian approach as the parameters themselves are not directly
 observable.
 To this end, a methodology to quantify model uncertainty will be
-developed combining probabilistic modeling with available relevant
-experimental data taken from various separate effect test facilities.
+developed combining probabilistic modeling of error with available relevant
+experimental data taken from various Separate Effect Test (SET) facilities.
 
 \section{Work achieved in the past year (state of research)}
 
 \subsection{Global Sensitivity Analysis Methodology for TRACE Reflood Model}
 
-Following the LRS at PSI successfull participation in the OECD/NEA PREMIUM Phase IV Benchmark, where the uncertainty of reflood model parameters in TRACE code were propagated in a blind exercise, the question was posed on how the uncertain parameters are actually affecting the clad temperature prediction during a reflood transient.
+Following a successfull participation in the OECD/NEA PREMIUM Phase IV Benchmark, where the uncertainty of reflood model parameters in TRACE system thermal-hydraulic code were propagated in a blind exercise \cite{Wicaksono2014c}, the question was posed on how the uncertain parameters are actually affecting the fuel rods cladding temperature evolution over the period of a reflood transient.
 This question stimulated the development of a sensitivity analysis methodology for TRACE at the LRS.
-The goal of the analysis was to understand the reflood model behavior better through the exploration of the parameter space.
-Specifically, it was to quantify \emph{how} and \emph{to what extent} the model output is affected by \emph{simultaneous inputs variations across their range of uncertainties}.
-The emphasis on simultaneous variations accross range of uncertainties set a \emph{global} method, that is being adopted in the current development, apart from a \emph{local} one.
+Specifically, the problem was to quantify \emph{how} and \emph{to what extent} the time-dependent model output is affected by \emph{simultaneous inputs variations across their range of uncertainties}.
+Emphasizing on simultaneous variations accross range of uncertainties calls for a \emph{global} method, that has been adopted in this work, instead of a \emph{local} one.
 
 The aforementioned goals can be met by decomposing the output variance and computing a set of \emph{global sensitivity} measures. 
 These indices, quantify the contribution of the inputs variances to the output variance.
@@ -124,11 +123,11 @@ The work achieved during the year focused on the main-effect and total-effect in
 They quantify the effect of a single parameter variation alone and its total interaction with the other parameters, respectively.
 An interacting model is considered to be more complex as it complicates the task of parameter calibration or uncertainty reduction.
 
-This paradigm of \textit{variance-based global sensitivity measure} particulary fits well with the current practice of uncertainty propagation in nuclear engineering thermal-hydraulics simulation.
+This paradigm of \textit{variance-based global sensitivity measure} fits particularly well with the current practice of uncertainty propagation in nuclear engineering thermal-hydraulics simulation.
 Following the practice, for a given simulation case, sets of uncertain input parameters values are randomly generated and simultaneously perturbed, and the code is then evaluated multiple times using
-these randomly generated points in parameter space.
+these randomly generated points in the parameter space.
 The dispersion (i.e., variance) of the prediction is summarized and reported to establish a notion of reliability in the prediction.
-The global method of sensitivity complements this uncertainty analysis by quantifying the 
+The global sensitivity analysis method complements this uncertainty propagation step by quantifying the 
 aforementioned questions of \emph{how} and \emph{to what extent} input variations affect the output.
 
 The choice of model output of interest is an important initial step in a sensitivity analysis. Its choice is guided by the selected goal.
@@ -136,29 +135,29 @@ In the spirit of model exploration, a more descriptive metric had to be derived 
 Such description is not straightforward as the curves variations often showed complitaed change in shape stemming from concurrent variation in phase as well as in amplitude (See Fig.~\ref{fig:output}(a) for an illustration).
 To tackle such problem, a method based on Functional Data Analysis (FDA) framework was applied.
 By applying a \emph{time-warping} transformation, the convoluted phase-amplitude variations were first separated. Then by applying the Karhunen - Lo\`eve (KL) transformation, a few modes of variation were extracted (See Fig.~\ref{fig:output}(b)).
-A set of scalar model outputs of interest was then finally derived whic parsimoniously described the overall functional variation of a reflood curves dataset, defined over the time domain.
-Preliminary work on the application of FDA for the analysis of reflood simulation was presented at the NUTHOS-10 conference on last December and subsequently included in the proceeding \cite{Wicaksono2014a}.
+A set of scalar model outputs of interest was then finally derived which parsimoniously described the functional variation of a reflood curves dataset, over the whole time domain.
+Preliminary work on the application of FDA for the analysis of reflood simulation was presented at the NUTHOS-10 conference and subsequently included in the proceeding \cite{Wicaksono2014a}.
 
 \begin{figure}[h!]
 	\centering
-		\includegraphics[scale=0.65]{figures/modelOutputsOfInterest.png}
-	\caption{\textbf{(a)} A typical reflood simulation outputs from uncertainty propagations; \textbf{(b)} Three modes of variations extracted from the reflood curves by using FDA framework}
+		\includegraphics[scale=0.63]{figures/modelOutputsOfInterest.png}
+	\caption{\textbf{(a)} Typical reflood simulation outputs from uncertainty propagations; \textbf{(b)} Three modes of variations extracted from the reflood curves by using FDA framework}
 	\label{fig:output}
 \end{figure}
 
 The computation of Sobol' indices involved integrations in high-dimensional input parameter space.
-These integrals are estimated by Monte Carlo sampling, equipped with an efficient estimator and a space-filling experimental design.
+These integrals are estimated by Monte Carlo sampling, equipped with an efficient indices estimator and a space-filling experimental design.
 It is required that TRACE code to be evaluated at various input values.
-As the number of code runs (thus computing time) is proportional to number of input parameters, screening analysis using the cheaper Morris method was conducted to screen out non-influential input parameters. It was found that only 10 out of 26 initial inputs were considered to be influential for the temperature transient (shown left). 
-These parameters were mainly related to the Dispersed Film Flow Boiling (DFFB) and the spacer grid heat transfer models.
+As the number of model evaluations (thus computing time) is proportional to the number of input parameters, prior analysis using the faster Morris method was conducted to screen out non-influential input parameters. It was found that only 10 out of 26 initial inputs were considered to be influential for the temperature transient (shown left). 
+These parameters were mainly related to the Dispersed-Flow Film Boiling (DFFB) and the spacer grid heat transfer enhancement model.
 Fig.~\ref{fig:influential} gives an illustration regarding the notion of \emph{influential} parameters.
 This implementation and application of the Morris method was also presented at the NUTHOS-10 conference last December\cite{Wicaksono2014b}.
-The paper was subsequently awarded one of the best student paper award.
+The paper was subsequently awarded one of the four best student paper awards at the conference.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.65]{figures/influentialRuns.png}
-	\caption{Output variations from uncertainty propagation calculation due to 10 influential parameters (green) vs. 16 non-influential ones (gray)}
+	\includegraphics[scale=0.62]{figures/influentialRuns.png}
+	\caption{Comparison for FEBA reflood Test XXX of model output variations from uncertainty propagation due to 10 influential parameters (green) vs. 16 non-influential ones (gray)}
 	\label{fig:influential}
 \end{figure}
 
@@ -172,51 +171,54 @@ The result was presented at the NURETH-16 conference \cite{Wicaksono2015a} and s
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.65]{figures/1stPrincipalComponent.png}
-	\caption{The decomposition of $1^\textnormal{st}$-principal component describing the variation in temperature ramping; the sum of main-effect indices of $92\%$ indicates a non-interacting model}
+	\caption{The decomposition of $1^\textnormal{st}$-principal component describing the variation in temperature ramping; the sum of main-effect indices of $92\%$ indicates a non-interacting model parameters}
 	\label{fig:1stpc}
 \end{figure}
 
-Nevertheless, when considering the $2^\textnormal{nd}$-principal component, only $32\%$ of the variation is due to the main effect, indicating that parameters interactions are responsible for the variation in the temperature descent phase.
+Nevertheless, when considering the $2^\textnormal{nd}$-principal component, only $32\%$ of the variation is due to the main effect, indicating that parameters interactions are responsible for most of the 
+variability in the temperature descent phase.
 This might become an issue when the parameters have to be calibrated against experimental data around this region because multiple combination of parameters value would yield the same fit.
 The structure of this interaction, however, remains unclear.
-Therefore, the logical next step is to reveal this structure and a method to estimate $2^\textnormal{nd}$-order sensitivity indices is being implemented to that end.
+Therefore, the logical next step is to reveal this structure with a method to estimate $2^\textnormal{nd}$-order sensitivity indices.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.65]{figures/2ndPrincipalComponent.png}
-	\caption{The decomposition of $2^\textnormal{nd}$-principal component describing the variation in temperature ramping; the sum of main-effect indices of $32\%$ and large difference between the main- and total-effect indices, indicate a highly interacting model}
+	\caption{The decomposition of $2^\textnormal{nd}$-principal component describing the variation in temperature ramping; the sum of main-effect indices of $32\%$ and large difference between the main- and total-effect indices, indicate a highly interacting model parameters}
 	\label{fig:2ndpc}
 \end{figure}
 
 \subsection{Generation of Reflood Facility TRACE Model from CAD Processing Tool} 
 
 The sensitivity of the solution to the adopted nodalization scheme is a longstanding issue in system thermal-hydraulics modelling.
-Through nodalization, a complex geometry of a thermal-hydraulic system is practically simplified into a set of interconnected \emph{nodes}. 
-A node is a discretized element defined by its length and free volume. 
+Through nodalization, a complex geometry of a thermal-hydraulic system is practically simplified into  of interconnected \emph{nodes}. 
+A node is a discretized 1D element defined by its length and free volume. 
 At its faces, a node is also defined by flow areas and hydraulic diameter (see Fig.~\ref{fig:nodalization}).
 
 As the analysists are usually given a great flexibility in developing their own nodalization scheme, a situation where multiple nodalization schemes of the same system due to \textit{ad hoc} choices give very different prediction of system behavior might arise (the so-called user effect).
-Though best-practice suggestions exist, the solution verification can only be empirically established by comparing several nodalization scheme to check how sensitive the prediction is and to exclude (or at least minimized) the user-effect in the model qualification process.
+Although best-practice guidelines exist, the solution verification can only be empirically established by comparing several nodalization schemes to check how sensitive the prediction is and to exclude (or at least minimize) the user-effect in the model qualification process.
+This issue is particularly accute for the simulation of large 3-D components such as the reactor pressure vessel where nodalization effects can significantly contribute to the variability in the model outputs.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.65]{figures/nodalization.png}
-	\caption{Representation of a nuclear power plant as a network of interconnected and simplified \emph{nodes}}
+	\includegraphics[scale=0.60]{figures/nodalization.png}
+	\caption{Representation of a nuclear power plant in a system thermal-hydraulic model as a network of interconnected and simplified \emph{nodes}}
 	\label{fig:nodalization}
 \end{figure}
 
 The adopted approach to develop nodalization in this PhD project so far was using spreadsheet. 
 Though easy to set up initially, it becomes cumbersome and error prone, especially if several nodalization schemes are to be prepared.
 An additional activity was thus carried out to develop a pre-processing tool to generate a TRACE model (input deck) directly from a solid model constructed in SolidWorks software.
-This project is part of the outstanding research activity in LRS at PSI whose long-term goal is to be able to generate a TRACE input model of a complex plant in 3-Dimension directly out of CAD model.
+This project is part of an on-going research activity at the LRS af PSI whose long-term goal is to be able to generate a TRACE input model of a complex plant in 3-Dimension directly out of CAD model.
 This CAD (solid) model is usually constructed with higher fidelity from the available drawing.
-The currently available, but disconnected scripting tools written in VBA (Visual Basic for Application, VBA) from previous activities are consolidated and written using fully-featured programming language of Visual Basic .NET.
+The currently available, but disconnected scripting tools written in VBA (Visual Basic for Application, VBA) from previous activities has been consolidated in 2015 and 
+written using fully-featured programming language of Visual Basic .NET.
 The tool is also implemented as an object-oriented program to ease further development to extend its capabilities.
 
 For the purpose of the present PhD project, however, the aim is simply to have a working 
 version for the development of a simple reflood facility model, 
-a 1-dimensional (axial).
-Based on a simple boolean algebra operation on the solid model 
+which boils down to a 1-D rod bundle section with inserted spacer grids and external wrappers.
+Based on a simple boolean algebra operations on the solid model 
 (also known as Constructive Solid Geometry, CSG), the tool is able to 
 extract relevant fluid information from the solid to construct the set of nodes.
 As an extension from the previous development, relevant information related to
@@ -224,7 +226,6 @@ a heat structure (for a rod and slab geometry) can also be generated directly
 from the solid model. 
 All the extracted relevant information serve as a basis to generate a TRACE input deck. 
 
-\pagebreak
 
 \section{Current state of work}
 
@@ -246,7 +247,7 @@ Table~\ref{tab:currentstate} shown below.
 			& Planned Outcome 
 			& Current State of Work \\ \hline
 % 1st Element -----------------------------------------------------------------
-			\textbf{1} 
+			\textbf{A} 
 			& \parbox[c]{0.3\textwidth}{%
 				Comprehensive reviews of post-CHF flow closure             %Task Description
 				laws in TRACE and externalization of important
@@ -259,7 +260,7 @@ Table~\ref{tab:currentstate} shown below.
 					\item PSI contribution to OECD/NEA PREMIUM Benchmark finalized
 				\end{itemize}} \\ \hline
 % 2nd Element -----------------------------------------------------------------
-				\textbf{2} 
+				\textbf{B} 
 				& \parbox[c]{0.3\textwidth}{%
 					Global sensitivity analysis (GSA) based on FEBA test facility}  
 				& \parbox[c]{0.2\textwidth}{%
@@ -276,7 +277,7 @@ Table~\ref{tab:currentstate} shown below.
 						\item A technical report on nodalization studies (\textit{under preparation})
 					\end{itemize}} \\ \hline
 % 3rd Element -----------------------------------------------------------------
-				\textbf{3} 
+				\textbf{C} 
 				& \parbox[c]{0.3\textwidth}{
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
 						\item Definition of error and probabilistic error model
@@ -292,7 +293,7 @@ Table~\ref{tab:currentstate} shown below.
 				& \parbox[c]{0.3\textwidth}{
 					Abstract to be submitted to NUTHOS-11 (\textit{under preparation})} \\	\hline
 % 4th Element -----------------------------------------------------------------
-				\textbf{4} 
+				\textbf{D} 
 				& \parbox[c]{0.3\textwidth}{
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
 						\item Calibration of TRACE reflood model based on other reflood test facility
@@ -300,7 +301,7 @@ Table~\ref{tab:currentstate} shown below.
 					\end{itemize}}
 				& \parbox[c]{0.2\textwidth}{%
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
-						\item 1 journal article
+						\item 1 Journal article
 					\end{itemize}} 
 				& \parbox[c]{0.3\textwidth}{%
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
@@ -310,7 +311,7 @@ Table~\ref{tab:currentstate} shown below.
 						\item ACHILLES test facility model in TRACE is currently being developed as part of M.Sc. student's work
 					\end{itemize}}\\ \hline
 % 5th Element -----------------------------------------------------------------
-				\textbf{5} 
+				\textbf{E} 
 				& \parbox[c]{0.2\textwidth}{
 					Thesis-Write Up}
 				& \parbox[c]{0.2\textwidth}{%
@@ -323,25 +324,25 @@ Table~\ref{tab:currentstate} shown below.
 \end{table}
 				
 The work on global sensitivity analysis (GSA) for reflood model in TRACE took the most 
-of the available time during the year 2015. 
+of the available time in 2015. 
 A paper contribution on the variance decomposition coupled with functional data analysis method was
 presented at the NURETH-16 conference.
 The results presented in the paper, for the first time in the analysis of reflood model,:
 \begin{enumerate}
 	\item \emph{Confirmed} expert judgment on parameters relative 
-	importance (namely, the parameters related to Dispersed Film Flow Boiling model)
-	\item \emph{Made precise} the importance in quantitative manner (namely, in terms of variance decomposition of functional components)
-	\item \emph{Revealed} additional model behavior that was overlooked (namely, strong parameter interactions during the temperature descent of reflood transient)
+	importance (namely, the parameters related to Dispersed-Flow Film Boiling model)
+	\item \emph{Accurately} quantified the relative importance of the identified most influential parameters (namely, in terms of variance decomposition of functional components)
+	\item \emph{Revealed} complex parameters interactions modes that were often overlooked in comparable works or at best considered only in a speculative manner (namely, strong parameter interactions during the temperature descent of reflood transient as simulated with a realistic best-estimate thermal-hydraulic code)
 \end{enumerate}
-All the work related to the global sensitivity analysis methodology done so far 
-is being finalized and will be concluded with a submission to NSE journal publication 
+All the work related to the GSA methodology done so far 
+is being finalized and will be concluded with a submission of a publication to NSE 
 for review (submission is due 01.2016).
 
 The invitation to be considered in NSE publication from the NURETH-16 paper was not foreseen.
 As such, this particular submission will be a minor revision to the conference paper complemented with
 additional literature study, derivation of formula, elaboration of methodology, and additional
-explanations; no additional results are planned to be added.
-Following such scheme, a second paper on global sensitivity analysis of FEBA model with additional results, such as second-order sensitivity indices estimation and full set of FEBA experiments can be foreseen.
+results interpretation; no additional results are planned to be added.
+Following such scheme, a second paper on global sensitivity analysis of FEBA model with additional results, such as second-order sensitivity indices estimation and full set of FEBA experiments is planned.
 
 Consolidation of all the scripting works to carry out simulation experiment campaign is 
 on-going.
@@ -350,7 +351,7 @@ into two packages: \texttt{trace\_simexp} to manage TRACE runs in large Monte Ca
 simulation campaign and  \texttt{gsa\_module} a more generic package to generate design 
 matrix, compute quantities of interest, and compute sensitivity measures 
 (based on Morris and Sobol').
-The tools are designed to enforce reproducibility with explicit parameterization for options and
+The tools are designed to enforce reproducibility with explicit parameterization for the simulation options and
 built based on open-source libraries of \texttt{Python} and \texttt{R}.
 
 Additional work on the development of a pre-processing tool 
@@ -366,11 +367,12 @@ A technical report on nodalization studies of FEBA model is currently being prep
 With the conclusion of GSA methodology development, a better understanding of the reflood model
 as well as the elaboration of the parameters importance on the transient have been achieved.
 The work will continue with the calibration of this model using the available experimental data.
-First, error model will be defined probabilistically. Secondly, the prior distribution of the important model parameters will be updated and the posterior distribution will be approximated by using 
+First, a pertinent time-dependent multi-variate error model shall be defined probabilistically. 
+Secondly, the prior distribution of the important model parameters will be updated and the posterior distribution will be approximated by using 
 a Markov Chain Monte Carlo algorithm. 
-Finally, validation will be done by propagating the updated parameters uncertainties on the
+Finally, an assessment will be done by propagating the updated parameters uncertainties on the
 ACHILLES test facility model \emph{blindly}.
-To initiate this part of the work, a review of various available error model and its probabilistic 
+To initiate this part of the work, a review of various available error models and and associated probabilistic 
 representations applicable for statistical calibration is being done as part of NUTHOS-11 conference
 contribution. The upcoming works is planned following Fig.~\ref{fig:calendar}.
 
@@ -399,7 +401,7 @@ The simulation session this year was extended to add an additional exercise.
 The resulting 3 short simulations are now built around a central theme of 
 the basic \emph{limiting phenomena} in nuclear power plant transient: 
 critical flow, counter-current limitation, and critical heat flux (CHF).
-A time was allocated to prepare the course documentation and hands-on notes 
+Time was allocated to prepare the course documentation and hands-on notes 
 \cite{Wicaksono2015c}, as well as testing the simulation environment.
 The students managed to do a good work and have a better average 
 scores overall compared to the previous batches of students. 
@@ -408,70 +410,61 @@ scores overall compared to the previous batches of students.
 
 \nocite{Wicaksono2014a}
 \nocite{Wicaksono2014b}
+\nocite{Wicaksono2014c}
 \nocite{Wicaksono2015a}
 \nocite{Wicaksono2015b}
 \nocite{Wicaksono2015c}
 
 \printbibliography[heading=none]
 
-%% Signature Page
-%\newpage
-%%\textcolor{white}.\\\\
-%\noindent\textbf{Comments by the thesis advisor(s)}\\\\
-%\noindent\textbf{Prof. A Pautz}\\\\
-%............................................................................
-%............................................................................\\\
-%............................................................................
-%............................................................................\\\
-%............................................................................
-%............................................................................\\\
-%............................................................................
-%............................................................................\\\
-%............................................................................
-%............................................................................\\\
-%............................................................................
-%............................................................................\\\
-%............................................................................
-%............................................................................\\\
-%............................................................................
-%............................................................................\\\
-%............................................................................
-%............................................................................\\\
-%
-%\noindent\textbf{O. Zerkak}\\\\
-%\noindent Damar can be credited with a prolific and promising first phase of his research 
-%project. 
-%Despite unavoidable initial difficulties, Damar could assimilate the 
-%topic and rapidly become independent.
-%He proposed a solution approach of his own, that he will need to implement and 
-%test for the reflood problem next year.
-%His approach of combining FDA with a solution method for Bayesian inference 
-%problem (such as Markov Chain Monte Carlo sampling) is very original in 
-%the nuclear engineering field.
-%I should also add that Damar has proved very reliable in executing PSI 
-%contribution to the OECD/NEA PREMIUM project.
-%
-%\section*{\underline{Signatures}\\}
-%\noindent \textbf{Thesis advisor}\hspace{6.25cm}\dotfill\vspace{0.5cm}\\
-%
-%\noindent \textbf{Thesis co-advisor}\hspace{5.7cm}\dotfill\\
-%\noindent  (if officially nominated)\\\\
-%
-%\noindent \textbf{With his signature, the candidate confirms that he took note 
-%                  of the above comments.}\\\\
-%
-%\noindent \textbf{Candidate}\hspace{7cm}\dotfill\vspace{0.5cm}\\
-%
-%\noindent \textbf{Date}\hspace{8.05cm}\dotfill\\
-%
-%\vspace{0.8cm}
-%%\begin{center}
-%%\textbf{Up to 5 pages in total}
-%%\end{center}
+% Signature Page
+\newpage
+%\textcolor{white}.\\\\
+\noindent\textbf{Comments by the thesis advisor(s)}\\\\
+\noindent\textbf{Prof. A Pautz}\\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+
+\noindent\textbf{O. Zerkak}\\\\
+
+
+\section*{\underline{Signatures}\\}
+\noindent \textbf{Thesis advisor}\hspace{6.25cm}\dotfill\vspace{0.5cm}\\
+
+\noindent \textbf{Thesis co-advisor}\hspace{5.7cm}\dotfill\\
+\noindent  (if officially nominated)\\\\
+
+\noindent \textbf{With his signature, the candidate confirms that he took note 
+                  of the above comments.}\\\\
+
+\noindent \textbf{Candidate}\hspace{7cm}\dotfill\vspace{0.5cm}\\
+
+\noindent \textbf{Date}\hspace{8.05cm}\dotfill\\
+
+\vspace{0.8cm}
 %\begin{center}
-%\textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 
-%                                              / 1015 Lausanne / Suisse}
+%\textbf{Up to 5 pages in total}
 %\end{center}
+\begin{center}
+\textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 
+                                              / 1015 Lausanne / Suisse}
+\end{center}
 
 % Directly attached signed form
 %\includepdf[pages={1}]{figures/Planned-Signed-ZO41.pdf}
