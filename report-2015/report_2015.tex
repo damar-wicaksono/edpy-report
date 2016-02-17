@@ -115,7 +115,7 @@ experimental data taken from various Separate Effect Test (SET) facilities.
 Following a successfull participation in the OECD/NEA PREMIUM Phase IV Benchmark, where the uncertainty of reflood model parameters in TRACE system thermal-hydraulic code were propagated in a blind exercise \cite{Wicaksono2014c}, the question was posed on how the uncertain parameters are actually affecting the fuel rods cladding temperature evolution over the period of a reflood transient.
 This question stimulated the development of a sensitivity analysis methodology for TRACE at the LRS.
 Specifically, the problem was to quantify \emph{how} and \emph{to what extent} the time-dependent model output is affected by \emph{simultaneous inputs variations across their range of uncertainties}.
-Emphasizing on simultaneous variations accross range of uncertainties calls for a \emph{global} method, that has been adopted in this work, instead of a \emph{local} one.
+Emphasis on simultaneous variations accross range of uncertainties calls for a \emph{global} method, that has been adopted in this work, instead of a \emph{local} one.
 
 The aforementioned goals can be met by decomposing the output variance and computing a set of \emph{global sensitivity} measures. 
 These indices, quantify the contribution of the inputs variances to the output variance.
@@ -132,7 +132,7 @@ aforementioned questions of \emph{how} and \emph{to what extent} input variation
 
 The choice of model output of interest is an important initial step in a sensitivity analysis. Its choice is guided by the selected goal.
 In the spirit of model exploration, a more descriptive metric had to be derived to quantify the overall reflood curves variations.
-Such description is not straightforward as the curves variations often showed complitaed change in shape stemming from concurrent variation in phase as well as in amplitude (See Fig.~\ref{fig:output}(a) for an illustration).
+Such description is not straightforward as the curves variations often showed complicated change in shape stemming from concurrent variation in phase as well as in amplitude (See Fig.~\ref{fig:output}(a) for an illustration).
 To tackle such problem, a method based on Functional Data Analysis (FDA) framework was applied.
 By applying a \emph{time-warping} transformation, the convoluted phase-amplitude variations were first separated. Then by applying the Karhunen - Lo\`eve (KL) transformation, a few modes of variation were extracted (See Fig.~\ref{fig:output}(b)).
 A set of scalar model outputs of interest was then finally derived which parsimoniously described the functional variation of a reflood curves dataset, over the whole time domain.
@@ -157,21 +157,21 @@ The paper was subsequently awarded one of the four best student paper awards at 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.62]{figures/influentialRuns.png}
-	\caption{Comparison for FEBA reflood Test XXX of model output variations from uncertainty propagation due to 10 influential parameters (green) vs. 16 non-influential ones (gray)}
+	\caption{Comparison for FEBA reflood Test 216 of model output variations from uncertainty propagation due to 10 influential parameters (green) vs. 16 non-influential ones (gray)}
 	\label{fig:influential}
 \end{figure}
 
-A result on variance decomposition on the reduced parameter space is shown in Fig.~\ref{fig:1stpc}.
-The TRACE Reflood model was found to relatively additive and non-interacting.
+A result on variance decomposition of the $1^\textnormal{st}$-principal component on the reduced parameter space is shown in Fig.~\ref{fig:1stpc}.
+The TRACE Reflood model was found relatively additive and non-interacting.
 Also, the output variation can be attributed only to a small set of parameters related to the spacer grid and DFFB models. 
-The finding were not contrary to the currently held expert judgment on these parameteres importance.
+The finding were not contrary to the currently held expert judgment on these parameters importance.
 Yet, the analysis was able to \emph{make precise} this judgment quantitatively, demonstrating the value of the method.
 The result was presented at the NURETH-16 conference \cite{Wicaksono2015a} and selected as one of the best student papers.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.65]{figures/1stPrincipalComponent.png}
-	\caption{The decomposition of $1^\textnormal{st}$-principal component describing the variation in temperature ramping; the sum of main-effect indices of $92\%$ indicates a non-interacting model parameters}
+	\caption{The decomposition of $1^\textnormal{st}$-principal component describing the variation in temperature ramping; the sum of main-effect indices of $92\%$ indicate a non-interacting model parameters}
 	\label{fig:1stpc}
 \end{figure}
 
@@ -184,7 +184,7 @@ Therefore, the logical next step is to reveal this structure with a method to es
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.65]{figures/2ndPrincipalComponent.png}
-	\caption{The decomposition of $2^\textnormal{nd}$-principal component describing the variation in temperature ramping; the sum of main-effect indices of $32\%$ and large difference between the main- and total-effect indices, indicate a highly interacting model parameters}
+	\caption{The decomposition of $2^\textnormal{nd}$-principal component describing the variation in temperature ramping; the sum of main-effect indices of $32\%$ and large difference between the main- and total-effect indices, indicate highly interacting model parameters}
 	\label{fig:2ndpc}
 \end{figure}
 
@@ -195,7 +195,7 @@ Through nodalization, a complex geometry of a thermal-hydraulic system is practi
 A node is a discretized 1D element defined by its length and free volume. 
 At its faces, a node is also defined by flow areas and hydraulic diameter (see Fig.~\ref{fig:nodalization}).
 
-As the analysists are usually given a great flexibility in developing their own nodalization scheme, a situation where multiple nodalization schemes of the same system due to \textit{ad hoc} choices give very different prediction of system behavior might arise (the so-called user effect).
+As the analysts are usually given a great flexibility in developing their own nodalization scheme, a situation where multiple nodalization schemes of the same system due to \textit{ad hoc} choices give very different prediction of system behavior might arise (the so-called user effect).
 Although best-practice guidelines exist, the solution verification can only be empirically established by comparing several nodalization schemes to check how sensitive the prediction is and to exclude (or at least minimize) the user-effect in the model qualification process.
 This issue is particularly accute for the simulation of large 3-D components such as the reactor pressure vessel where nodalization effects can significantly contribute to the variability in the model outputs.
 
@@ -209,7 +209,7 @@ This issue is particularly accute for the simulation of large 3-D components suc
 The adopted approach to develop nodalization in this PhD project so far was using spreadsheet. 
 Though easy to set up initially, it becomes cumbersome and error prone, especially if several nodalization schemes are to be prepared.
 An additional activity was thus carried out to develop a pre-processing tool to generate a TRACE model (input deck) directly from a solid model constructed in SolidWorks software.
-This project is part of an on-going research activity at the LRS af PSI whose long-term goal is to be able to generate a TRACE input model of a complex plant in 3-Dimension directly out of CAD model.
+This project is part of an on-going research activity at the LRS of PSI whose long-term goal is to be able to generate a TRACE input model of a complex plant in 3-Dimension directly out of CAD model.
 This CAD (solid) model is usually constructed with higher fidelity from the available drawing.
 The currently available, but disconnected scripting tools written in VBA (Visual Basic for Application, VBA) from previous activities has been consolidated in 2015 and 
 written using fully-featured programming language of Visual Basic .NET.
@@ -218,7 +218,7 @@ The tool is also implemented as an object-oriented program to ease further devel
 For the purpose of the present PhD project, however, the aim is simply to have a working 
 version for the development of a simple reflood facility model, 
 which boils down to a 1-D rod bundle section with inserted spacer grids and external wrappers.
-Based on a simple boolean algebra operations on the solid model 
+Based on simple boolean algebra operations on the solid model 
 (also known as Constructive Solid Geometry, CSG), the tool is able to 
 extract relevant fluid information from the solid to construct the set of nodes.
 As an extension from the previous development, relevant information related to
@@ -305,7 +305,7 @@ Table~\ref{tab:currentstate} shown below.
 					\end{itemize}} 
 				& \parbox[c]{0.3\textwidth}{%
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
-						\item \textbf{Task redefined}: calibration will only based on FEBA, validation will be done against ACHILLES test facility
+						\item \textbf{Task redefined}: calibration will only be based on FEBA, validation will be done against ACHILLES test facility
 						\item Scripting based on VB.NET has been developed to assist in input deck 		
 							  generation
 						\item ACHILLES test facility model in TRACE is currently being developed as part of M.Sc. student's work
@@ -323,7 +323,7 @@ Table~\ref{tab:currentstate} shown below.
 	\end{center}
 \end{table}
 				
-The work on global sensitivity analysis (GSA) for reflood model in TRACE took the most 
+The work on global sensitivity analysis (GSA) for reflood model in TRACE took most 
 of the available time in 2015. 
 A paper contribution on the variance decomposition coupled with functional data analysis method was
 presented at the NURETH-16 conference.
@@ -331,8 +331,8 @@ The results presented in the paper, for the first time in the analysis of refloo
 \begin{enumerate}
 	\item \emph{Confirmed} expert judgment on parameters relative 
 	importance (namely, the parameters related to Dispersed-Flow Film Boiling model)
-	\item \emph{Accurately} quantified the relative importance of the identified most influential parameters (namely, in terms of variance decomposition of functional components)
-	\item \emph{Revealed} complex parameters interactions modes that were often overlooked in comparable works or at best considered only in a speculative manner (namely, strong parameter interactions during the temperature descent of reflood transient as simulated with a realistic best-estimate thermal-hydraulic code)
+	\item \emph{Quantified Accurately} the relative importance of the identified most influential parameters (namely, in terms of variance decomposition of functional components)
+	\item \emph{Revealed} complex parameters interactions modes that were often overlooked in comparable works or at best considered only in a speculative manner to our knowledge (namely, strong parameter interactions during the temperature descent of reflood transient as simulated with a realistic best-estimate thermal-hydraulic code)
 \end{enumerate}
 All the work related to the GSA methodology done so far 
 is being finalized and will be concluded with a submission of a publication to NSE 
@@ -417,56 +417,56 @@ scores overall compared to the previous batches of students.
 
 \printbibliography[heading=none]
 
-% Signature Page
-\newpage
-%\textcolor{white}.\\\\
-\noindent\textbf{Comments by the thesis advisor(s)}\\\\
-\noindent\textbf{Prof. A Pautz}\\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-............................................................................
-............................................................................\\\
-
-\noindent\textbf{O. Zerkak}\\\\
-The quality of Damar’s work has been acknowledged two times at two different international conferences (NUTHOS-10, NURETH-16). Within LRS, Damar is also a great team player. I can only come up with fine tuning recommendations: 1) Spend more efforts on interpretation of results. 2) Improve on time management. 3) Improve on conciseness. Damar should now put higher priority on demonstrating the concept (exhaustivity of closure models parameterization in TRACE can be attempted later, if time permits). Under this condition, the revised work plan seems reasonable, provided Damar demonstrates the FDA+GSA+MCMC concept asap in 2016, a crucial milestone.
-
-\section*{\underline{Signatures}\\}
-\noindent \textbf{Thesis advisor}\hspace{6.25cm}\dotfill\vspace{0.5cm}\\
-
-\noindent \textbf{Thesis co-advisor}\hspace{5.7cm}\dotfill\\
-\noindent  (if officially nominated)\\\\
-
-\noindent \textbf{With his signature, the candidate confirms that he took note 
-                  of the above comments.}\\\\
-
-\noindent \textbf{Candidate}\hspace{7cm}\dotfill\vspace{0.5cm}\\
-
-\noindent \textbf{Date}\hspace{8.05cm}\dotfill\\
-
-\vspace{0.8cm}
+%% Signature Page
+%\newpage
+%%\textcolor{white}.\\\\
+%\noindent\textbf{Comments by the thesis advisor(s)}\\\\
+%\noindent\textbf{Prof. A Pautz}\\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%............................................................................
+%............................................................................\\\
+%
+%\noindent\textbf{O. Zerkak}\\\\
+%The quality of Damar’s work has been acknowledged two times at two different international conferences (NUTHOS-10, NURETH-16). Within LRS, Damar is also a great team player. I can only come up with fine tuning recommendations: 1) Spend more efforts on interpretation of results. 2) Improve on time management. 3) Improve on conciseness. Damar should now put higher priority on demonstrating the concept (exhaustivity of closure models parameterization in TRACE can be attempted later, if time permits). Under this condition, the revised work plan seems reasonable, provided Damar demonstrates the FDA+GSA+MCMC concept asap in 2016, a crucial milestone.
+%
+%\section*{\underline{Signatures}\\}
+%\noindent \textbf{Thesis advisor}\hspace{6.25cm}\dotfill\vspace{0.5cm}\\
+%
+%\noindent \textbf{Thesis co-advisor}\hspace{5.7cm}\dotfill\\
+%\noindent  (if officially nominated)\\\\
+%
+%\noindent \textbf{With his signature, the candidate confirms that he took note 
+%                  of the above comments.}\\\\
+%
+%\noindent \textbf{Candidate}\hspace{7cm}\dotfill\vspace{0.5cm}\\
+%
+%\noindent \textbf{Date}\hspace{8.05cm}\dotfill\\
+%
+%\vspace{0.8cm}
+%%\begin{center}
+%%\textbf{Up to 5 pages in total}
+%%\end{center}
 %\begin{center}
-%\textbf{Up to 5 pages in total}
+%\textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 
+%                                              / 1015 Lausanne / Suisse}
 %\end{center}
-\begin{center}
-\textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 
-                                              / 1015 Lausanne / Suisse}
-\end{center}
 
 % Directly attached signed form
-%\includepdf[pages={1}]{figures/Planned-Signed-ZO41.pdf}
+\includepdf[pages={1}]{figures/Planned-Signed-ZO41.pdf}
 
 \end{document}
