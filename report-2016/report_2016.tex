@@ -78,7 +78,7 @@ The currently adopted practice for uncertainty quantification of the
 evaluation model is done through statistical sampling where the model is 
 evaluated multiple times using different values of input and code parameters 
 that are represented as random variable equipped with the corresponding 
-probability distribution (\cite{Nutt2004},\cite{Wallis2007},\cite{Glaeser2008}). 
+probability distribution (\cite{Nutt2004, Wallis2007, Glaeser2008}).
 Through statistical analysis of the (dispersed) output, the uncertainty 
 in the predictions can be quantified.
  
@@ -93,8 +93,8 @@ empirical models.
 However, these parameters often cannot be measured directly, might not 
 have inherent physical meaning, and thus simply act as tuning parameter to
 best fit specific datasets based on test facilities with various degrees of 
-representativity \cite{USNRC2012}. As such, the estimation of the uncertainty associated 
-with system code parameters is mostly based on expert judgment.
+representativity \cite{USNRC2012}. As such, the estimation of the uncertainty 
+associated with system code parameters is mostly based on expert judgment.
 
 A doctoral research project was initiated in 2013 at the Laboratory for 
 Reactor Physics and Systems Behaviour of the Paul Scherrer Institute, 
@@ -127,24 +127,96 @@ To this end, a method to achieve such an objective will be developed.
 
 \subsection{Gaussian Process Metamodelling}
 
-The use of meta-model (emulator, or surrogate model) representing TRACE reflood simulation output was driven by the need to reduce computation efforts (CPU usage and storage) within the adopted Bayesian framework, which requires tens of thousands executions of the TRACE code using different parameters values to obtain the posterior distribution with sufficient accuracy. The Gaussian process regression (better known as kriging in spatial statistics) was adopted due to its maturity and popularity in the literature on applied modelling. These two properties often entail more comprehensive documentation, wider support, and diverse case studies.
-The applicability of Gaussian process to create a meta-model for representing high-dimensional output (i.e., the heater rod temperature in time and 1-dimensional space) of FEBA TRACE model with 7 parameters was demonstrated in the conference article [17]. The selected 7 model parameters were based on the 10 most important parameters obtained from the sensitivity analysis minus 3 parameters related to the boundary conditions as only one set of experimental conditions was considered in that study.
-Principal component analysis (PCA) was carried out to reduce the high dimensionality of the out-put and a set of metamodels was constructed to approximate the principal component scores as function of the model parameters. That is,
+The use of meta-model (emulator, or surrogate model) representing TRACE reflood
+simulation output was driven by the need to reduce computation efforts 
+(CPU usage and storage) within the adopted Bayesian framework, which requires 
+tens of thousands executions of the TRACE code using different parameters 
+values to obtain the posterior distribution with sufficient accuracy. 
+The Gaussian process regression (better known as \emph{kriging} in spatial 
+statistics) was adopted due to its maturity and popularity in the literature 
+on applied modelling. These two properties often entail more comprehensive 
+documentation, wider support, and diverse case studies.
 
-%Formula Here
+The applicability of Gaussian process to create a meta-model for representing 
+high-dimensional output (i.e., the heater rod temperature in time and 
+1-dimensional space) of FEBA TRACE model with 7 parameters was demonstrated 
+in the conference article \cite{Wicaksono2016}. The selected 7 model parameters 
+were based on the 10 most important parameters obtained from the sensitivity 
+analysis (\cite{Wicaksono2014b, Wicaksono2015a}) minus 3 parameters related to 
+the boundary conditions (inlet velocity, system backpressure and heater power)
+as only one set of experimental conditions was considered in that study.
+Principal component analysis (PCA) was carried out to reduce the 
+high dimensionality of the output and a set of metamodels was constructed to 
+approximate the principal component scores as function of the model parameters. 
+That is,
 
-%Where y ̅^M  is the mean function, v_i is the i-th principal component (PC or the eigenvector), w_i is the i-th principal component score represented by the metamodel, and ϵ_tr is the truncation error. The truncation error is due to information being discarded in using fewer principal components (P_tr) than the original dimension (P).
-%The selection of the number PC to retain is usually done by justifying the amount of variance the selected PCs explained such as 90%, 95% or 99%. However, in creating a Gaussian Process metamodel based on PC, the decision cannot be separated from the fact that higher PC tends to be harder to fit due to increasing non-linearities (on the contrary, the first PC tends to be the smoothest, thus easiest to fit). This fact is established in Figure 10Figure 10 below that shows the predictivity coefficient Q_2 (closer to 1 is better) as function of training samples for sequential PC calculated based on 500 independent validation samples. From the figure it can be seen that retaining more than 8 PCs would not bring a better prediction capability of the metamodel.
+\begin{equation}
+	y^M(\underline{\theta};z,t) = \bar{y}^M(z,t) + \sum_{i=1}^{P_\text{tr}} v_i(z,t) \cdot w_i(\underline{\theta}) + \epsilon_\text{tr}
+\end{equation}
 
-% A Figure
+Where $\bar{y}^M$  is the mean function, $v_i$ is the i-th principal component 
+(PC or the eigenvector), $w_i$ is the $i$-th principal component score 
+represented by the metamodel, and $\epsilon_\text{tr}$ is the truncation 
+error. The truncation error is due to information being discarded in using fewer 
+principal components ($P_\text{tr}$) than the original dimension ($P$).
 
-To check the amount of error due to retaining only a limited number of PCs to represent space- and time-dependent temperature output, cross-validation technique [18] is used to compute the reconstruction error as function of increasing number of retained PCs. As can be seen in Figure 11, retaining only 8 PCs (as argued above) amounts to about, on average, 23 [K] of reconstruction error.
+The selection of the number PC to retain is usually done by justifying the 
+amount of variance the selected PCs explained such as 90\%, 95\% or 99\%. 
+However, in creating a Gaussian Process metamodel based on PC, the 
+decision cannot be separated from the fact that higher PC tends to be 
+harder to fit due to increasing non-linearities (on the contrary, 
+the first PC tends to be the smoothest, thus easiest to fit). 
+This fact is established in Figure~\ref{fig:gp_pc_conv} below that shows the 
+predictivity coefficient $Q_2$ (closer to 1 is better) as function of 
+training samples for sequential PC calculated based on 500 independent 
+validation samples. From the figure it can be seen that retaining more than 
+8 PCs would not bring a better prediction capability of the metamodel.
 
-% Another Figures
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.95]{figures/gp_pc_conv.png}
+	\caption{The predictivity coefficient calculated using independent 
+		validation samples (500 samples) for Gaussian Process metamodels 
+		with each principal component scores as the output}
+	\label{fig:gp_pc_conv}
+\end{figure}
 
-%Also in 2016, Bayesian calibration of selected TRACE reflood model parameters were demonstrated in the same article [17] using only the heater rod temperature data from FEBA Test No. 216 and a normal likelihood. In statistical (Bayesian) formulation of computer model calibration, the relationship between observed data and computer model prediction is given by
-%y^EXP=y^M ((▁θ) ̂ )+δ+ϵ
-%Where y^EXP  is the observed data, y^M  is the computer model prediction made at the best, but unknown, model parameters (▁θ) ̂. The computer model is distorted by the unknown model inadequacy term δ, while experimental data is distorted by measurement error ϵ.
+To check the amount of error due to retaining only a limited number of PCs to 
+represent space- and time-dependent temperature output, cross-validation 
+technique \cite{Bro2009} is used to compute the reconstruction error as function of 
+increasing number of retained PCs. As can be seen in Figure~\ref{fig:rmse}, retaining only 
+8 PCs (as argued above) amounts to about, on average, 23 [K] of reconstruction 
+error.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.95]{figures/rmse.png}
+	\caption{(\textbf{Left}) The convergence of cross-validation reconstruction
+		 error (as root-mean-squared-error, RMSE) by incorporating increasing 
+		 number of Principal Components (PC). (\textbf{Right}) the same 
+		 measure but in terms of improvement}
+	\label{fig:rmse}
+\end{figure}
+
+\subsection{Bayesian Calibration}
+
+Also in 2016, Bayesian calibration of selected TRACE reflood model parameters
+were demonstrated in the same article \cite{Wicaksono2016} using only the heater 
+rod temperature data from FEBA Test No. 216 and a normal likelihood. 
+In statistical (Bayesian) formulation of computer model calibration, 
+the relationship between observed data and computer model prediction is 
+given by
+
+\begin{equation}
+	y^{\text{EXP}} = y^M (\underline{\hat{\theta}})+ \delta + \epsilon
+\end{equation}
+
+Where $y^\text{EXP}$ is the observed data, $y^M$  is the computer model 
+prediction made at the best, but unknown, model parameters 
+($\underline{\hat{\theta}}$). The computer model is distorted by the 
+unknown model inadequacy term $\delta$, while experimental data is 
+distorted by measurement error $\epsilon$.
+
 %The Bayesian approach assumes any unknown terms in probabilistic sense (i.e. epistemic). As such, it prescribes distributional assumptions for all the unknowns involved in the above equation in order to formulate a likelihood function that can be evaluated for a given parameter value.
 %In formulating the posterior distribution of the model parameters, the present work adopted the Modular Bayesian approach proposed by Liu et al. ([19]). The modular Bayesian approach is only partially Bayesian because at the first two steps of formulating meta-models and discrepancy term, some of the unknown hyperparameter values are estimated separately and kept constant in the downstream analysis. As such, the uncertainties on these hyperparameters are not taken into account. This approach is justified in many case studies due to the fact that the hyperparameters are often confounded with the model parameters resulting in non-identifiable parameters, especially if lots of model parameters and hyperparameters are involved. ([19] [20]). Given the above and by using property of normal distribution, the sampling data model (the likelihood) can be written as follows,
 %	y^EXP~N(y ̃^M+m_b,VΣ_w V^T+〖V_(>P_tr ) S〗_(>P_tr ) V_(>P_tr)^T+Σ_b+σ_exp^2 I)	
@@ -156,9 +228,6 @@ The results of calibrating the 5-parameter model are presented in corner plot in
 
 
 To verify the posterior distribution of model parameters obtained from the calibration using FEBA Test No. 216, uncertainty propagation for temperature prediction of FEBA Test No. 214 has been obtained and is shown in Figure 13. As can be seen the posterior parameters distributions yield narrower uncertainty for the temperature prediction, thus confirming the potential of the developped calibration method.
-
-
-\subsection{Bayesian Calibration}
 
 \section{Current state of work}
 
@@ -174,8 +243,6 @@ To verify the posterior distribution of model parameters obtained from the calib
 \nocite{Wicaksono2015a}
 \nocite{Wicaksono2015b}
 \nocite{Wicaksono2015c}
-
-\printbibliography[heading=none]
 
 \section{References}
 
