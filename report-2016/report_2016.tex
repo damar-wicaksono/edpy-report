@@ -1,0 +1,174 @@
+\documentclass[11pt,titlepage]{article}
+
+\usepackage[french,american]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}                    % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                    % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}           % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{color}
+\usepackage[tt]{titlepic}
+\usepackage{fancyhdr}
+\usepackage{secdot}
+
+
+% WD41, LRS/EPFL/PSI ---------------------------------------------------------
+\usepackage[style=ieee, backend=bibtex]{biblatex}
+\bibliography{report_2016.bib}
+% ----------------------------------------------------------------------------
+
+% Margin Setup ---------------------------------------------------------------
+\topmargin=-0.45in       %
+%\evensidemargin=0in     %
+\oddsidemargin=-0.1in    %
+\textwidth=6.8in         %
+\textheight=9.0in        %
+%\headsep=0.25in         %
+% ----------------------------------------------------------------------------
+
+% Titlepage ------------------------------------------------------------------
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\titlepic{\includegraphics[width=17cm]{figures/research_plan_pic.pdf}}
+
+\title{\textbf{Annual progress report \textcolor{blue}{2016}}}
+
+\author{\large{\textbf{Damar Wicaksono}} \\\\
+\large{\textbf{Prof. Andreas Pautz}} \\\\
+\large{\textbf{Omar Zerkak}}\\\\\\
+\Large{\textbf{Bayesian Uncertainty Quantification}} \\\\
+\Large\textbf{of Physical Models} \\\\
+\Large\textbf{in Thermal-Hydraulics System Code}}
+
+\date{05.12.2016}
+% ----------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+% 2nd Page, an empty page ----------------------------------------------------
+\pagestyle{empty}
+\clearpage\mbox{}\clearpage
+% ----------------------------------------------------------------------------
+
+% Page Header, EDPY ----------------------------------------------------------
+\pagestyle{fancy} \pagenumbering{arabic} \setcounter{page}{1}
+\addtolength{\headheight}{\baselineskip}
+\newcommand{\ffont}{\fontsize{8}{8}\selectfont}
+\lhead{ECOLE DOCTORALE\\ \textit{DOCTORAL SCHOOL}}
+\chead{PROGRAMME DOCTORAL EN PHYSIQUE\\ \textit{DOCTORAL PROGRAM IN PHYSICS}}
+\rhead{\bfseries\ffont  \includegraphics[width=55pt]{figures/EPFL_LOG.pdf}}
+\renewcommand{\headrulewidth}{0.4pt}
+% ----------------------------------------------------------------------------
+
+\textcolor{white}.
+\section{Objectives of research}
+
+The  reliability of a nuclear reactor evaluation model based on codes and associated input (deck) is affected by the uncertainty associated with the codes and with the input. The currently adopted practice for uncertainty quantification of the evaluation model is done through statistical sampling where the model is evaluated multiple times using different values of input and code parameters that are represented as random variable equipped with the corresponding probability distribution [1]–[3]. Through statistical analysis of the (dispersed) output, the uncertainty in the predictions can be quantified. 
+In the particular case of thermal-hydraulics system codes, which can predict the complex dynamics of light water reactors, previous works [4], [5] have pointed out the importance of the phenomenological model parameters uncertainties on the codes predictions. System codes are indeed valuable tools to describe complex two-phase flow phenomena, but require the use of several parameterized physical or empirical models. However, these parameters often cannot be measured directly, might not have inherent physical meaning, and thus simply act as tuning parameter to best fit specific datasets based on test facilities with various degrees of representativity [6]. As such, the estimation of the uncertainty associated with system code parameters is mostly based on expert judgment.
+A doctoral research project was initiated in 2013 at the Laboratory for Reactor Physics and Sys-tems Behaviour of the Paul Scherrer Institute, co-affiliated with the Swiss Federal Institute of Technology, Lausanne to address the problem. Although subjectivity cannot be removed com-pletely from the analysis, the research aims to develop  a methodology to incorporate the available, albeit indirect, experimental data to better inform, in a more objective and transparent manner, the uncertainties associated with code model parameters.
+This document reiterates the objective of the doctoral research and reports the works achieved so far especially during the period following the candidacy exam as well as the remaining challenges and the proposed works until August 2017 to complete this doctoral research.
+
+The purpose of the doctoral research is to quantify the uncertainty of physical model parameters implemented in a thermal-hydraulics system code. The physical models of interest describe the phasic interactions in a complex multiphase flow during a reactor transient, namely heat, mass, and momentum exchanges between vapor, water and structures. These models are parameterized by physical or empirical tuning parameters, the values of which are uncertain. This results in uncertain code prediction of important safety quantities, such as the evolution of the fuel cladding temperature during a postulated reactor transient.
+Adopting probabilistic framework to conform to the statistical uncertainty propagation widely adopted in the field of nuclear engineering, the uncertainties in the parameters are represented in form of probabilistic density functions or their approximation. The derivation of these functions is posed as an inverse statistical problem following Bayesian approach as the parameters themselves are not directly observable. To this end, a method to achieve such an objective will be developed.
+
+\section{Work achieved in the past year (state of research)}
+
+\subsection{Global Sensitivity Analysis of TRACE Reflood Model}
+
+\subsection{Gaussian Process Metamodelling}
+
+The use of meta-model (emulator, or surrogate model) representing TRACE reflood simulation output was driven by the need to reduce computation efforts (CPU usage and storage) within the adopted Bayesian framework, which requires tens of thousands executions of the TRACE code using different parameters values to obtain the posterior distribution with sufficient accuracy. The Gaussian process regression (better known as kriging in spatial statistics) was adopted due to its maturity and popularity in the literature on applied modelling. These two properties often entail more comprehensive documentation, wider support, and diverse case studies.
+The applicability of Gaussian process to create a meta-model for representing high-dimensional output (i.e., the heater rod temperature in time and 1-dimensional space) of FEBA TRACE model with 7 parameters was demonstrated in the conference article [17]. The selected 7 model parameters were based on the 10 most important parameters obtained from the sensitivity analysis minus 3 parameters related to the boundary conditions as only one set of experimental conditions was considered in that study.
+Principal component analysis (PCA) was carried out to reduce the high dimensionality of the out-put and a set of metamodels was constructed to approximate the principal component scores as function of the model parameters. That is,
+
+%Formula Here
+
+%Where y ̅^M  is the mean function, v_i is the i-th principal component (PC or the eigenvector), w_i is the i-th principal component score represented by the metamodel, and ϵ_tr is the truncation error. The truncation error is due to information being discarded in using fewer principal components (P_tr) than the original dimension (P).
+%The selection of the number PC to retain is usually done by justifying the amount of variance the selected PCs explained such as 90%, 95% or 99%. However, in creating a Gaussian Process metamodel based on PC, the decision cannot be separated from the fact that higher PC tends to be harder to fit due to increasing non-linearities (on the contrary, the first PC tends to be the smoothest, thus easiest to fit). This fact is established in Figure 10Figure 10 below that shows the predictivity coefficient Q_2 (closer to 1 is better) as function of training samples for sequential PC calculated based on 500 independent validation samples. From the figure it can be seen that retaining more than 8 PCs would not bring a better prediction capability of the metamodel.
+
+% A Figure
+
+To check the amount of error due to retaining only a limited number of PCs to represent space- and time-dependent temperature output, cross-validation technique [18] is used to compute the reconstruction error as function of increasing number of retained PCs. As can be seen in Figure 11, retaining only 8 PCs (as argued above) amounts to about, on average, 23 [K] of reconstruction error.
+
+% Another Figures
+
+%Also in 2016, Bayesian calibration of selected TRACE reflood model parameters were demonstrated in the same article [17] using only the heater rod temperature data from FEBA Test No. 216 and a normal likelihood. In statistical (Bayesian) formulation of computer model calibration, the relationship between observed data and computer model prediction is given by
+%y^EXP=y^M ((▁θ) ̂ )+δ+ϵ
+%Where y^EXP  is the observed data, y^M  is the computer model prediction made at the best, but unknown, model parameters (▁θ) ̂. The computer model is distorted by the unknown model inadequacy term δ, while experimental data is distorted by measurement error ϵ.
+%The Bayesian approach assumes any unknown terms in probabilistic sense (i.e. epistemic). As such, it prescribes distributional assumptions for all the unknowns involved in the above equation in order to formulate a likelihood function that can be evaluated for a given parameter value.
+%In formulating the posterior distribution of the model parameters, the present work adopted the Modular Bayesian approach proposed by Liu et al. ([19]). The modular Bayesian approach is only partially Bayesian because at the first two steps of formulating meta-models and discrepancy term, some of the unknown hyperparameter values are estimated separately and kept constant in the downstream analysis. As such, the uncertainties on these hyperparameters are not taken into account. This approach is justified in many case studies due to the fact that the hyperparameters are often confounded with the model parameters resulting in non-identifiable parameters, especially if lots of model parameters and hyperparameters are involved. ([19] [20]). Given the above and by using property of normal distribution, the sampling data model (the likelihood) can be written as follows,
+%	y^EXP~N(y ̃^M+m_b,VΣ_w V^T+〖V_(>P_tr ) S〗_(>P_tr ) V_(>P_tr)^T+Σ_b+σ_exp^2 I)	
+%Where V is a matrix given by V=[v_1;v_2;…;v_(P_tr ) ] and v_i is the i-th eigenvectors;〖 Σ〗_w  is a diagonal matrix with component scores prediction variance as entry;  S_(>P_tr )is a diagonal matrix with eigenvalues of higher than retained principal components; V_(>P_tr )is the equivalent matrix V for higher than retained principal components; σ_exp^2is the experimental data uncertainty, and I is the identity matrix. Note that only y ̃^M  and Σ_w are functions of model parameters.
+%Finally, the posterior samples are generated using Markov Chain Monte Carlo (MCMC) method [21] based on the likelihood function above and the specified prior distribution for the model parameters (Table I). MCMC method is used to avoid difficult integration of the normalizing constant in the Bayes’ probability inversion theorem. Figure 12 shows the resulting histogram of the posterior samples for 5-parameter model (the number of calibrated parameters was reduced from 7 to 5 due to identifiability issue as this will be explained in Section 3).
+
+The results of calibrating the 5-parameter model are presented in corner plot in Figure 12. A corner plot ([22]) depicts the one-dimensional as well as two-dimensional marginals of the posterior samples and provides information on possible correlation between pairs of parameters. As can be seen, the most constrained parameters are the dffbWallHTC and the dffbIntDrag, while the iafbIntDrag is the least constrained (see upper half values of the range). This result is supported by the analysis in [15], which found the temperature output to have a much smaller sensitivity to iafbIntDrag than to the two previous parameters. The calibration of gridHTEnh is also peculiar as if the lower bound of its variation range was less constrained. From [23] it was indeed found that only upper half values of the parameter range were influential to the temperature output. Finally, the quench temperature calibration result indicates the need for a negative shift of parameter tempQuench for higher consistency with data and the error model used. As for this unanticipated shift, one should recall that only one test has been considered here (No. 216) thus a risk of over-fitting, but also that FEBA data are not part of the official validation database of the TRACE code for reflooding. 
+
+
+
+To verify the posterior distribution of model parameters obtained from the calibration using FEBA Test No. 216, uncertainty propagation for temperature prediction of FEBA Test No. 214 has been obtained and is shown in Figure 13. As can be seen the posterior parameters distributions yield narrower uncertainty for the temperature prediction, thus confirming the potential of the developped calibration method.
+
+
+\subsection{Bayesian Calibration}
+
+\section{Current state of work}
+
+\section{Calendar of upcoming work}
+
+\section{Other activities (teaching duties, etc.) and remarks}
+
+\section{Scientific publications \& conference contributions}
+
+\nocite{Wicaksono2014a}
+\nocite{Wicaksono2014b}
+\nocite{Wicaksono2014c}
+\nocite{Wicaksono2015a}
+\nocite{Wicaksono2015b}
+\nocite{Wicaksono2015c}
+
+\printbibliography[heading=none]
+
+\section{References}
+
+\printbibliography[heading=none]
+
+\newpage
+\textcolor{white}.\\\\
+\noindent \textbf{Comments by the thesis advisor(s)}\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+...................................................................................................................................................................\\\\
+
+
+\section*{\underline{Signatures}\\}
+\noindent \textbf{Thesis advisor}\hspace{6.25cm}..............................................................................\vspace{0.5cm}\\
+
+\noindent \textbf{Thesis co-advisor}\hspace{5.7cm}..............................................................................\\
+\noindent  (if applicable)\\\\
+
+\noindent \textbf{With his/her signature, the candidate confirms that he/she took note of the above comments.}\\\\
+\textbf{Candidate}\hspace{7cm}..............................................................................\vspace{0.5cm}\\
+
+\noindent \textbf{Date}\hspace{8.05cm}..............................................................................\\
+
+\vspace{0.8cm}
+\begin{center}
+\textbf{Up to 5 pages in total}
+\end{center}
+\begin{center}
+\textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 / 1015 Lausanne / Suisse}
+\end{center}
+\end{document}  
