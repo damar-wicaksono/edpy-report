@@ -71,17 +71,58 @@
 \textcolor{white}.
 \section{Objectives of research}
 
-The  reliability of a nuclear reactor evaluation model based on codes and associated input (deck) is affected by the uncertainty associated with the codes and with the input. The currently adopted practice for uncertainty quantification of the evaluation model is done through statistical sampling where the model is evaluated multiple times using different values of input and code parameters that are represented as random variable equipped with the corresponding probability distribution [1]–[3]. Through statistical analysis of the (dispersed) output, the uncertainty in the predictions can be quantified. 
-In the particular case of thermal-hydraulics system codes, which can predict the complex dynamics of light water reactors, previous works [4], [5] have pointed out the importance of the phenomenological model parameters uncertainties on the codes predictions. System codes are indeed valuable tools to describe complex two-phase flow phenomena, but require the use of several parameterized physical or empirical models. However, these parameters often cannot be measured directly, might not have inherent physical meaning, and thus simply act as tuning parameter to best fit specific datasets based on test facilities with various degrees of representativity [6]. As such, the estimation of the uncertainty associated with system code parameters is mostly based on expert judgment.
-A doctoral research project was initiated in 2013 at the Laboratory for Reactor Physics and Sys-tems Behaviour of the Paul Scherrer Institute, co-affiliated with the Swiss Federal Institute of Technology, Lausanne to address the problem. Although subjectivity cannot be removed com-pletely from the analysis, the research aims to develop  a methodology to incorporate the available, albeit indirect, experimental data to better inform, in a more objective and transparent manner, the uncertainties associated with code model parameters.
-This document reiterates the objective of the doctoral research and reports the works achieved so far especially during the period following the candidacy exam as well as the remaining challenges and the proposed works until August 2017 to complete this doctoral research.
+The  reliability of a nuclear reactor evaluation model based on codes and 
+associated input (deck) is affected by the uncertainty associated with the 
+codes and with the input. 
+The currently adopted practice for uncertainty quantification of the 
+evaluation model is done through statistical sampling where the model is 
+evaluated multiple times using different values of input and code parameters 
+that are represented as random variable equipped with the corresponding 
+probability distribution. 
+Through statistical analysis of the (dispersed) output, the uncertainty 
+in the predictions can be quantified.
+ 
+In the particular case of thermal-hydraulics system codes, which can 
+predict the complex dynamics of light water reactors, previous works [4], [5] 
+have pointed out the importance of the phenomenological model parameters 
+uncertainties on the codes predictions. 
+System codes are indeed valuable tools to describe complex two-phase flow 
+phenomena, but require the use of several parameterized physical or 
+empirical models. 
+However, these parameters often cannot be measured directly, might not 
+have inherent physical meaning, and thus simply act as tuning parameter to
+best fit specific datasets based on test facilities with various degrees of 
+representativity [6]. As such, the estimation of the uncertainty associated 
+with system code parameters is mostly based on expert judgment.
 
-The purpose of the doctoral research is to quantify the uncertainty of physical model parameters implemented in a thermal-hydraulics system code. The physical models of interest describe the phasic interactions in a complex multiphase flow during a reactor transient, namely heat, mass, and momentum exchanges between vapor, water and structures. These models are parameterized by physical or empirical tuning parameters, the values of which are uncertain. This results in uncertain code prediction of important safety quantities, such as the evolution of the fuel cladding temperature during a postulated reactor transient.
-Adopting probabilistic framework to conform to the statistical uncertainty propagation widely adopted in the field of nuclear engineering, the uncertainties in the parameters are represented in form of probabilistic density functions or their approximation. The derivation of these functions is posed as an inverse statistical problem following Bayesian approach as the parameters themselves are not directly observable. To this end, a method to achieve such an objective will be developed.
+A doctoral research project was initiated in 2013 at the Laboratory for 
+Reactor Physics and Systems Behaviour of the Paul Scherrer Institute, 
+co-affiliated with the Swiss Federal Institute of Technology, Lausanne 
+to address the problem. 
+Although subjectivity cannot be removed completely from the analysis,
+the research aims to develop  a methodology to incorporate the available, 
+albeit indirect, experimental data to better inform, in a more objective 
+and transparent manner, the uncertainties associated with code model parameters.
+
+The purpose of the doctoral research is to quantify the uncertainty of physical 
+model parameters implemented in a thermal-hydraulics system code. 
+The physical models of interest describe the phasic interactions in a complex 
+multiphase flow during a reactor transient, namely heat, mass, and momentum 
+exchanges between vapor, water and structures. 
+These models are parameterized 
+by physical or empirical tuning parameters, the values of which are uncertain. 
+This results in uncertain code prediction of important safety quantities, such 
+as the evolution of the fuel cladding temperature during a postulated reactor 
+transient.
+Adopting probabilistic framework to conform to the statistical uncertainty 
+propagation widely adopted in the field of nuclear engineering, 
+the uncertainties in the parameters are represented in form of probabilistic 
+density functions or their approximation. The derivation of these functions 
+is posed as an inverse statistical problem following Bayesian approach as 
+the parameters themselves are not directly observable. 
+To this end, a method to achieve such an objective will be developed.
 
 \section{Work achieved in the past year (state of research)}
-
-\subsection{Global Sensitivity Analysis of TRACE Reflood Model}
 
 \subsection{Gaussian Process Metamodelling}
 
