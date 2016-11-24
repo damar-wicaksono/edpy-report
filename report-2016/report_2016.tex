@@ -22,6 +22,11 @@
 % WD41, LRS/EPFL/PSI ---------------------------------------------------------
 \usepackage[style=ieee, backend=bibtex]{biblatex}
 \bibliography{report_2016.bib}
+% Itemize under table
+% from: http://tex.stackexchange.com/questions/150492/how-to-use-itemize-in-table-environment
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\usepackage{enumitem}
 % ----------------------------------------------------------------------------
 
 % Margin Setup ---------------------------------------------------------------
@@ -40,7 +45,7 @@
 \title{\textbf{Annual progress report \textcolor{blue}{2016}}}
 
 \author{\large{\textbf{Damar Wicaksono}} \\\\
-\large{\textbf{Prof. Andreas Pautz}} \\\\
+\large{\textbf{Prof. Andreas Pautz}} \\
 \large{\textbf{Omar Zerkak}}\\\\\\
 \Large{\textbf{Bayesian Uncertainty Quantification}} \\\\
 \Large\textbf{of Physical Models} \\\\
@@ -68,6 +73,7 @@
 \renewcommand{\headrulewidth}{0.4pt}
 % ----------------------------------------------------------------------------
 
+% Objective of Research ------------------------------------------------------
 \textcolor{white}.
 \section{Objectives of research}
 
@@ -96,17 +102,8 @@ best fit specific datasets based on test facilities with various degrees of
 representativity \cite{USNRC2012}. As such, the estimation of the uncertainty 
 associated with system code parameters is mostly based on expert judgment.
 
-A doctoral research project was initiated in 2013 at the Laboratory for 
-Reactor Physics and Systems Behaviour of the Paul Scherrer Institute, 
-co-affiliated with the Swiss Federal Institute of Technology, Lausanne 
-to address the problem. 
-Although subjectivity cannot be removed completely from the analysis,
-the research aims to develop  a methodology to incorporate the available, 
-albeit indirect, experimental data to better inform, in a more objective 
-and transparent manner, the uncertainties associated with code model parameters.
-
-The purpose of the doctoral research is to quantify the uncertainty of physical 
-model parameters implemented in a thermal-hydraulics system code. 
+The purpose of the research is to quantify the uncertainty of 
+physical model parameters implemented in a thermal-hydraulics system code. 
 The physical models of interest describe the phasic interactions in a complex 
 multiphase flow during a reactor transient, namely heat, mass, and momentum 
 exchanges between vapor, water and structures. 
@@ -121,8 +118,10 @@ the uncertainties in the parameters are represented in form of probabilistic
 density functions or their approximation. The derivation of these functions 
 is posed as an inverse statistical problem following Bayesian approach as 
 the parameters themselves are not directly observable. 
-To this end, a method to achieve such an objective will be developed.
+As such, a method to achieve such an objective will be developed.
+% ----------------------------------------------------------------------------
 
+% State of Research ----------------------------------------------------------
 \section{Work achieved in the past year (state of research)}
 
 \subsection{Gaussian Process Metamodelling}
@@ -217,23 +216,301 @@ prediction made at the best, but unknown, model parameters
 unknown model inadequacy term $\delta$, while experimental data is 
 distorted by measurement error $\epsilon$.
 
-%The Bayesian approach assumes any unknown terms in probabilistic sense (i.e. epistemic). As such, it prescribes distributional assumptions for all the unknowns involved in the above equation in order to formulate a likelihood function that can be evaluated for a given parameter value.
-%In formulating the posterior distribution of the model parameters, the present work adopted the Modular Bayesian approach proposed by Liu et al. ([19]). The modular Bayesian approach is only partially Bayesian because at the first two steps of formulating meta-models and discrepancy term, some of the unknown hyperparameter values are estimated separately and kept constant in the downstream analysis. As such, the uncertainties on these hyperparameters are not taken into account. This approach is justified in many case studies due to the fact that the hyperparameters are often confounded with the model parameters resulting in non-identifiable parameters, especially if lots of model parameters and hyperparameters are involved. ([19] [20]). Given the above and by using property of normal distribution, the sampling data model (the likelihood) can be written as follows,
-%	y^EXP~N(y ̃^M+m_b,VΣ_w V^T+〖V_(>P_tr ) S〗_(>P_tr ) V_(>P_tr)^T+Σ_b+σ_exp^2 I)	
-%Where V is a matrix given by V=[v_1;v_2;…;v_(P_tr ) ] and v_i is the i-th eigenvectors;〖 Σ〗_w  is a diagonal matrix with component scores prediction variance as entry;  S_(>P_tr )is a diagonal matrix with eigenvalues of higher than retained principal components; V_(>P_tr )is the equivalent matrix V for higher than retained principal components; σ_exp^2is the experimental data uncertainty, and I is the identity matrix. Note that only y ̃^M  and Σ_w are functions of model parameters.
-%Finally, the posterior samples are generated using Markov Chain Monte Carlo (MCMC) method [21] based on the likelihood function above and the specified prior distribution for the model parameters (Table I). MCMC method is used to avoid difficult integration of the normalizing constant in the Bayes’ probability inversion theorem. Figure 12 shows the resulting histogram of the posterior samples for 5-parameter model (the number of calibrated parameters was reduced from 7 to 5 due to identifiability issue as this will be explained in Section 3).
+The Bayesian approach assumes any \emph{unknown} terms in probabilistic 
+sense (i.e., epistemic). 
+As such, it prescribes distributional assumptions for all the unknowns 
+involved in the above equation in order to formulate a likelihood function 
+that can be evaluated for a given parameter value.
 
-The results of calibrating the 5-parameter model are presented in corner plot in Figure 12. A corner plot ([22]) depicts the one-dimensional as well as two-dimensional marginals of the posterior samples and provides information on possible correlation between pairs of parameters. As can be seen, the most constrained parameters are the dffbWallHTC and the dffbIntDrag, while the iafbIntDrag is the least constrained (see upper half values of the range). This result is supported by the analysis in [15], which found the temperature output to have a much smaller sensitivity to iafbIntDrag than to the two previous parameters. The calibration of gridHTEnh is also peculiar as if the lower bound of its variation range was less constrained. From [23] it was indeed found that only upper half values of the parameter range were influential to the temperature output. Finally, the quench temperature calibration result indicates the need for a negative shift of parameter tempQuench for higher consistency with data and the error model used. As for this unanticipated shift, one should recall that only one test has been considered here (No. 216) thus a risk of over-fitting, but also that FEBA data are not part of the official validation database of the TRACE code for reflooding. 
+In formulating the posterior distribution of the model parameters, 
+the present work adopted the Modular Bayesian approach proposed 
+by Liu et al. (\cite{Liu2009}). 
+The modular Bayesian approach is only partially Bayesian because 
+at the first two steps of formulating the meta-models and the discrepancy 
+term, some of the unknown hyper-parameter values are estimated separately 
+and kept constant in the downstream analysis. 
+As such, the uncertainties on these hyper-parameters are not taken into 
+account. 
+This approach is justified in many case studies due to the fact that the 
+hyper-parameters are often confounded with the model parameters resulting 
+in non-identifiable parameters, especially if lots of model parameters 
+and hyper-parameters are involved (\cite{Liu2009,Bayarri2009}). 
+Given the above and by using property of normal distribution, 
+the sampling data model (the likelihood) can be written as follows,
 
+\begin{equation}
+    y^{\text{EXP}} \sim \mathcal{N}(y^\text{M} + m_b, V \Sigma_w V^T + V_{>P_tr} S_{>P_tr} V_{>P_tr}^T + \Sigma_b + \sigma_\text{exp}^2 I)
+\end{equation}
 
+Where $V$ is a matrix given by $V=[v_1;v_2;\dots;v_{P_tr}]$ and $v_i$ is 
+the $i$-th eigenvectors; $Sigma_w$ is a diagonal matrix with component 
+scores prediction variance as entry;  $S_{>P_tr}$ is a diagonal matrix 
+with eigenvalues of higher than retained principal components; 
+$V_{>P_tr}$ is the equivalent matrix V for higher than retained 
+principal components; $\sigma_\text{exp}^2$ is the experimental data 
+uncertainty, and $I$ is the identity matrix. 
+Note that only $y^M$ and $\Sigma_w$ are functions of the model parameters.
 
-To verify the posterior distribution of model parameters obtained from the calibration using FEBA Test No. 216, uncertainty propagation for temperature prediction of FEBA Test No. 214 has been obtained and is shown in Figure 13. As can be seen the posterior parameters distributions yield narrower uncertainty for the temperature prediction, thus confirming the potential of the developped calibration method.
+Finally, the posterior samples are generated using Markov Chain Monte Carlo 
+(MCMC) method \cite{Foreman-Mackey2013} based on the likelihood function 
+above and the specified prior distribution for the model parameters 
+\cite{Wicaksono2016}. 
+MCMC method is used to avoid difficult integration of the normalizing 
+constant in the Bayes’ probability inversion theorem. 
+Figure~\ref{fig:mcmc} shows the resulting histogram of the posterior samples for 
+the 5-parameter model 
+(the number of calibrated parameters was reduced from 7 to 5 due to 
+identifiability issue).
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.95]{figures/mcmc.png}
+	\caption{Posterior of the model parameters. The 1-D marginal is shown on 
+	    the diagonal while the 2-D marginal for each pairs are shown on the 
+	    off-diagonal part of the plot. The contour lines on the 2-D marginal
+	    plots correspond to 1-, 2-, and 3-$\sigma$ levels}
+	\label{fig:mcmc}
+\end{figure}
+
+The results of calibrating the 5-parameter model are presented in corner 
+plot in Figure~\ref{fig:mcmc}. 
+A corner plot (\cite{Foreman-Mackey2016}) depicts the one-dimensional 
+as well as the two-dimensional marginals of the posterior samples and provides 
+information on possible correlation between pairs of parameters. 
+As can be seen, the most constrained parameters are the 
+\textbf{dffbWallHTC}\footnote{The wall heat transfer coefficient in the post-CHF dispersed flow regime}  
+and the \textbf{dffbIntDrag}\footnote{The interfacial drag coefficient in the post-CHF dispersed flow regime}, 
+while the \textbf{iafbIntDrag}\footnote{The interfacial drag coefficient in the post-CHF inverted annular flow regime} 
+is the least constrained (see upper half values of the range).
+This result is supported by the analysis in \cite{Wicaksono2015b}, 
+which found the temperature output to have a much smaller sensitivity to 
+\textbf{dffbIntDrag} than to the two previous parameters. 
+The calibration of \textbf{gridHTEnh}\footnote{Spacer grid heat transfer enhancement coefficient} 
+is also peculiar as if the lower bound of its variation range was less 
+constrained.
+From \cite{Wicaksono2014b} it was indeed found that only upper half values of 
+the parameter range were influential to the temperature output. 
+Finally, the quench temperature calibration result indicates the need for a 
+negative shift of parameter \textbf{tempQuench}\footnote{Quench temperature} 
+for higher consistency with data and the error model used. 
+As for this unanticipated shift, one should recall that only one test 
+has been considered here (No. 216) thus a risk of over-fitting, 
+but also that FEBA data are not part of the official validation database of 
+the TRACE code for reflooding. 
+
+To verify the posterior distribution of model parameters obtained from the 
+calibration using FEBA Test No. 216, uncertainty propagation for temperature 
+prediction of FEBA Test No. 214 has been obtained and is shown in 
+Figure~\ref{fig:uqrun}. 
+As can be seen the posterior parameters distributions yield narrower 
+uncertainty for the temperature prediction, thus confirming the potential 
+of the developed calibration method.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.95]{figures/uqrun.png}
+	\caption{Posterior temperature prediction of FEBA Test No. 214 (blue lines)
+	    obtained by propagating the posterior distribution of model parameters
+	    obtained from FEBA Test No. 216. The prior temperature predictions are 
+	    shown in black in the background. The nominal prediction and 
+	    experimental data are in green lines and red dashed lines, respectively.}
+	\label{fig:uqrun}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+
+% Current State of Work ------------------------------------------------------
 \section{Current state of work}
 
+Initially, the calibration process was carried out on the full 7-parameter 
+model using FEBA heater rod temperature evolution data at 8 different axial 
+locations. 
+It was found that the Markov Chain failed to converge as indicated by the 
+lack of mixing shown in Figure 14. 
+The trace or sequence of posterior samples during the MCMC iterations can 
+provide indication on the convergence of the chain, thus reliability of the 
+results. As can be seen, the algorithm failed to concentrate the posterior 
+on specific range of values. 
+Instead, the whole range of the prior values seems to be plausible.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.95]{figures/nonconv.png}
+	\caption{Trace plots of three selected parameters values during 
+	    MCMC iterations showing lack of convergence for 7-parameter
+	    model calibration}
+	\label{fig:nonconv}
+\end{figure}
+
+Diagnostic on the problem revealed collinearity between two pairs of 
+parameters: \textbf{dffbVIHTC}-\textbf{dffbIntDrag} and 
+\textbf{iafbWallHTC}-\textbf{iafbIntDrag}. 
+For each flow regime, the effect on the output of changes in one parameter 
+related to interfacial heat transfer can be compensated in the same manner 
+by changes in the other parameter related to interfacial drag, due to 
+collinearity. 
+During the calibration, this compensation effect resulted in wide range of 
+collinear parameter values that cannot be constrained by the rod temperatures 
+data alone. 
+Figure\ref{fig:collinear} illustrates the problem of collinearity between the 
+\textbf{dffbVIHTC}-\textbf{dffbIntDrag} pair. 
+In \cite{Wicaksono2016}, the issue was side-stepped by excluding the less 
+influential parameter in each pair from the calibration process.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.95]{figures/collinear.png}
+	\caption{Non-converging distributions of two collinear parameters
+	    \textbf{dffbVIHTC} and \textbf{dffbIntDrag}}
+	\label{fig:collinear}
+\end{figure}
+
+The issue of model identifiability was not well explored in the nuclear 
+engineering and safety community, judging from the zero relevant results 
+in the recent publications of \textit{Nuclear Science and Engineering}, 
+\textit{Nuclear Technology}, \textit{Nuclear Engineering and Design}, 
+\textit{Progress in Nuclear Energy}, and \textit{Annals of Nuclear Energy}. 
+However, the issue was often raised in chemical engineering, 
+environmental science, and system biology modelling although consensus 
+on the resolution of the issue is yet to be found. 
+In principle, the proposed solutions of model identifiability problem 
+can be classified into two broad categories:
+
+\begin{enumerate}
+    \item Using the result of sensitivity analysis to select subset of model 
+    identifiable parameters systematically 
+    \cite{Sin2010, Brun2001, Brun2002}. 
+    Such an approach was already adopted though with less rigor in the 
+    work presented in \cite{Wicaksono2016} where only a subset of the 
+    initial set of influential model parameters was eventually retained 
+    for calibration.
+    \item Using additional model response – experimental data pair to break the 
+    collinearity (\cite{Reichert2012, Arendt2012}). 
+    In essence, the calibration problem will become a 
+    multi-objective calibration problem, seeking to obtain plausible parameters 
+    values that are in accordance to the competing objectives. 
+    Depending on several factors such as the inherent correlation between 
+    different types of measurements and/or code outputs, the identifiability 
+    of the parameters cannot be guaranteed and the actual implementation of the 
+    approach remains an open issue. This issue will be investigated in the 
+    particular case of reflooding by incorporating additional source of information 
+    (e.g., measured liquid carry-over) and thus make good use of the available data.    
+\end{enumerate}
+
+The implementation of an approach that tackle the identifiability issue will provide 
+an additional relevant novelty of the doctoral research and the results will be 
+submitted for publication. 
+
+
+% ----------------------------------------------------------------------------
+
+% Calendar -------------------------------------------------------------------
 \section{Calendar of upcoming work}
 
+\begin{table}[h!]
+	\caption{Current state of research in relation to the original
+		(1\textsuperscript{st} year) work plan
+	}
+	\label{tab:currentstate}
+	\begin{center}
+		\footnotesize
+		\begin{tabular}{c l l l}
+% Header ----------------------------------------------------------------------
+			\toprule[1.5pt]
+			Objectives
+			& Tasks 
+			& Expected Efforts 
+			& Publication Plan \\ \hline
+% 1st Element -----------------------------------------------------------------
+			\textbf{} 
+			& \parbox[c]{0.3\textwidth}{%
+				Comprehensive reviews of post-CHF flow closure             %Task Description
+				laws in TRACE and externalization of important
+				model parameters} 
+			& \parbox[c]{0.2\textwidth}{
+		        1 Month} 
+			& \parbox[c]{0.3\textwidth}{%
+				\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+					\item Important reflood model parameters externalized
+					\item PSI contribution to OECD/NEA PREMIUM Benchmark finalized
+				\end{itemize}} \\ \hline
+% 2nd Element -----------------------------------------------------------------
+				\textbf{B} 
+				& \parbox[c]{0.3\textwidth}{%
+					Global sensitivity analysis (GSA) based on FEBA test facility}  
+				& \parbox[c]{0.2\textwidth}{%
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item 1 Technical report
+						\item 1 Journal article
+					\end{itemize}}
+				& \parbox[c]{0.3\textwidth}{%
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item A paper on Morris method presented at NUTHOS-10
+						\item A paper on FDA application presented at NUTHOS-10
+						\item A paper on GSA methodology presented at NURETH-16
+						\item A manuscript on GSA for submission to NSE (\textit{under preparation})
+						\item A technical report on nodalization studies (\textit{under preparation})
+					\end{itemize}} \\ \hline
+% 3rd Element -----------------------------------------------------------------
+				\textbf{C} 
+				& \parbox[c]{0.3\textwidth}{
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item Definition of error and probabilistic error model
+						\item Calibration of TRACE reflood model based on the FEBA facility
+						\item Approximation of the posterior distribution by Markov-Chain Monte Carlo
+					\end{itemize}}
+				& \parbox[c]{0.2\textwidth}{%
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item 1 Technical report
+						\item 1 Journal article
+						\item 1 Conference article
+					\end{itemize}}
+				& \parbox[c]{0.3\textwidth}{
+					Abstract to be submitted to NUTHOS-11 (\textit{under preparation})} \\	\hline
+% 4th Element -----------------------------------------------------------------
+				\textbf{D} 
+				& \parbox[c]{0.3\textwidth}{
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item Calibration of TRACE reflood model based on other reflood test facility
+						\item Consolidation of the calibration results based on 2 facilities and validation based on another reflood test facility
+					\end{itemize}}
+				& \parbox[c]{0.2\textwidth}{%
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item 1 Journal article
+					\end{itemize}} 
+				& \parbox[c]{0.3\textwidth}{%
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item \textbf{Task redefined}: calibration will only be based on FEBA, validation will be done against ACHILLES test facility
+						\item Scripting based on VB.NET has been developed to assist in input deck 		
+							  generation
+						\item ACHILLES test facility model in TRACE is currently being developed as part of M.Sc. student's work
+					\end{itemize}}\\ \hline
+% 5th Element ----------------------------------------------------------------
+				\textbf{E} 
+				& \parbox[c]{0.2\textwidth}{
+					Thesis-Write Up}
+				& \parbox[c]{0.2\textwidth}{%
+					Thesis} 
+				& \multicolumn{1}{c}{$-$}\\ 
+% End ------------------------------------------------------------------------
+			\bottomrule[1.5pt]
+		\end{tabular}
+	\end{center}
+\end{table}
+% ----------------------------------------------------------------------------
+
 \section{Other activities (teaching duties, etc.) and remarks}
+
+\subsection{Nuclear Computation Lab (ETH-531)}
+
+A teaching activity was carried out for a part of the Nuclear Computation Lab 
+course organized at PSI (one chapter, entitled ``Basic Thermal-hydraulics'', out of 
+6 chapters in total). 
+The course is part of the EPFL/ETHZ Nuclear Engineering Master Program and has 
+now become an obligatory course for students.
+A single day was dedicated for a lecture session followed by a hands-on computer
+simulation session using the TRACE code.
+Ten students participated in the course this semester.
 
 \section{Scientific publications \& conference contributions}
 
@@ -248,19 +525,41 @@ To verify the posterior distribution of model parameters obtained from the calib
 
 \printbibliography[heading=none]
 
+% Signature Page -------------------------------------------------------------
 \newpage
 \textcolor{white}.\\\\
 \noindent \textbf{Comments by the thesis advisor(s)}\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-...................................................................................................................................................................\\\\
-
+\noindent\textbf{Prof. A Pautz}\\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+%
+\noindent\textbf{O. Zerkak}\\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
+............................................................................
+............................................................................\\\
 
 \section*{\underline{Signatures}\\}
 \noindent \textbf{Thesis advisor}\hspace{6.25cm}..............................................................................\vspace{0.5cm}\\
@@ -268,16 +567,17 @@ To verify the posterior distribution of model parameters obtained from the calib
 \noindent \textbf{Thesis co-advisor}\hspace{5.7cm}..............................................................................\\
 \noindent  (if applicable)\\\\
 
-\noindent \textbf{With his/her signature, the candidate confirms that he/she took note of the above comments.}\\\\
+\noindent \textbf{With his signature, the candidate confirms that he took note of the above comments.}\\\\
 \textbf{Candidate}\hspace{7cm}..............................................................................\vspace{0.5cm}\\
 
 \noindent \textbf{Date}\hspace{8.05cm}..............................................................................\\
 
 \vspace{0.8cm}
 \begin{center}
-\textbf{Up to 5 pages in total}
+%\textbf{Up to 5 pages in total}
 \end{center}
 \begin{center}
 \textbf{To be returned to:} \textcolor{green}{EPFL-EDPY / Station 3 / 1015 Lausanne / Suisse}
 \end{center}
+% ----------------------------------------------------------------------------
 \end{document}  
