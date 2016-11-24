@@ -84,13 +84,12 @@ The currently adopted practice for uncertainty quantification of the
 evaluation model is done through statistical sampling where the model is 
 evaluated multiple times using different values of input and code parameters 
 that are represented as random variable equipped with the corresponding 
-probability distribution (\cite{Nutt2004, Wallis2007, Glaeser2008}).
+probability distribution.
 Through statistical analysis of the (dispersed) output, the uncertainty 
 in the predictions can be quantified.
  
 In the particular case of thermal-hydraulics system codes, which can 
 predict the complex dynamics of light water reactors, previous works 
-(\cite{Crecy2008} and \cite{Kovtonyuk2014}), 
 have pointed out the importance of the phenomenological model parameters 
 uncertainties on the codes predictions. 
 System codes are indeed valuable tools to describe complex two-phase flow 
@@ -99,7 +98,7 @@ empirical models.
 However, these parameters often cannot be measured directly, might not 
 have inherent physical meaning, and thus simply act as tuning parameter to
 best fit specific datasets based on test facilities with various degrees of 
-representativity \cite{USNRC2012}. As such, the estimation of the uncertainty 
+representativity. As such, the estimation of the uncertainty 
 associated with system code parameters is mostly based on expert judgment.
 
 The purpose of the research is to quantify the uncertainty of 
@@ -141,7 +140,7 @@ high-dimensional output (i.e., the heater rod temperature in time and
 1-dimensional space) of FEBA TRACE model with 7 parameters was demonstrated 
 in the conference article \cite{Wicaksono2016}. The selected 7 model parameters 
 were based on the 10 most important parameters obtained from the sensitivity 
-analysis (\cite{Wicaksono2014b, Wicaksono2015a}) minus 3 parameters related to 
+analysis (\cite{Wicaksono2016}) minus 3 parameters related to 
 the boundary conditions (inlet velocity, system backpressure and heater power)
 as only one set of experimental conditions was considered in that study.
 Principal component analysis (PCA) was carried out to reduce the 
@@ -182,7 +181,7 @@ validation samples. From the figure it can be seen that retaining more than
 
 To check the amount of error due to retaining only a limited number of PCs to 
 represent space- and time-dependent temperature output, cross-validation 
-technique \cite{Bro2009} is used to compute the reconstruction error as function of 
+technique is used to compute the reconstruction error as function of 
 increasing number of retained PCs. As can be seen in Figure~\ref{fig:rmse}, retaining only 
 8 PCs (as argued above) amounts to about, on average, 23 [K] of reconstruction 
 error.
@@ -224,7 +223,7 @@ that can be evaluated for a given parameter value.
 
 In formulating the posterior distribution of the model parameters, 
 the present work adopted the Modular Bayesian approach proposed 
-by Liu et al. (\cite{Liu2009}). 
+by Liu et al. 
 The modular Bayesian approach is only partially Bayesian because 
 at the first two steps of formulating the meta-models and the discrepancy 
 term, some of the unknown hyper-parameter values are estimated separately 
@@ -234,7 +233,7 @@ account.
 This approach is justified in many case studies due to the fact that the 
 hyper-parameters are often confounded with the model parameters resulting 
 in non-identifiable parameters, especially if lots of model parameters 
-and hyper-parameters are involved (\cite{Liu2009,Bayarri2009}). 
+and hyper-parameters are involved. 
 Given the above and by using property of normal distribution, 
 the sampling data model (the likelihood) can be written as follows,
 
@@ -252,7 +251,7 @@ uncertainty, and $I$ is the identity matrix.
 Note that only $y^M$ and $\Sigma_w$ are functions of the model parameters.
 
 Finally, the posterior samples are generated using Markov Chain Monte Carlo 
-(MCMC) method \cite{Foreman-Mackey2013} based on the likelihood function 
+(MCMC) method based on the likelihood function 
 above and the specified prior distribution for the model parameters 
 \cite{Wicaksono2016}. 
 MCMC method is used to avoid difficult integration of the normalizing 
@@ -274,7 +273,7 @@ identifiability issue).
 
 The results of calibrating the 5-parameter model are presented in corner 
 plot in Figure~\ref{fig:mcmc}. 
-A corner plot (\cite{Foreman-Mackey2016}) depicts the one-dimensional 
+A corner plot depicts the one-dimensional 
 as well as the two-dimensional marginals of the posterior samples and provides 
 information on possible correlation between pairs of parameters. 
 As can be seen, the most constrained parameters are the 
@@ -282,13 +281,13 @@ As can be seen, the most constrained parameters are the
 and the \textbf{dffbIntDrag}\footnote{The interfacial drag coefficient in the post-CHF dispersed flow regime}, 
 while the \textbf{iafbIntDrag}\footnote{The interfacial drag coefficient in the post-CHF inverted annular flow regime} 
 is the least constrained (see upper half values of the range).
-This result is supported by the analysis in \cite{Wicaksono2015b}, 
+This result is supported by the analysis in \cite{Wicaksono2016a}, 
 which found the temperature output to have a much smaller sensitivity to 
 \textbf{dffbIntDrag} than to the two previous parameters. 
 The calibration of \textbf{gridHTEnh}\footnote{Spacer grid heat transfer enhancement coefficient} 
 is also peculiar as if the lower bound of its variation range was less 
 constrained.
-From \cite{Wicaksono2014b} it was indeed found that only upper half values of 
+From \cite{Wicaksono2016} it was indeed found that only upper half values of 
 the parameter range were influential to the temperature output. 
 Finally, the quench temperature calibration result indicates the need for a 
 negative shift of parameter \textbf{tempQuench}\footnote{Quench temperature} 
@@ -378,14 +377,13 @@ can be classified into two broad categories:
 
 \begin{enumerate}
     \item Using the result of sensitivity analysis to select subset of model 
-    identifiable parameters systematically 
-    \cite{Sin2010, Brun2001, Brun2002}. 
+    identifiable parameters systematically. 
     Such an approach was already adopted though with less rigor in the 
     work presented in \cite{Wicaksono2016} where only a subset of the 
     initial set of influential model parameters was eventually retained 
     for calibration.
     \item Using additional model response – experimental data pair to break the 
-    collinearity (\cite{Reichert2012, Arendt2012}). 
+    collinearity. 
     In essence, the calibration problem will become a 
     multi-objective calibration problem, seeking to obtain plausible parameters 
     values that are in accordance to the competing objectives. 
@@ -406,6 +404,11 @@ results will be submitted for publication.
 
 % Calendar -------------------------------------------------------------------
 \section{Calendar of upcoming work}
+
+The proposed upcoming works and the timeframe were detailed in the separate 
+document which was submitted to the EPFL Doctoral School of Physics to 
+justify an extension to the doctoral research \cite{Wicaksono2016d}.
+Table summarizes the proposed additional works.
 
 \begin{table}[h!]
 	\caption{Current state of research in relation to the original
@@ -513,29 +516,11 @@ enthusiasm.
 
 \section{Scientific publications, conference contributions, \& presentations}
 
-During 2016, a journal article related to the application of global sensitivity 
-analysis was published in \textit{Nuclear Science and Engineering} \cite{Wicaksono2016a}. 
-Additionally, a conference article was submitted to and presented at the 10th 
-International Topical Meeting on Nuclear Thermal-Hydraulics, Operations and Safety
-(NUTHOS-10) \cite{Wicaksono2016}.
-
-Two reports were released 
-
-Two separate presentations were made on the design and analysis of computer experiment 
-and its application for nuclear engineering thermal-hydraulics model. 
-The first was in front of the Scientific Advisory Committee for 
-the Laboratory of Reactor Physics and Systems Behaviour at the Paul Scherrer Institut while
-the second was for the quarterly meeting between the STARS project and the Swiss Nuclear Safety 
-Inspectorate.
-
-\nocite{Wicaksono2014a}
-\nocite{Wicaksono2014b}
-\nocite{Wicaksono2014c}
-\nocite{Wicaksono2015a}
-\nocite{Wicaksono2015b}
-\nocite{Wicaksono2015c}
-
-\section{References}
+\nocite{Wicaksono2016}
+\nocite{Wicaksono2016a}
+\nocite{Wicaksono2016b}
+\nocite{WicaksonoPPTa}
+\nocite{WicaksonoPPTb}
 
 \printbibliography[heading=none]
 
