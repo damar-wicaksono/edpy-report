@@ -27,6 +27,7 @@
 \usepackage{booktabs}% http://ctan.org/pkg/booktabs
 \newcommand{\tabitem}{~~\llap{\textbullet}~~}
 \usepackage{enumitem}
+\usepackage{rotating}
 % ----------------------------------------------------------------------------
 
 % Margin Setup ---------------------------------------------------------------
@@ -407,23 +408,23 @@ results will be submitted for publication.
 
 The proposed upcoming works and the timeframe were detailed in the separate 
 document which was submitted to the EPFL Doctoral School of Physics to 
-justify an extension to the doctoral research \cite{Wicaksono2016d}.
-Table summarizes the proposed additional works.
+justify an extension for the doctoral research duration \cite{Wicaksono2016d}.
+Table~\ref{tab:proposedworks} summarizes the proposed works, while Figure~\ref{fig:gantt} gives their respective time frame.
 
 \begin{table}[h!]
 	\caption{Current state of research in relation to the original
 		(1\textsuperscript{st} year) work plan
 	}
-	\label{tab:currentstate}
+	\label{tab:proposedworks}
 	\begin{center}
 		\footnotesize
-		\begin{tabular}{c l l l}
+		\begin{tabular}{p{3cm} l p{2cm} l}
 % Header ----------------------------------------------------------------------
 			\toprule[1.5pt]
 			Objectives
 			& Tasks 
 			& Expected Efforts 
-			& Publication Plan \\ \hline
+			& Publication Plan \\ \hline \\
 % 1st Element -----------------------------------------------------------------
 			Metamodel Building and Validation
 			& \parbox[c]{0.3\textwidth}{%
@@ -434,71 +435,61 @@ Table summarizes the proposed additional works.
 			& \parbox[c]{0.2\textwidth}{
 		        1 Month} 
 			& \parbox[c]{0.3\textwidth}{%
-				A technical report on important aspects of the building and application of GP metamodel} \\ \hline
+				A technical report on important aspects of the building and application of GP metamodel} \\ \\ \hline
 % 2nd Element -----------------------------------------------------------------
-				\textbf{B} 
+				Bayesian calibration incorporating data from different experimental conditions 
 				& \parbox[c]{0.3\textwidth}{%
-					Global sensitivity analysis (GSA) based on FEBA test facility}  
+					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
+						\item Review previous works on taking into account and different physical condition into calibration results
+						\item Conduct Bayesian calibration on the basis of temperature data from all the FEBA Series 1 tests
+					\end{itemize}}  
 				& \parbox[c]{0.2\textwidth}{%
-					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
-						\item 1 Technical report
-						\item 1 Journal article
-					\end{itemize}}
+					2 Months
+					}
 				& \parbox[c]{0.3\textwidth}{%
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
-						\item A paper on Morris method presented at NUTHOS-10
-						\item A paper on FDA application presented at NUTHOS-10
-						\item A paper on GSA methodology presented at NURETH-16
-						\item A manuscript on GSA for submission to NSE (\textit{under preparation})
-						\item A technical report on nodalization studies (\textit{under preparation})
+						\item A paper for journal publication
+						\item A short technical description detailing the application of Bayesian approach for model calibration
 					\end{itemize}} \\ \hline
 % 3rd Element -----------------------------------------------------------------
-				\textbf{C} 
+				Bayesian calibration incorporating additional code respones \- experimental data pair to tackle non-identifiability issue 
 				& \parbox[c]{0.3\textwidth}{
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
-						\item Definition of error and probabilistic error model
-						\item Calibration of TRACE reflood model based on the FEBA facility
-						\item Approximation of the posterior distribution by Markov-Chain Monte Carlo
+						\item Conduct global sensitivity analysis for TRACE model of FEBA for other responses
+						\item Construct Gaussian process metamodel for additional model responses
+						\item Investigate ways to incorporate additional model response(s) in the calibration process
 					\end{itemize}}
 				& \parbox[c]{0.2\textwidth}{%
-					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
-						\item 1 Technical report
-						\item 1 Journal article
-						\item 1 Conference article
-					\end{itemize}}
+					3 Months
+					}
 				& \parbox[c]{0.3\textwidth}{
-					Abstract to be submitted to NUTHOS-11 (\textit{under preparation})} \\	\hline
+					A journal article on the use of additional system response of FEBA TRACE model to tackle identifiability issue} \\	\hline
 % 4th Element -----------------------------------------------------------------
-				\textbf{D} 
+				Method Validation: Uncertainty propagation in ACHILLES facility 
 				& \parbox[c]{0.3\textwidth}{
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
-						\item Calibration of TRACE reflood model based on other reflood test facility
-						\item Consolidation of the calibration results based on 2 facilities and validation based on another reflood test facility
+						\item Extraction of experimental data
+						\item Review of previously developed TRACE models for selected ACHILLES Tests
+						\item Global sensitivity analysis of the TRACE models
+						\item Propagation of model parameter uncertainty
 					\end{itemize}}
 				& \parbox[c]{0.2\textwidth}{%
-					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
-						\item 1 Journal article
-					\end{itemize}} 
+					3 Months} 
 				& \parbox[c]{0.3\textwidth}{%
-					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
-						\item \textbf{Task redefined}: calibration will only be based on FEBA, validation will be done against ACHILLES test facility
-						\item Scripting based on VB.NET has been developed to assist in input deck 		
-							  generation
-						\item ACHILLES test facility model in TRACE is currently being developed as part of M.Sc. student's work
-					\end{itemize}}\\ \hline
-% 5th Element ----------------------------------------------------------------
-				\textbf{E} 
-				& \parbox[c]{0.2\textwidth}{
-					Thesis-Write Up}
-				& \parbox[c]{0.2\textwidth}{%
-					Thesis} 
-				& \multicolumn{1}{c}{$-$}\\ 
+					A draft of journal article to be submitted at later date}\\
 % End ------------------------------------------------------------------------
 			\bottomrule[1.5pt]
 		\end{tabular}
 	\end{center}
 \end{table}
 % ----------------------------------------------------------------------------
+
+\begin{sidewaysfigure}[ht]
+	\includegraphics{figures/gantt.png}
+	\caption{Calendar of upcoming works}
+	\label{fig:gantt}
+\end{sidewaysfigure}
+
 
 \section{Other activities (teaching duties, etc.) and remarks}
 
@@ -519,10 +510,12 @@ enthusiasm.
 \nocite{Wicaksono2016}
 \nocite{Wicaksono2016a}
 \nocite{Wicaksono2016b}
+\nocite{Wicaksono2016c}
 \nocite{WicaksonoPPTa}
 \nocite{WicaksonoPPTb}
 
 \printbibliography[heading=none]
+\clearpage
 
 % Signature Page -------------------------------------------------------------
 \newpage
