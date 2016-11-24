@@ -335,7 +335,7 @@ Instead, the whole range of the prior values seems to be plausible.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.95]{figures/nonconv.png}
+	\includegraphics[scale=0.90]{figures/nonconv.png}
 	\caption{Trace plots of three selected parameters values during 
 	    MCMC iterations showing lack of convergence for 7-parameter
 	    model calibration}
@@ -359,7 +359,7 @@ influential parameter in each pair from the calibration process.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.95]{figures/collinear.png}
+	\includegraphics[scale=0.90]{figures/collinear.png}
 	\caption{Non-converging distributions of two collinear parameters
 	    \textbf{dffbVIHTC} and \textbf{dffbIntDrag}}
 	\label{fig:collinear}
@@ -393,14 +393,14 @@ can be classified into two broad categories:
     different types of measurements and/or code outputs, the identifiability 
     of the parameters cannot be guaranteed and the actual implementation of the 
     approach remains an open issue. This issue will be investigated in the 
-    particular case of reflooding by incorporating additional source of information 
-    (e.g., measured liquid carry-over) and thus make good use of the available data.    
+    particular case of reflooding by incorporating additional source of 
+    information (e.g., measured liquid carry-over) and thus make good use of 
+    the available data.    
 \end{enumerate}
 
-The implementation of an approach that tackle the identifiability issue will provide 
-an additional relevant novelty of the doctoral research and the results will be 
-submitted for publication. 
-
+The implementation of an approach that tackle the identifiability issue will 
+provide an additional relevant novelty of the doctoral research and the 
+results will be submitted for publication. 
 
 % ----------------------------------------------------------------------------
 
@@ -422,18 +422,16 @@ submitted for publication.
 			& Expected Efforts 
 			& Publication Plan \\ \hline
 % 1st Element -----------------------------------------------------------------
-			\textbf{} 
+			Metamodel Building and Validation
 			& \parbox[c]{0.3\textwidth}{%
-				Comprehensive reviews of post-CHF flow closure             %Task Description
-				laws in TRACE and externalization of important
-				model parameters} 
+				Investigate the effect on the metamodel construction of using
+				different design for training, covariance function, diagnostic
+				measure, and validation schemes.             %Task Description
+			} 
 			& \parbox[c]{0.2\textwidth}{
 		        1 Month} 
 			& \parbox[c]{0.3\textwidth}{%
-				\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
-					\item Important reflood model parameters externalized
-					\item PSI contribution to OECD/NEA PREMIUM Benchmark finalized
-				\end{itemize}} \\ \hline
+				A technical report on important aspects of the building and application of GP metamodel} \\ \hline
 % 2nd Element -----------------------------------------------------------------
 				\textbf{B} 
 				& \parbox[c]{0.3\textwidth}{%
@@ -510,9 +508,25 @@ The course is part of the EPFL/ETHZ Nuclear Engineering Master Program and has
 now become an obligatory course for students.
 A single day was dedicated for a lecture session followed by a hands-on computer
 simulation session using the TRACE code.
-Ten students participated in the course this semester.
+Ten students participated in the course this semester, all of which showed good 
+enthusiasm.
 
-\section{Scientific publications \& conference contributions}
+\section{Scientific publications, conference contributions, \& presentations}
+
+During 2016, a journal article related to the application of global sensitivity 
+analysis was published in \textit{Nuclear Science and Engineering} \cite{Wicaksono2016a}. 
+Additionally, a conference article was submitted to and presented at the 10th 
+International Topical Meeting on Nuclear Thermal-Hydraulics, Operations and Safety
+(NUTHOS-10) \cite{Wicaksono2016}.
+
+Two reports were released 
+
+Two separate presentations were made on the design and analysis of computer experiment 
+and its application for nuclear engineering thermal-hydraulics model. 
+The first was in front of the Scientific Advisory Committee for 
+the Laboratory of Reactor Physics and Systems Behaviour at the Paul Scherrer Institut while
+the second was for the quarterly meeting between the STARS project and the Swiss Nuclear Safety 
+Inspectorate.
 
 \nocite{Wicaksono2014a}
 \nocite{Wicaksono2014b}
