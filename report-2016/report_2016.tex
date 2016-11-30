@@ -93,8 +93,10 @@ In the particular case of thermal-hydraulics system codes, which can
 predict the complex dynamics of light water reactors, previous works 
 have pointed out the importance of the phenomenological model parameters 
 uncertainties on the codes predictions. 
-System codes are indeed valuable tools to describe complex two-phase flow 
-phenomena, but require the use of several parameterized physical or 
+System codes are valuable tools to describe complex two-phase flow 
+phenomena, such as the reflooding and quenching of a pressurized water 
+reactor core after a hypothetical large break loss of coolant accident.
+However, such codes require the use of several parameterized physical or 
 empirical models. 
 However, these parameters often cannot be measured directly, might not 
 have inherent physical meaning, and thus simply act as tuning parameter to
@@ -103,7 +105,8 @@ representativity. As such, the estimation of the uncertainty
 associated with system code parameters is mostly based on expert judgment.
 
 The purpose of the research is to quantify the uncertainty of 
-physical model parameters implemented in a thermal-hydraulics system code. 
+physical model parameters implemented in a thermal-hydraulics system code
+(TRACE). 
 The physical models of interest describe the phasic interactions in a complex 
 multiphase flow during a reactor transient, namely heat, mass, and momentum 
 exchanges between vapor, water and structures. 
@@ -113,12 +116,14 @@ This results in uncertain code prediction of important safety quantities, such
 as the evolution of the fuel cladding temperature during a postulated reactor 
 transient.
 Adopting probabilistic framework to conform to the statistical uncertainty 
-propagation widely adopted in the field of nuclear engineering, 
+propagation widely practiced in the field of nuclear engineering, 
 the uncertainties in the parameters are represented in form of probabilistic 
 density functions or their approximation. The derivation of these functions 
 is posed as an inverse statistical problem following Bayesian approach as 
 the parameters themselves are not directly observable. 
-As such, a method to achieve such an objective will be developed.
+In this research, a consistent methodological approach to properly pose and
+solve this type of problem is to be developed and demonstrated for the 
+specific phenomenon of core reflooding.
 % ----------------------------------------------------------------------------
 
 % State of Research ----------------------------------------------------------
@@ -129,7 +134,7 @@ As such, a method to achieve such an objective will be developed.
 The use of meta-model (emulator, or surrogate model) representing TRACE reflood
 simulation output was driven by the need to reduce computation efforts 
 (CPU usage and storage) within the adopted Bayesian framework, which requires 
-tens of thousands executions of the TRACE code using different parameters 
+tens of thousands of TRACE code executions using different parameters 
 values to obtain the posterior distribution with sufficient accuracy. 
 The Gaussian process regression (better known as \emph{kriging} in spatial 
 statistics) was adopted due to its maturity and popularity in the literature 
@@ -138,15 +143,17 @@ documentation, wider support, and diverse case studies.
 
 The applicability of Gaussian process to create a meta-model for representing 
 high-dimensional output (i.e., the heater rod temperature in time and 
-1-dimensional space) of FEBA TRACE model with 7 parameters was demonstrated 
-in the conference article \cite{Wicaksono2016}. The selected 7 model parameters 
-were based on the 10 most important parameters obtained from the sensitivity 
-analysis (\cite{Wicaksono2016}) minus 3 parameters related to 
-the boundary conditions (inlet velocity, system backpressure and heater power)
-as only one set of experimental conditions was considered in that study.
+1-dimensional space) of a FEBA TRACE model with 7 parameters has been
+demonstrated in the conference article \cite{Wicaksono2016}. 
+The selected 7 model parameters correspond to the 10 most important parameters
+obtained from the sensitivity analysis (\cite{Wicaksono2016}) minus 3 
+parameters related to the boundary conditions (inlet velocity, system 
+backpressure and heater power) as only one set of experimental conditions 
+was considered in the metamodel building and calibration process.
 Principal component analysis (PCA) was carried out to reduce the 
 high dimensionality of the output and a set of metamodels was constructed to 
-approximate the principal component scores as function of the model parameters. 
+approximate the principal component scores as function of the model parameters 
+$\underline{\theta}$. 
 That is,
 
 \begin{equation}
@@ -159,39 +166,44 @@ represented by the metamodel, and $\epsilon_\text{tr}$ is the truncation
 error. The truncation error is due to information being discarded in using fewer 
 principal components ($P_\text{tr}$) than the original dimension ($P$).
 
-The selection of the number PC to retain is usually done by justifying the 
-amount of variance the selected PCs explained such as 90\%, 95\% or 99\%. 
+The selection of the number of PC to retain $P_tr$ is usually justified by 
+the amount of the explained variance carried by the selected PCs 
+such as 90\%, 95\% or 99\%. 
 However, in creating a Gaussian Process metamodel based on PC, the 
-decision cannot be separated from the fact that higher PC tends to be 
-harder to fit due to increasing non-linearities (on the contrary, 
-the first PC tends to be the smoothest, thus easiest to fit). 
+decision cannot be separated from the fact that PC of higher number 
+tends to be harder to fit due to increasing non-linearities 
+(on the contrary, the first PC tends to be the smoothest of all, 
+thus easiest to fit). 
 This fact is established in Figure~\ref{fig:gp_pc_conv} below that shows the 
 predictivity coefficient $Q_2$ (closer to 1 is better) as function of 
-training samples for sequential PC calculated based on 500 independent 
-validation samples. From the figure it can be seen that retaining more than 
-8 PCs would not bring a better prediction capability of the metamodel.
+training sample sizes for sequential PC calculated based on 500 independent 
+validation samples obtained with the original TRACE simulation. 
+From the figure it can be seen that retaining more than 
+8 PCs should not significantly improve the prediction capability of 
+the metamodel (note the slow and, at times, erratic convergence trends 
+beyond the 4$^{\text{th}}$ PC).
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.95]{figures/gp_pc_conv.png}
-	\caption{The predictivity coefficient calculated using independent 
-		validation samples (500 samples) for Gaussian Process metamodels 
-		with each principal component scores as the output}
+	\includegraphics[scale=0.85]{figures/gp_pc_conv.png}
+	\caption{The predictivity coefficient calculated using 500 
+		independent TRACE validation samples as function of the 
+		training size for Gaussian Process metamodels 
+		with each PC scores as the output}
 	\label{fig:gp_pc_conv}
 \end{figure}
 
 To check the amount of error due to retaining only a limited number of PCs to 
 represent space- and time-dependent temperature output, cross-validation 
 technique is used to compute the reconstruction error as function of 
-increasing number of retained PCs. As can be seen in Figure~\ref{fig:rmse}, retaining only 
-8 PCs (as argued above) amounts to about, on average, 23 [K] of reconstruction 
+increasing number of retained PCs. As can be seen in Figure~\ref{fig:rmse}, retaining only 8 PCs amounts to about, on average, 23 [K] of reconstruction 
 error.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.95]{figures/rmse.png}
 	\caption{(\textbf{Left}) The convergence of cross-validation reconstruction
-		 error (as root-mean-squared-error, RMSE) by incorporating increasing 
+		 error (as root-mean-squared-error, RMSE of all the temperature output as function time and axial elevation) by incorporating increasing 
 		 number of Principal Components (PC). (\textbf{Right}) the same 
 		 measure but in terms of improvement}
 	\label{fig:rmse}
@@ -199,59 +211,81 @@ error.
 
 \subsection{Bayesian Calibration}
 
-Also in 2016, Bayesian calibration of selected TRACE reflood model parameters
-were demonstrated in the same article \cite{Wicaksono2016} using only the heater 
-rod temperature data from FEBA Test No. 216 and a normal likelihood. 
-In statistical (Bayesian) formulation of computer model calibration, 
-the relationship between observed data and computer model prediction is 
+Also in 2016, a Bayesian calibration of selected influential TRACE reflood 
+model parameters has been demonstrated in the same article 
+\cite{Wicaksono2016} using only the heater 
+rod temperature data from a single FEBA test (No. 216) and a normal likelihood. 
+In statistical (Bayesian) formulation of computational model calibration, 
+the relationship between observed data and computational model prediction is 
 given by
 
 \begin{equation}
 	y^{\text{EXP}} = y^M (\underline{\hat{\theta}})+ \delta + \epsilon
 \end{equation}
 
-Where $y^\text{EXP}$ is the observed data, $y^M$  is the computer model 
-prediction made at the best, but unknown, model parameters 
-($\underline{\hat{\theta}}$). The computer model is distorted by the 
+Where $y^\text{EXP}$ is the observed data and $y^M$  is the computational model 
+prediction made at the best, but \emph{unknown}, model parameters 
+($\underline{\hat{\theta}}$). 
+The computational model is distorted by the 
 unknown model inadequacy term $\delta$, while experimental data is 
-distorted by measurement error $\epsilon$.
+affected by measurement error $\epsilon$.
 
-The Bayesian approach assumes any \emph{unknown} terms in probabilistic 
+The Bayesian approach assumes any \emph{unknown} term in a probabilistic 
 sense (i.e., epistemic). 
 As such, it prescribes distributional assumptions for all the unknowns 
 involved in the above equation in order to formulate a likelihood function 
 that can be evaluated for a given parameter value.
 
-In formulating the posterior distribution of the model parameters, 
-the present work adopted the Modular Bayesian approach proposed 
-by Liu et al. 
+To formulating the posterior distribution of the model parameters, 
+the present work adopted the modular Bayesian approach proposed 
+by Liu \textit{et al.} (2009). 
 The modular Bayesian approach is only partially Bayesian because 
 at the first two steps of formulating the meta-models and the discrepancy 
 term, some of the unknown hyper-parameter values are estimated separately 
 and kept constant in the downstream analysis. 
 As such, the uncertainties on these hyper-parameters are not taken into 
 account. 
-This approach is justified in many case studies due to the fact that the 
+This approach is justified in many case studies by the fact that the 
 hyper-parameters are often confounded with the model parameters resulting 
 in non-identifiable parameters, especially if lots of model parameters 
 and hyper-parameters are involved. 
-Given the above and by using property of normal distribution, 
-the sampling data model (the likelihood) can be written as follows,
+With the aforementioned assumptions and using property of 
+the normal distribution, the sampling data model (the likelihood) can 
+be written as follows,
 
 \begin{equation}
-    y^{\text{EXP}} \sim \mathcal{N}(y^\text{M} + m_b, V \Sigma_w V^T + V_{>P_tr} S_{>P_tr} V_{>P_tr}^T + \Sigma_b + \sigma_\text{exp}^2 I)
+    y^{\text{EXP}} \sim \mathcal{N}(y^\text{M} + m_b, V \Sigma_w V^T + V_{>P_{tr}} S_{>P_{tr}} V_{>P_{tr}}^T + \Sigma_b + \sigma_\text{exp}^2 I)
+    \label{eq:likelihood}
 \end{equation}
 
-Where $V$ is a matrix given by $V=[v_1;v_2;\dots;v_{P_tr}]$ and $v_i$ is 
-the $i$-th eigenvectors; $Sigma_w$ is a diagonal matrix with component 
-scores prediction variance as entry;  $S_{>P_tr}$ is a diagonal matrix 
-with eigenvalues of higher than retained principal components; 
-$V_{>P_tr}$ is the equivalent matrix V for higher than retained 
-principal components; $\sigma_\text{exp}^2$ is the experimental data 
-uncertainty, and $I$ is the identity matrix. 
-Note that only $y^M$ and $\Sigma_w$ are functions of the model parameters.
+Where, $V$ is a $N_{d} \times P_{tr}$ matrix given 
+by $V=[v_1;v_2;\dots;v_{P_{tr}}]$ with $v_i$ is 
+the $i$-th eigenvectors and  $N_d$ is the output dimension for a given 
+space and time discretization, given by 
+$N_d = N_{\Delta t} \times N_{\Delta z} $; 
+$\Sigma_w$ is a diagonal $P_{tr} \times P_{tr}$ 
+matrix with component scores prediction variance as entry;  
+$S_{>P_{tr}}$ is a diagonal matrix 
+with eigenvalues of higher than retained principal components;
+$m_b$ and $\Sigma_b$ are the mean and the $N_d \times N_d$ covariance 
+matrix of the model inadequacy (bias) term, respectively.  
+$V_{>P_{tr}}$ is the equivalent matrix V for higher than retained 
+principal components; 
+$\sigma_\text{exp}^2$ is the variance of the experimental data; 
+and $I$ is the identity matrix. 
 
-Finally, the posterior samples are generated using Markov Chain Monte Carlo 
+Note that only $y^M$ and $\Sigma_w$ are functions of the model parameters.
+Thus, they are to be updated during the calibration procedure. 
+All the other terms (or their approximation) in Eq.~\ref{eq:likelihood} are 
+obtained from experimental specifications, the preliminary PC analysis, 
+the results of metamodel training, and 
+the nominal values of $\underline{\theta}$, as explained in \cite{Wicaksono2016}.
+This, combined with the use of metamodel to readily estimate $y^{\text{M}}(\underline{\theta})$, reduced the complexity of the problem and the 
+required computational load such that an expensive Bayesian 
+calibration procedure is feasible.
+
+As for the calibration procedure itself, the posterior samples are 
+generated using Markov Chain Monte Carlo 
 (MCMC) method based on the likelihood function 
 above and the specified prior distribution for the model parameters 
 \cite{Wicaksono2016}. 
@@ -259,8 +293,8 @@ MCMC method is used to avoid difficult integration of the normalizing
 constant in the Bayes’ probability inversion theorem. 
 Figure~\ref{fig:mcmc} shows the resulting histogram of the posterior samples for 
 the 5-parameter model 
-(the number of calibrated parameters was reduced from 7 to 5 due to 
-identifiability issue).
+(the number of calibrated parameters had to be reduced from 7 to 5 due to 
+identifiability issue, to be discussed in the next section).
 
 \begin{figure}[h!]
 	\centering
@@ -274,21 +308,21 @@ identifiability issue).
 
 The results of calibrating the 5-parameter model are presented in corner 
 plot in Figure~\ref{fig:mcmc}. 
-A corner plot depicts the one-dimensional 
-as well as the two-dimensional marginals of the posterior samples and provides 
-information on possible correlation between pairs of parameters. 
+A corner plot depicts all the one-dimensional 
+and, in pairwise, the two-dimensional marginals of the posterior samples. 
+It provides information on possible correlation between parameters. 
 As can be seen, the most constrained parameters are the 
-\textbf{dffbWallHTC}\footnote{The wall heat transfer coefficient in the post-CHF dispersed flow regime}  
-and the \textbf{dffbIntDrag}\footnote{The interfacial drag coefficient in the post-CHF dispersed flow regime}, 
-while the \textbf{iafbIntDrag}\footnote{The interfacial drag coefficient in the post-CHF inverted annular flow regime} 
+\textbf{dffbWallHTC}\footnote{The wall heat transfer coefficient in the post-CHF dispersed flow regime (DFFB)}  
+and the \textbf{dffbIntDrag}\footnote{The interfacial drag coefficient in the post-CHF DFFB regime}, 
+while the \textbf{iafbIntDrag}\footnote{The interfacial drag coefficient in the post-CHF inverted annular film boiling regime} 
 is the least constrained (see upper half values of the range).
 This result is supported by the analysis in \cite{Wicaksono2016a}, 
 which found the temperature output to have a much smaller sensitivity to 
-\textbf{dffbIntDrag} than to the two previous parameters. 
+\textbf{iafbIntDrag} than to the two previous parameters. 
 The calibration of \textbf{gridHTEnh}\footnote{Spacer grid heat transfer enhancement coefficient} 
 is also peculiar as if the lower bound of its variation range was less 
 constrained.
-From \cite{Wicaksono2016} it was indeed found that only upper half values of 
+In \cite{Wicaksono2016} it was indeed found that only upper half values of 
 the parameter range were influential to the temperature output. 
 Finally, the quench temperature calibration result indicates the need for a 
 negative shift of parameter \textbf{tempQuench}\footnote{Quench temperature} 
@@ -298,7 +332,7 @@ has been considered here (No. 216) thus a risk of over-fitting,
 but also that FEBA data are not part of the official validation database of 
 the TRACE code for reflooding. 
 
-To verify the posterior distribution of model parameters obtained from the 
+To validate the posterior distribution of model parameters obtained from the 
 calibration using FEBA Test No. 216, uncertainty propagation for temperature 
 prediction of FEBA Test No. 214 has been obtained and is shown in 
 Figure~\ref{fig:uqrun}. 
@@ -313,7 +347,7 @@ of the developed calibration method.
 	    obtained by propagating the posterior distribution of model parameters
 	    obtained from FEBA Test No. 216. The prior temperature predictions are 
 	    shown in black in the background. The nominal prediction and 
-	    experimental data are in green lines and red dashed lines, respectively.}
+	    experimental data are shown in green and red dashed lines, respectively.}
 	\label{fig:uqrun}
 \end{figure}
 
@@ -326,33 +360,34 @@ Initially, the calibration process was carried out on the full 7-parameter
 model using FEBA heater rod temperature evolution data at 8 different axial 
 locations. 
 It was found that the Markov Chain failed to converge as indicated by the 
-lack of mixing shown in Figure 14. 
+lack of mixing shown in Figure~\ref{fig:nonconv}. 
 The trace or sequence of posterior samples during the MCMC iterations can 
 provide indication on the convergence of the chain, thus reliability of the 
 results. As can be seen, the algorithm failed to concentrate the posterior 
-on specific range of values. 
+on a specific range of values. 
 Instead, the whole range of the prior values seems to be plausible.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.90]{figures/nonconv.png}
 	\caption{Trace plots of three selected parameters values during 
-	    MCMC iterations showing lack of convergence for 7-parameter
+	    MCMC iterations showing no convergence of the 7-parameter
 	    model calibration}
 	\label{fig:nonconv}
 \end{figure}
 
-Diagnostic on the problem revealed collinearity between two pairs of 
+Diagnosis on the problem revealed collinearity between two pairs of 
 parameters: \textbf{dffbVIHTC}-\textbf{dffbIntDrag} and 
 \textbf{iafbWallHTC}-\textbf{iafbIntDrag}. 
-For each flow regime, the effect on the output of changes in one parameter 
-related to interfacial heat transfer can be compensated in the same manner 
+For each flow regime, namely DFFB and IAFB, 
+the effect on the output of changes in one parameter 
+related to heat transfer can be compensated in the same manner 
 by changes in the other parameter related to interfacial drag, due to 
 collinearity. 
 During the calibration, this compensation effect resulted in wide range of 
 collinear parameter values that cannot be constrained by the rod temperatures 
 data alone. 
-Figure\ref{fig:collinear} illustrates the problem of collinearity between the 
+Figure~\ref{fig:collinear} illustrates the problem of collinearity between the 
 \textbf{dffbVIHTC}-\textbf{dffbIntDrag} pair. 
 In \cite{Wicaksono2016}, the issue was side-stepped by excluding the less 
 influential parameter in each pair from the calibration process.
@@ -373,33 +408,33 @@ in the recent publications of \textit{Nuclear Science and Engineering},
 However, the issue was often raised in chemical engineering, 
 environmental science, and system biology modelling although consensus 
 on the resolution of the issue is yet to be found. 
-In principle, the proposed solutions of model identifiability problem 
-can be classified into two broad categories:
+In principle, the proposed solutions to the model identifiability problem 
+can be divided into two broad categories:
 
 \begin{enumerate}
-    \item Using the result of sensitivity analysis to select subset of model 
-    identifiable parameters systematically. 
-    Such an approach was already adopted though with less rigor in the 
-    work presented in \cite{Wicaksono2016} where only a subset of the 
+    \item Using the result of sensitivity analysis to select a subset of model 
+    parameters that are systematically identifiable using calibiration data 
+    at hand. 
+    Such an approach was already adopted though with less rigor in 
+    \cite{Wicaksono2016} where only a subset of the 
     initial set of influential model parameters was eventually retained 
     for calibration.
+    One of the difficulty in such approach is to find a parameter that preserves
+    the physical meaning of both collinear parameters.
+    This is not always possible, as it was the case for the problem at hand.
+    
     \item Using additional model response – experimental data pair to break the 
     collinearity. 
     In essence, the calibration problem will become a 
-    multi-objective calibration problem, seeking to obtain plausible parameters 
+    multi-objective optimization problem, seeking to obtain plausible parameters 
     values that are in accordance to the competing objectives. 
     Depending on several factors such as the inherent correlation between 
     different types of measurements and/or code outputs, the identifiability 
     of the parameters cannot be guaranteed and the actual implementation of the 
-    approach remains an open issue. This issue will be investigated in the 
-    particular case of reflooding by incorporating additional source of 
-    information (e.g., measured liquid carry-over) and thus make good use of 
-    the available data.    
+    approach remains an open issue. 
 \end{enumerate}
 
-The implementation of an approach that tackle the identifiability issue will 
-provide an additional relevant novelty of the doctoral research and the 
-results will be submitted for publication. 
+The identifiability issue will be investigated  in the particular case of reflooding by incorporating additional source of information (e.g., measured axial pressure drops and/or liquid carry-over) and thus make good use of the FEBA data at hand. If successful, the approach will provide additional relevant novelty to the doctoral research.
 
 % ----------------------------------------------------------------------------
 
@@ -408,17 +443,16 @@ results will be submitted for publication.
 
 The proposed upcoming works and the timeframe were detailed in the separate 
 document which was submitted to the EPFL Doctoral School of Physics to 
-justify an extension for the doctoral research duration \cite{Wicaksono2016d}.
+justify an extension of the doctoral research duration \cite{Wicaksono2016d}.
 Table~\ref{tab:proposedworks} summarizes the proposed works, while Figure~\ref{fig:gantt} gives their respective time frame.
 
 \begin{table}[h!]
-	\caption{Current state of research in relation to the original
-		(1\textsuperscript{st} year) work plan
+	\caption{Summary of the Proposed Works
 	}
 	\label{tab:proposedworks}
 	\begin{center}
 		\footnotesize
-		\begin{tabular}{p{3cm} l p{2cm} l}
+		\begin{tabular}{p{3cm} l p{2.5cm} l}
 % Header ----------------------------------------------------------------------
 			\toprule[1.5pt]
 			Objectives
@@ -437,7 +471,7 @@ Table~\ref{tab:proposedworks} summarizes the proposed works, while Figure~\ref{f
 			& \parbox[c]{0.3\textwidth}{%
 				A technical report on important aspects of the building and application of GP metamodel} \\ \\ \hline
 % 2nd Element -----------------------------------------------------------------
-				Bayesian calibration incorporating data from different experimental conditions 
+				\parbox[c]{0.18\textwidth}{Bayesian calibration incorporating data from different ex\-perimental conditions} 
 				& \parbox[c]{0.3\textwidth}{%
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
 						\item Review previous works on taking into account and different physical condition into calibration results
@@ -448,11 +482,14 @@ Table~\ref{tab:proposedworks} summarizes the proposed works, while Figure~\ref{f
 					}
 				& \parbox[c]{0.3\textwidth}{%
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
-						\item A paper for journal publication
-						\item A short technical description detailing the application of Bayesian approach for model calibration
+						\item A journal article on extension of Bayesian 
+						calibration of TRACE reflood model to all 6 FEBA 
+						Series I tests temperature data
+						\item A short technical description report on the
+						application of Bayesian approach for model calibration
 					\end{itemize}} \\ \hline
 % 3rd Element -----------------------------------------------------------------
-				Bayesian calibration incorporating additional code respones \- experimental data pair to tackle non-identifiability issue 
+				\parbox[c]{0.18\textwidth}{Bayesian calibration incorporating additional code re\-sponses \- experimental data pair to tackle identifiability issue}
 				& \parbox[c]{0.3\textwidth}{
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
 						\item Conduct global sensitivity analysis for TRACE model of FEBA for other responses
@@ -465,7 +502,7 @@ Table~\ref{tab:proposedworks} summarizes the proposed works, while Figure~\ref{f
 				& \parbox[c]{0.3\textwidth}{
 					A journal article on the use of additional system response of FEBA TRACE model to tackle identifiability issue} \\	\hline
 % 4th Element -----------------------------------------------------------------
-				Method Validation: Uncertainty propagation in ACHILLES facility 
+				\parbox[c]{0.18\textwidth}{Method Validation: Uncertainty propagation in ACHILLES reflood experiment}
 				& \parbox[c]{0.3\textwidth}{
 					\begin{itemize}[leftmargin=1em,itemsep=1pt,parsep=0pt]\raggedright%
 						\item Extraction of experimental data
@@ -476,7 +513,8 @@ Table~\ref{tab:proposedworks} summarizes the proposed works, while Figure~\ref{f
 				& \parbox[c]{0.2\textwidth}{%
 					3 Months} 
 				& \parbox[c]{0.3\textwidth}{%
-					A draft of journal article to be submitted at later date}\\
+					A journal article draft on the independent validation of the
+					proposed methodology against ACHILLES data}\\
 % End ------------------------------------------------------------------------
 			\bottomrule[1.5pt]
 		\end{tabular}
@@ -485,7 +523,7 @@ Table~\ref{tab:proposedworks} summarizes the proposed works, while Figure~\ref{f
 % ----------------------------------------------------------------------------
 
 \begin{sidewaysfigure}[ht]
-	\includegraphics{figures/gantt.png}
+	\includegraphics[scale=0.85]{figures/gantt.png}
 	\caption{Calendar of upcoming works}
 	\label{fig:gantt}
 \end{sidewaysfigure}
@@ -493,17 +531,26 @@ Table~\ref{tab:proposedworks} summarizes the proposed works, while Figure~\ref{f
 
 \section{Other activities (teaching duties, etc.) and remarks}
 
-\subsection{Nuclear Computation Lab (ETH-531)}
+\subsection{Nuclear Computations Lab (ETH-531)}
 
-A teaching activity was carried out for a part of the Nuclear Computation Lab 
+A teaching activity was carried out for a part of the Nuclear Computations Lab 
 course organized at PSI (one chapter, entitled ``Basic Thermal-hydraulics'', out of 
 6 chapters in total). 
 The course is part of the EPFL/ETHZ Nuclear Engineering Master Program and has 
 now become an obligatory course for students.
-A single day was dedicated for a lecture session followed by a hands-on computer
+A full day was dedicated for a lecture session followed by a hands-on computer
 simulation session using the TRACE code.
-Ten students participated in the course this semester, all of which showed good 
+Ten students participated in the course this semester, all of whom showed good 
 enthusiasm.
+
+\subsection{Completion of the OECD/NEA PREMIUM Benchmark}
+
+In 2016, written contributions and reviews were made in relation to the finalization and the release of two OECD/NEA international reports 
+on PREMIUM (\cite{Reventos2016, Sanz2016}). 
+More details can be found in \cite{Wicaksono2016b}, 
+which summarizes the PSI contribution to PREMIUM 
+and includes a discussion on the lessons learned from this benchmark.
+
 
 \section{Scientific publications, conference contributions, \& presentations}
 
@@ -513,6 +560,7 @@ enthusiasm.
 \nocite{Wicaksono2016c}
 \nocite{WicaksonoPPTa}
 \nocite{WicaksonoPPTb}
+\nocite{WicaksonoPPTc}
 
 \printbibliography[heading=none]
 \clearpage
@@ -535,7 +583,7 @@ enthusiasm.
 ............................................................................
 ............................................................................\\\
 ............................................................................
-............................................................................\\\
+............................................................................\\\\\
 %
 \noindent\textbf{O. Zerkak}\\\\
 ............................................................................
